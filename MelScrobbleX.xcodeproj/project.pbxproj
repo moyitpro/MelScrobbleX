@@ -8,8 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		256AC3DA0F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m */; };
 		3A004E69115AF13800906875 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A004E68115AF13800906875 /* ScriptingBridge.framework */; };
+		3A041A86115B09A900B2D20F /* OmniAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041A85115B09A900B2D20F /* OmniAppKit.framework */; };
+		3A041A8A115B09B500B2D20F /* OmniBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041A89115B09B500B2D20F /* OmniBase.framework */; };
+		3A041A8F115B09C500B2D20F /* OmniFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041A8E115B09C500B2D20F /* OmniFoundation.framework */; };
+		3A041A92115B09D400B2D20F /* OmniAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A041A85115B09A900B2D20F /* OmniAppKit.framework */; };
+		3A041A93115B09D400B2D20F /* OmniBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A041A89115B09B500B2D20F /* OmniBase.framework */; };
+		3A041A94115B09D400B2D20F /* OmniFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A041A8E115B09C500B2D20F /* OmniFoundation.framework */; };
+		3A041C1F115B0C6A00B2D20F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
+		3A041C23115B0CC900B2D20F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
 		3A2E0F9B114DD9C50050E16D /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */; };
 		3A2E0FD3114DDAF80050E16D /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */; };
 		3A3134F8114D89960046D05E /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3134F7114D89960046D05E /* libz.1.2.3.dylib */; };
@@ -20,6 +27,7 @@
 		3A313511114D89E10046D05E /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350A114D89E10046D05E /* ASIInputStream.m */; };
 		3A313512114D89E10046D05E /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350C114D89E10046D05E /* ASINetworkQueue.m */; };
 		3A313513114D89E10046D05E /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350E114D89E10046D05E /* ASINSStringAdditions.m */; };
+		3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */; };
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -33,6 +41,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3A041C23115B0CC900B2D20F /* Sparkle.framework in CopyFiles */,
+				3A041A92115B09D400B2D20F /* OmniAppKit.framework in CopyFiles */,
+				3A041A93115B09D400B2D20F /* OmniBase.framework in CopyFiles */,
+				3A041A94115B09D400B2D20F /* OmniFoundation.framework in CopyFiles */,
 				3A2E0F9B114DD9C50050E16D /* BGHUDAppKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,13 +56,15 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative_ExampleAppDelegate.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		3A004E68115AF13800906875 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		3A004E6D115AF14800906875 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
+		3A041A85115B09A900B2D20F /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = /Users/Shared/tohnominagi/InstalledProducts/OmniAppKit.framework; sourceTree = "<absolute>"; };
+		3A041A89115B09B500B2D20F /* OmniBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniBase.framework; path = /Users/Shared/tohnominagi/InstalledProducts/OmniBase.framework; sourceTree = "<absolute>"; };
+		3A041A8E115B09C500B2D20F /* OmniFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniFoundation.framework; path = /Users/Shared/tohnominagi/InstalledProducts/OmniFoundation.framework; sourceTree = "<absolute>"; };
+		3A041C1E115B0C6A00B2D20F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Users/Shared/tohnominagi/InstalledProducts/Sparkle.framework; sourceTree = "<absolute>"; };
 		3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		3A3134F7114D89960046D05E /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		3A3134F9114D89A90046D05E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
@@ -66,6 +80,8 @@
 		3A31350C114D89E10046D05E /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		3A31350D114D89E10046D05E /* ASINSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINSStringAdditions.h; sourceTree = "<group>"; };
 		3A31350E114D89E10046D05E /* ASINSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINSStringAdditions.m; sourceTree = "<group>"; };
+		3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative_ExampleAppDelegate.m; sourceTree = "<group>"; };
+		3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
 		3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_Example_Prefix.pch; sourceTree = "<group>"; };
 		3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative.h; sourceTree = "<group>"; };
 		3AEAC2C1115AD3D500286BE4 /* Melative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative.m; sourceTree = "<group>"; };
@@ -84,6 +100,10 @@
 				3A3134FF114D89BB0046D05E /* SystemConfiguration.framework in Frameworks */,
 				3A2E0FD3114DDAF80050E16D /* BGHUDAppKit.framework in Frameworks */,
 				3A004E69115AF13800906875 /* ScriptingBridge.framework in Frameworks */,
+				3A041A86115B09A900B2D20F /* OmniAppKit.framework in Frameworks */,
+				3A041A8A115B09B500B2D20F /* OmniBase.framework in Frameworks */,
+				3A041A8F115B09C500B2D20F /* OmniFoundation.framework in Frameworks */,
+				3A041C1F115B0C6A00B2D20F /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,8 +113,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				256AC3D80F4B6AC300CF3369 /* Melative_ExampleAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -117,6 +135,8 @@
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
 				3AEAC2C0115AD3D500286BE4 /* Melative.h */,
 				3AEAC2C1115AD3D500286BE4 /* Melative.m */,
+				3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */,
+				3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -153,6 +173,10 @@
 				3A3134F9114D89A90046D05E /* CoreServices.framework */,
 				3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */,
 				3A004E68115AF13800906875 /* ScriptingBridge.framework */,
+				3A041A85115B09A900B2D20F /* OmniAppKit.framework */,
+				3A041A89115B09B500B2D20F /* OmniBase.framework */,
+				3A041A8E115B09C500B2D20F /* OmniFoundation.framework */,
+				3A041C1E115B0C6A00B2D20F /* Sparkle.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";
@@ -241,13 +265,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m in Sources */,
 				3A31350F114D89E10046D05E /* ASIFormDataRequest.m in Sources */,
 				3A313510114D89E10046D05E /* ASIHTTPRequest.m in Sources */,
 				3A313511114D89E10046D05E /* ASIInputStream.m in Sources */,
 				3A313512114D89E10046D05E /* ASINetworkQueue.m in Sources */,
 				3A313513114D89E10046D05E /* ASINSStringAdditions.m in Sources */,
 				3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */,
+				3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +306,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../BGHUDAppKit/build/Release\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Shared/tohnominagi/InstalledProducts\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -304,6 +329,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../BGHUDAppKit/build/Release\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Shared/tohnominagi/InstalledProducts\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

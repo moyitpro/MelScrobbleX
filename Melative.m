@@ -19,21 +19,21 @@
 //Post the update
 	if ( [[fieldusername stringValue] length] == 0) {
 		//No Username Entered! Show error message
-		int choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a username", @"Enter a valid username and try posting again", @"OK", nil, nil, 8);
+		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a username", @"Enter a valid username and try posting again", @"OK", nil, nil, 8);
 	}
 	else {
 		if ( [[fieldpassword stringValue] length] == 0 ) {
 			//No Password Entered! Show error message.
-			int choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a password", @"Enter a valid password and try posting again", @"OK", nil, nil, 8);
+			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a password", @"Enter a valid password and try posting again", @"OK", nil, nil, 8);
 		}
 		else {
 			if ( [[fieldmessage stringValue] length] == 0 ) {
 				//No Password Entered! Show error message.
-			int choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
+			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
 			
 			}
 			else {
-			//Set Login URL
+			//Set micro/update API
 			NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
 				ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 			//Set Username
@@ -69,8 +69,8 @@
 				}
 				else {
 					//Send message only
-							[request setPostValue:[fieldmessage stringValue] forKey:@"message"];
-								[request setPostValue:@"Melative Cocoa Test" forKey:@"source"];
+					[request setPostValue:[fieldmessage stringValue] forKey:@"message"];
+					[request setPostValue:@"MelScrobbleX" forKey:@"source"];
 				}
 			[request startSynchronous];
 			// Get Status Code
@@ -78,7 +78,7 @@
 			if (statusCode == 200 ) {
 				NSString *response = [request responseString];
 				//Post suggessful... or is it?
-				int choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
+				choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
 				
 				/* If ( [rememberpassword state] == YES) {
 				 // Save UsernamePassword to Keychain
@@ -94,12 +94,13 @@
 			}
 			else {
 				//Login Failed, show error message
-				int choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
 			}
 			//release
-			statusCode = nil;
-			request = nil;
-			url = nil;
+				statusCode = nil;
+				choice = nil;
+				[request release];
+				[url release];
 			}
 			}
 	}

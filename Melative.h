@@ -17,6 +17,7 @@
 	IBOutlet NSTextField * segment;
 	IBOutlet NSButton * postbutton;
 		IBOutlet NSPopUpButton * mediatypemenu;
+	int choice;
 }
 -(IBAction)postmessage:(id)sender;
 -(IBAction)getnowplaying:(id)sender;

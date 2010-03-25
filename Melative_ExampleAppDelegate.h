@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface Melative_ExampleAppDelegate : NSObject {
-    NSWindow *window;
+    IBOutlet NSWindow *window;
 }
 
 @property (assign) IBOutlet NSWindow *window;
