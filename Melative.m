@@ -3,12 +3,13 @@
 //  MelScrobbleX
 //
 //  Created by Tohno Minagi on 3/14/10.
-//  Copyright 2010 Apple Inc. All rights reserved.
+//  Copyright 2010 James M.. All rights reserved. Covered under the GNU Public License V3
 //
 
 #import "Melative.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "iTunes.h"
 
 
 @implementation Melative
@@ -101,6 +102,18 @@
 			url = nil;
 			}
 			}
+	}
+}
+-(IBAction)getnowplaying:(id)sender
+{
+	if ([mediatypemenu indexOfSelectedItem] == 1) {
+	// Init iTunes Scripting 
+		iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+	//Obtain the Alubm and Track Name and place them in the Media Title and Segment Fields
+		[mediatitle setObjectValue:iTunes.currentTrack.album];
+		[segment setObjectValue:iTunes.currentTrack.name];
+	// Set iTunes Nil, not needed anymore
+		[iTunes release];
 	}
 }
 @end

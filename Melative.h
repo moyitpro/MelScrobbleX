@@ -19,5 +19,5 @@
 		IBOutlet NSPopUpButton * mediatypemenu;
 }
 -(IBAction)postmessage:(id)sender;
--(IBAction)getitunesnowplaying:(id)sender;
+-(IBAction)getnowplaying:(id)sender;
 @end

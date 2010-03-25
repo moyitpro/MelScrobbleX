@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* Melative_ExampleAppDelegate.m */; };
+		3A004E69115AF13800906875 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A004E68115AF13800906875 /* ScriptingBridge.framework */; };
 		3A2E0F9B114DD9C50050E16D /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */; };
 		3A2E0FD3114DDAF80050E16D /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */; };
 		3A3134F8114D89960046D05E /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3134F7114D89960046D05E /* libz.1.2.3.dylib */; };
@@ -48,6 +49,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3A004E68115AF13800906875 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		3A004E6D115AF14800906875 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		3A3134F7114D89960046D05E /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		3A3134F9114D89A90046D05E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
@@ -80,6 +83,7 @@
 				3A3134FA114D89A90046D05E /* CoreServices.framework in Frameworks */,
 				3A3134FF114D89BB0046D05E /* SystemConfiguration.framework in Frameworks */,
 				3A2E0FD3114DDAF80050E16D /* BGHUDAppKit.framework in Frameworks */,
+				3A004E69115AF13800906875 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +104,7 @@
 			children = (
 				3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				3A004E6D115AF14800906875 /* iTunes.h */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				3A3134F7114D89960046D05E /* libz.1.2.3.dylib */,
 				3A3134F9114D89A90046D05E /* CoreServices.framework */,
 				3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */,
+				3A004E68115AF13800906875 /* ScriptingBridge.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";

@@ -83,13 +83,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 291165346;
-			PBXWorkspaceStateSaveDate = 291165346;
+			PBXPerProjectTemplateStateSaveDate = 291172619;
+			PBXWorkspaceStateSaveDate = 291172619;
 		};
 		perUserProjectItems = {
-			3A861893115AD4AA007347A9 /* PBXTextBookmark */ = 3A861893115AD4AA007347A9 /* PBXTextBookmark */;
+			3A004E7A115AF1E200906875 /* PBXTextBookmark */ = 3A004E7A115AF1E200906875 /* PBXTextBookmark */;
+			3A004E7B115AF1E200906875 /* PBXTextBookmark */ = 3A004E7B115AF1E200906875 /* PBXTextBookmark */;
+			3A004E86115AF1E400906875 /* PBXTextBookmark */ = 3A004E86115AF1E400906875 /* PBXTextBookmark */;
+			3A004EAC115AF47800906875 /* PBXTextBookmark */ = 3A004EAC115AF47800906875 /* PBXTextBookmark */;
+			3A004EB3115AF56700906875 /* PBXTextBookmark */ = 3A004EB3115AF56700906875 /* PBXTextBookmark */;
+			3A004EB4115AF56700906875 /* PBXTextBookmark */ = 3A004EB4115AF56700906875 /* PBXTextBookmark */;
 			3AA5F939115AC89900DA616B /* PBXTextBookmark */ = 3AA5F939115AC89900DA616B /* PBXTextBookmark */;
-			3AEAC2EC115AD47300286BE4 /* PBXTextBookmark */ = 3AEAC2EC115AD47300286BE4 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 3A3134CA114D86610046D05E /* Source Control */;
 		userBuildSettings = {
@@ -102,6 +106,74 @@
 			sepNavVisRange = "{0, 254}";
 			sepNavWindowFrame = "{{15, 275}, {904, 598}}";
 		};
+	};
+	3A004E6D115AF14800906875 /* iTunes.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {3239, 6838}}";
+			sepNavSelRange = "{189, 0}";
+			sepNavVisRange = "{0, 1770}";
+			sepNavWindowFrame = "{{15, 81}, {1186, 792}}";
+		};
+	};
+	3A004E7A115AF1E200906875 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */;
+		name = "ASIHTTPRequestConfig.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 211;
+		vrLoc = 0;
+	};
+	3A004E7B115AF1E200906875 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3AEAC2C0115AD3D500286BE4 /* Melative.h */;
+		name = "Melative.h: 22";
+		rLen = 0;
+		rLoc = 524;
+		rType = 0;
+		vrLen = 261;
+		vrLoc = 304;
+	};
+	3A004E86115AF1E400906875 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */;
+		name = "Melative.m: 12";
+		rLen = 0;
+		rLoc = 269;
+		rType = 0;
+		vrLen = 2030;
+		vrLoc = 0;
+	};
+	3A004EAC115AF47800906875 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */;
+		name = "Melative.m: 113";
+		rLen = 0;
+		rLoc = 4495;
+		rType = 0;
+		vrLen = 368;
+		vrLoc = 4089;
+	};
+	3A004EB3115AF56700906875 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */;
+		name = "Melative.m: 113";
+		rLen = 0;
+		rLoc = 4495;
+		rType = 0;
+		vrLen = 311;
+		vrLoc = 4128;
+	};
+	3A004EB4115AF56700906875 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */;
+		name = "Melative.m: 4";
+		rLen = 135;
+		rLoc = 35;
+		rType = 0;
+		vrLen = 2069;
+		vrLoc = 0;
 	};
 	3A3134B7114D865E0046D05E /* MelScrobbleX */ = {
 		isa = PBXExecutable;
@@ -160,7 +232,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {812, 819}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 259}";
+			sepNavVisRange = "{0, 211}";
 		};
 	};
 	3A31350E114D89E10046D05E /* ASINSStringAdditions.m */ = {
@@ -169,16 +241,6 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 772}";
 		};
-	};
-	3A861893115AD4AA007347A9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */;
-		name = "ASIHTTPRequestConfig.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 259;
-		vrLoc = 0;
 	};
 	3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */ = {
 		uiCtxt = {
@@ -197,15 +259,21 @@
 		vrLen = 159;
 		vrLoc = 0;
 	};
-	3AEAC2EC115AD47300286BE4 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */;
-		name = "ASIHTTPRequestConfig.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 269;
-		vrLoc = 0;
+	3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {812, 312}}";
+			sepNavSelRange = "{524, 0}";
+			sepNavVisRange = "{304, 261}";
+			sepNavWindowFrame = "{{38, 60}, {1186, 792}}";
+		};
+	};
+	3AEAC2C1115AD3D500286BE4 /* Melative.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1398, 1560}}";
+			sepNavSelRange = "{35, 135}";
+			sepNavVisRange = "{0, 2069}";
+			sepNavWindowFrame = "{{6, 76}, {1186, 792}}";
+		};
 	};
 	8D1107260486CEB800E47090 /* MelScrobbleX */ = {
 		activeExec = 0;
