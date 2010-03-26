@@ -10,25 +10,27 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "iTunes.h"
-
+#import "EMKeychainItem.h"
 
 @implementation Melative
+@synthesize fieldusername;
+@synthesize fieldpassword;
+
 -(IBAction)postmessage:(id)sender
 {
 	NSLog(@"%i",[mediatypemenu indexOfSelectedItem]);
 //Post the update
-	if ( [[fieldusername stringValue] length] == 0) {
-		//No Username Entered! Show error message
-		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a username", @"Enter a valid username and try posting again", @"OK", nil, nil, 8);
+	if (fieldusername == nil) {
+		[self loadlogin];
 	}
-	else {
-		if ( [[fieldpassword stringValue] length] == 0 ) {
-			//No Password Entered! Show error message.
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a password", @"Enter a valid password and try posting again", @"OK", nil, nil, 8);
+		if ( fieldpassword == nil ) {
+			//No account information. Show error message.
+			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
 		}
 		else {
-			if ( [[fieldmessage stringValue] length] == 0 ) {
-				//No Password Entered! Show error message.
+
+			if ( [[fieldmessage stringValue] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
+				//No message, show error
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
 			
 			}
@@ -37,9 +39,9 @@
 			NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
 				ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 			//Set Username
-			[request setUsername:[fieldusername stringValue]];
-				[request setPassword:[fieldpassword stringValue]];
-			if ([[mediatitle stringValue]length] >= 0) {
+			[request setUsername:fieldusername];
+				[request setPassword:fieldpassword];
+			if ([[mediatitle stringValue]length] > 0) {
 					
 				//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
 				NSString * mediamessage = @"/";
@@ -53,7 +55,7 @@
 					// Music Playing, must be from iTunes
 					[request setPostValue:@"iTunes" forKey:@"source"];
 				}
-				if ([[segment stringValue]length] >=0) {
+				if ([[segment stringValue]length] >0) {
 					mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
 				}
 				else{
@@ -99,9 +101,8 @@
 			//release
 				statusCode = nil;
 				choice = nil;
-				[request release];
-				[url release];
-			}
+				request = nil;
+				url = nil;
 			}
 	}
 }
@@ -116,5 +117,30 @@
 	// Set iTunes Nil, not needed anymore
 		[iTunes release];
 	}
+}
+-(void)loadlogin
+{
+	// Load Username
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	fieldusername = [defaults objectForKey:@"Username"];
+	NSLog(@"%@",fieldusername);
+	// Load Keychain, if exists
+	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: fieldusername];
+	NSLog(@"%@", keychainItem.password);
+	if (keychainItem.password != nil) {
+		fieldpassword = keychainItem.password;
+		// Also, set it for Melative.h
+		//Melative.fieldpassword = keychainItem.username;
+		//[Melative setFieldpassword:keychainItem.password];
+		
+	}
+	//Release Keychain Item
+	keychainItem = nil;
+	
+}
+- (void)dealloc {
+    [fieldusername release];
+	[fieldpassword release];
+    [super dealloc];
 }
 @end

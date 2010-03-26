@@ -10,8 +10,8 @@
 
 
 @interface Melative : NSObject {
-	IBOutlet NSTextField * fieldusername;
-	IBOutlet NSTextField * fieldpassword;
+	NSString * fieldusername;
+	NSString * fieldpassword;
 	IBOutlet NSTextField * fieldmessage;
 	IBOutlet NSTextField * mediatitle;
 	IBOutlet NSTextField * segment;
@@ -19,6 +19,8 @@
 		IBOutlet NSPopUpButton * mediatypemenu;
 	int choice;
 }
+@property(copy, readwrite) NSString *fieldpassword;
+@property(copy, readwrite) NSString *fieldusername;
 -(IBAction)postmessage:(id)sender;
 -(IBAction)getnowplaying:(id)sender;
 @end

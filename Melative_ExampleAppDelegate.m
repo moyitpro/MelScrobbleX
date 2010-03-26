@@ -11,8 +11,7 @@
 @implementation Melative_ExampleAppDelegate
 
 @synthesize window;
-+ 
-(void)initialize
++ (void)initialize
 {
 	//Create a Dictionary
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];

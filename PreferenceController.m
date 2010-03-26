@@ -18,6 +18,7 @@
 	Login *loginview = [[Login alloc] initWithNibName:@"Login" bundle:nil];
 	Updates *updatesview = [[Updates alloc] initWithNibName:@"Updates" bundle:nil];
 	[[MBPreferencesController sharedController] setModules:[NSArray arrayWithObjects:loginview, updatesview, nil]];
+	[loginview loadlogin];
 	[loginview release];
 	[updatesview release];
 }

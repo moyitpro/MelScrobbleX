@@ -16,6 +16,8 @@
 	IBOutlet NSButton * clearbut;
 	int choice;
 }
+-(void)loadlogin;
 -(IBAction)startlogin:(id)sender;
 -(IBAction)clearlogin:(id)sender;
+
 @end

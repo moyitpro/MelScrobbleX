@@ -9,7 +9,7 @@
 #import "Login.h"
 #import "ASIHTTPRequest.h"
 #import "EMKeychainItem.h"
-
+#import "Melative.h"
 
 @implementation Login
 - (NSString *)title
@@ -26,20 +26,15 @@
 {
 	return [NSImage imageNamed:@"Login.tiff"];
 }
--(void)awakeFromNib
+-(void)loadlogin
 {
 	// Load Username
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSString * KeyUsername = nil;
-	KeyUsername = [defaults objectForKey:@"Username"];
 	// Load Keychain, if exists
-	EMInternetKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobblerX" withUsername: KeyUsername];
-	KeyUsername = nil;
-if (keychainItem != nil) {
-	[clearbut setEnabled: YES];
-	[savebut setEnabled: NO];
-	[fieldusername setObjectValue:keychainItem.username];
-	[fieldpassword setObjectValue:keychainItem.password];
+	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: [defaults objectForKey:@"Username"]];
+	if (keychainItem.password != nil) {
+		[clearbut setEnabled: YES];
+		[savebut setEnabled: NO];
 	}
 	else {
 		//Disable Clearbut
@@ -47,8 +42,22 @@ if (keychainItem != nil) {
 		[savebut setEnabled: YES];
 	}
 	//Release Keychain Item
-	[keychainItem release];
-
+	keychainItem = nil;
+	
+}
+-(IBAction)clearlogin:(id)sender
+{
+	choice = NSRunCriticalAlertPanel(@"Are you sure you want to remove the login from your Keychain?", @"Once done, this action cannot be undone,", @"Yes", @"No", nil, 8);
+	NSLog(@"%i", choice);
+	if (choice == 1) {
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[[EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: [defaults objectForKey:@"Username"]]remove];
+		// Clear Username
+		[defaults setObject:@"" forKey:@"Username"];
+		//Disable Clearbut
+		[clearbut setEnabled: NO];
+		[savebut setEnabled: YES];
+	}
 }
 -(IBAction)startlogin:(id)sender
 {
@@ -87,6 +96,8 @@ if (keychainItem != nil) {
 					[EMGenericKeychainItem addGenericKeychainItemForService:@"MelScrobbleX" withUsername:[fieldusername stringValue] password:[fieldpassword stringValue]];
 					NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 					[defaults setObject:[fieldusername stringValue] forKey:@"Username"];
+					//[Melative setFieldusername:[fieldusername stringValue]];
+					//[Melative setFieldpassword:[fieldpassword stringValue]];
 					[clearbut setEnabled: YES];
 					//release
 					response = nil;
