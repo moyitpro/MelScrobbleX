@@ -81,6 +81,8 @@
 				//Set Login URL
 				NSURL *url = [NSURL URLWithString:@"http://melative.com/api/account/verify_credentials.xml"];
 				ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+				//Ignore Cookies
+				[request setUseCookiePersistence:NO];
 				//Set Username
 				[request setUsername:[fieldusername stringValue]];
 				[request setPassword:[fieldpassword stringValue]];

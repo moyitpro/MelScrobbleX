@@ -38,7 +38,9 @@
 			//Set micro/update API
 			NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
 				ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-			//Set Username
+			//Ignore Cookies
+				[request setUseCookiePersistence:NO];
+				//Set Username
 			[request setUsername:fieldusername];
 				[request setPassword:fieldpassword];
 			if ([[mediatitle stringValue]length] > 0) {
