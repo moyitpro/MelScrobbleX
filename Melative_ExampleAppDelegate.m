@@ -11,7 +11,18 @@
 @implementation Melative_ExampleAppDelegate
 
 @synthesize window;
-
++ 
+(void)initialize
+{
+	//Create a Dictionary
+	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];
+	
+	// Defaults
+	
+	//Register Dictionary
+	[[NSUserDefaults standardUserDefaults]
+	 registerDefaults:defaultValues];
+}
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
 	[window makeKeyAndOrderFront:nil];
