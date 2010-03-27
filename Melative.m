@@ -110,9 +110,37 @@
 }
 -(IBAction)getnowplaying:(id)sender
 {
-	if ([mediatypemenu indexOfSelectedItem] == 1) {
+	if ([mediatypemenu indexOfSelectedItem] == 0) {
+	// LSOF mplayer to get the media title and segment
+		NSTask *task;
+		task = [[[NSTask alloc] init]autorelease];
+		[task setLaunchPath: @"/usr/sbin/lsof"];
+		//lsof -c 'mplayer' -Fn		
+		[task setArguments: [NSArray arrayWithObjects:@"-c", @"mplayer", @"-F", @"n", nil]];
+		
+		NSPipe *pipe;
+		pipe = [NSPipe pipe];
+		[task setStandardOutput: pipe];
+		
+		NSFileHandle *file;
+		file = [pipe fileHandleForReading];
+		
+		[task launch];
+		
+		NSData *data;
+		data = [file readDataToEndOfFile];
+		
+		NSString *string;
+		string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+		
+			NSLog(@"%@",string);
+	//Regex time
+	
+		
+	}
+	else if ([mediatypemenu indexOfSelectedItem] == 1) {
 	// Init iTunes Scripting 
-		iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+		iTunesApplication *iTunes = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"]autorelease];
 	//Obtain the Alubm and Track Name and place them in the Media Title and Segment Fields
 		[mediatitle setObjectValue:iTunes.currentTrack.album];
 		[segment setObjectValue:iTunes.currentTrack.name];
