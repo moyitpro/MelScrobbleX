@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import <OgreKit/OgreKit.h>
 
 @interface Melative : NSObject {
 	NSString * fieldusername;

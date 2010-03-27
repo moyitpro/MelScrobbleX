@@ -38,6 +38,9 @@
 		3A7A70B2115C289C00699FAB /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A70B1115C289C00699FAB /* EMKeychainItem.m */; };
 		3A7A7110115C2BF100699FAB /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A710F115C2BF100699FAB /* Carbon.framework */; };
 		3A7A7115115C2C0000699FAB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A7114115C2C0000699FAB /* Security.framework */; };
+		3A98A2DA115EA70300FAA769 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A2D9115EA70300FAA769 /* libicucore.dylib */; };
+		3A98A4D3115EC0B700FAA769 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
+		3A98A4D7115EC0C200FAA769 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
 		3A9D1FA6115C152F008F7EF1 /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D1FA4115C152F008F7EF1 /* Updates.tiff */; };
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -52,6 +55,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3A98A4D7115EC0C200FAA769 /* OgreKit.framework in CopyFiles */,
 				3A041C23115B0CC900B2D20F /* Sparkle.framework in CopyFiles */,
 				3A041A92115B09D400B2D20F /* OmniAppKit.framework in CopyFiles */,
 				3A041A93115B09D400B2D20F /* OmniBase.framework in CopyFiles */,
@@ -108,6 +112,8 @@
 		3A7A70B1115C289C00699FAB /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		3A7A710F115C2BF100699FAB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		3A7A7114115C2C0000699FAB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3A98A2D9115EA70300FAA769 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3A98A4D2115EC0B700FAA769 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = /Users/Shared/tohnominagi/InstalledProducts/OgreKit.framework; sourceTree = "<absolute>"; };
 		3A9D1FA4115C152F008F7EF1 /* Updates.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updates.tiff; sourceTree = "<group>"; };
 		3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_Example_Prefix.pch; sourceTree = "<group>"; };
 		3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative.h; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 				3A041C1F115B0C6A00B2D20F /* Sparkle.framework in Frameworks */,
 				3A7A7110115C2BF100699FAB /* Carbon.framework in Frameworks */,
 				3A7A7115115C2C0000699FAB /* Security.framework in Frameworks */,
+				3A98A2DA115EA70300FAA769 /* libicucore.dylib in Frameworks */,
+				3A98A4D3115EC0B700FAA769 /* OgreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +230,8 @@
 				3A7A6F67115C1EA800699FAB /* PreferenceController.m */,
 				3A7A6F7A115C1F1300699FAB /* Login.xib */,
 				3A7A6F76115C1F0B00699FAB /* Updates.xib */,
+				3A98A2D9115EA70300FAA769 /* libicucore.dylib */,
+				3A98A4D2115EC0B700FAA769 /* OgreKit.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";
@@ -361,6 +371,7 @@
 					"\"$(SRCROOT)/../../BGHUDAppKit/build/Release\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../../Shared/tohnominagi/InstalledProducts\"",
+					"\"$(DEVELOPER_DIR)/Local/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -384,6 +395,7 @@
 					"\"$(SRCROOT)/../../BGHUDAppKit/build/Release\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../../Shared/tohnominagi/InstalledProducts\"",
+					"\"$(DEVELOPER_DIR)/Local/Frameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

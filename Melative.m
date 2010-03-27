@@ -63,9 +63,6 @@
 				else{
 				mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
 				}
-							/*[request setPostValue:[mediatitle stringValue] forKey:@"lime_name"];
-								[request setPostValue:@"track" forKey:@"attribute_type"];	
-								[request setPostValue:@"Last regrets" forKey:@"attribute_name"];*/	
 				NSLog(@"%@",mediamessage);
 				[request setPostValue:mediamessage forKey:@"message"];
 				// Get rid of Mediamessage. Not needed
@@ -83,14 +80,6 @@
 				NSString *response = [request responseString];
 				//Post suggessful... or is it?
 				choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
-				
-				/* If ( [rememberpassword state] == YES) {
-				 // Save UsernamePassword to Keychain
-				 
-				 }
-				 else if ( [rememberpassword state] == NO) {
-				 //Check if Keychain for MelScrobbleX Exists
-				 }*/
 				//release
 				response = nil;
 				//Clear Message
@@ -101,8 +90,6 @@
 				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
 			}
 			//release
-				statusCode = nil;
-				choice = nil;
 				request = nil;
 				url = nil;
 			}
@@ -131,12 +118,50 @@
 		data = [file readDataToEndOfFile];
 		
 		NSString *string;
-		string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+		string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]autorelease];
 		
-			NSLog(@"%@",string);
 	//Regex time
-	
-		
+		//Setup OgreKit
+		OGRegularExpressionMatch    *match;
+		OGRegularExpression    *regex;
+		//Get the filename first
+		regex = [OGRegularExpression regularExpressionWithString:@"^.+(avi|mkv|mp4|ogm)$"];
+		NSEnumerator    *enumerator;
+		enumerator = [regex matchEnumeratorInString:string];		
+		while ((match = [enumerator nextObject]) != nil) {
+			string = [match matchedString];
+		}
+		//Cleanup
+		regex = [OGRegularExpression regularExpressionWithString:@"^.+/"];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@""];
+		regex = [OGRegularExpression regularExpressionWithString:@"\\.\\w+$"];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@""];
+		regex = [OGRegularExpression regularExpressionWithString:@"\\s*\\[[^\\]]+\\]\\s*"];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@""];
+		regex = [OGRegularExpression regularExpressionWithString:@"\\s*\\([^\\)]+\\)$"];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@""];
+		regex = [OGRegularExpression regularExpressionWithString:@"_"];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@" "];
+		// Set Title Info
+		regex = [OGRegularExpression regularExpressionWithString:@"( \\-)? (episode |ep |ep|e)?(\\d+)([\\w\\-! ]*)$"];
+		[mediatitle setObjectValue:[regex replaceAllMatchesInString:string
+									   withString:@""]];
+		// Set Segment Info
+		regex = [OGRegularExpression regularExpressionWithString:@" - "];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@" "];
+		regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
+		[segment setObjectValue:[regex replaceAllMatchesInString:string
+												withString:@"Episode"]];
+		//release
+		regex = nil;
+		enumerator = nil;
+		string = nil;
 	}
 	else if ([mediatypemenu indexOfSelectedItem] == 1) {
 	// Init iTunes Scripting 
@@ -144,8 +169,6 @@
 	//Obtain the Alubm and Track Name and place them in the Media Title and Segment Fields
 		[mediatitle setObjectValue:iTunes.currentTrack.album];
 		[segment setObjectValue:iTunes.currentTrack.name];
-	// Set iTunes Nil, not needed anymore
-		[iTunes release];
 	}
 }
 -(void)loadlogin
@@ -165,7 +188,7 @@
 		
 	}
 	//Release Keychain Item
-	keychainItem = nil;
+	 [keychainItem release], keychainItem = nil;
 	
 }
 - (void)dealloc {
