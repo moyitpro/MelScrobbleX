@@ -20,7 +20,10 @@
 {
 	NSLog(@"%i",[mediatypemenu indexOfSelectedItem]);
 //Post the update
-	if (fieldusername == nil) {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (fieldusername == nil || fieldusername !=[defaults objectForKey:@"Username"]) {
+		//Load Login
+		NSLog(@"Loading Login");
 		[self loadlogin];
 	}
 		if ( fieldpassword == nil ) {
@@ -35,61 +38,60 @@
 			
 			}
 			else {
-			//Set micro/update API
-			NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
+				//Set micro/update API
+				NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
 				ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-			//Ignore Cookies
+				//Ignore Cookies
 				[request setUseCookiePersistence:NO];
 				//Set Username
-			[request setUsername:fieldusername];
+				[request setUsername:fieldusername];
 				[request setPassword:fieldpassword];
-			if ([[mediatitle stringValue]length] > 0) {
+				if ([[mediatitle stringValue]length] > 0) {
 					
-				//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
-				NSString * mediamessage = @"/";
-				if ( [mediatypemenu indexOfSelectedItem] == 0) {
-					mediamessage = @"watching /anime/";
-					// From Mplayer?
-					[request setPostValue:@"mplayer" forKey:@"source"];
-				}
-				else if ([mediatypemenu indexOfSelectedItem] == 1) {
-					mediamessage = @"listening /mu/";
-					// Music Playing, must be from iTunes
-					[request setPostValue:@"iTunes" forKey:@"source"];
-				}
-				if ([[segment stringValue]length] >0) {
-					mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
-				}
-				else{
-				mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
-				}
-				NSLog(@"%@",mediamessage);
-				[request setPostValue:mediamessage forKey:@"message"];
-				// Get rid of Mediamessage. Not needed
-				mediamessage = nil;
+					//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
+					NSString * mediamessage = @"/";
+					if ( [mediatypemenu indexOfSelectedItem] == 0) {
+						mediamessage = @"watching /anime/";
+						// From Mplayer?
+						[request setPostValue:@"mplayer" forKey:@"source"];
+					}
+					else if ([mediatypemenu indexOfSelectedItem] == 1) {
+						mediamessage = @"listening /mu/";
+						// Music Playing, must be from iTunes
+						[request setPostValue:@"iTunes" forKey:@"source"];
+					}
+					if ([[segment stringValue]length] >0) {
+						mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+					}
+					else{
+						mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
+					}
+					[request setPostValue:mediamessage forKey:@"message"];
+					// Get rid of Mediamessage. Not needed
+					mediamessage = nil;
 				}
 				else {
 					//Send message only
 					[request setPostValue:[fieldmessage stringValue] forKey:@"message"];
 					[request setPostValue:@"MelScrobbleX" forKey:@"source"];
 				}
-			[request startSynchronous];
-			// Get Status Code
-			int statusCode = [request responseStatusCode];
-			if (statusCode == 200 ) {
-				NSString *response = [request responseString];
-				//Post suggessful... or is it?
-				choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
+				[request startSynchronous];
+				// Get Status Code
+				int statusCode = [request responseStatusCode];
+				if (statusCode == 200 ) {
+					NSString *response = [request responseString];
+					//Post suggessful... or is it?
+					choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
+					//release
+					response = nil;
+					//Clear Message
+					[fieldmessage setObjectValue:@""];
+				}
+				else {
+					//Login Failed, show error message
+					choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+				}
 				//release
-				response = nil;
-				//Clear Message
-				[fieldmessage setObjectValue:@""];
-			}
-			else {
-				//Login Failed, show error message
-				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
-			}
-			//release
 				request = nil;
 				url = nil;
 			}
@@ -100,7 +102,7 @@
 	if ([mediatypemenu indexOfSelectedItem] == 0) {
 	// LSOF mplayer to get the media title and segment
 		NSTask *task;
-		task = [[[NSTask alloc] init]autorelease];
+		task = [[NSTask alloc] init];
 		[task setLaunchPath: @"/usr/sbin/lsof"];
 		//lsof -c 'mplayer' -Fn		
 		[task setArguments: [NSArray arrayWithObjects:@"-c", @"mplayer", @"-F", @"n", nil]];
@@ -119,8 +121,8 @@
 		
 		NSString *string;
 		string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]autorelease];
-		
-	//Regex time
+		if (string.length > 0) {
+		//Regex time
 		//Setup OgreKit
 		OGRegularExpressionMatch    *match;
 		OGRegularExpression    *regex;
@@ -152,15 +154,16 @@
 		[mediatitle setObjectValue:[regex replaceAllMatchesInString:string
 									   withString:@""]];
 		// Set Segment Info
-		regex = [OGRegularExpression regularExpressionWithString:@" - "];
-		string = [regex replaceAllMatchesInString:string
-									   withString:@" "];
-		regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
-		[segment setObjectValue:[regex replaceAllMatchesInString:string
-												withString:@"Episode"]];
+				regex = [OGRegularExpression regularExpressionWithString:@" - "];
+				string = [regex replaceAllMatchesInString:string
+											   withString:@" "];
+				regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
+				[segment setObjectValue:[regex replaceAllMatchesInString:string
+															  withString:@"Episode"]];
 		//release
 		regex = nil;
 		enumerator = nil;
+		}
 		string = nil;
 	}
 	else if ([mediatypemenu indexOfSelectedItem] == 1) {
@@ -174,12 +177,10 @@
 -(void)loadlogin
 {
 	// Load Username
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];
 	fieldusername = [defaults objectForKey:@"Username"];
-	NSLog(@"%@",fieldusername);
 	// Load Keychain, if exists
 	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: fieldusername];
-	NSLog(@"%@", keychainItem.password);
 	if (keychainItem.password != nil) {
 		fieldpassword = keychainItem.password;
 		// Also, set it for Melative.h
@@ -187,8 +188,6 @@
 		//[Melative setFieldpassword:keychainItem.password];
 		
 	}
-	//Release Keychain Item
-	 [keychainItem release], keychainItem = nil;
 	
 }
 - (void)dealloc {
