@@ -4,7 +4,6 @@ The Melative Scrobbler for Mac OS X
 Requirements:
 To build this program, you will need.
 - Sparkle.framework located in /Users/Shared/<your username>/InstalledProducts
-- OmniFrameworks off the 10.5 Branch. http://github.com/omnigroup/OmniGroup/tree/MacOSX-10.5/Frameworks/ (Not covered on this app's GPL License, but another, see http://www.omnigroup.com/company/developer/ )
 - OgreKit (for Regex, used in mplayer detection) http://web.me.com/oasis/ogrekit/About.html
 - XCode 3.1 or higher
 - Mac OS X 10.5 or 10.6 PPC or Intel
