@@ -16,8 +16,9 @@
 	IBOutlet NSTextField * mediatitle;
 	IBOutlet NSTextField * segment;
 	IBOutlet NSButton * postbutton;
-		IBOutlet NSPopUpButton * mediatypemenu;
+	IBOutlet NSPopUpButton * mediatypemenu;
 	int choice;
+	IBOutlet NSProgressIndicator * progress;
 }
 @property(copy, readwrite) NSString *fieldpassword;
 @property(copy, readwrite) NSString *fieldusername;

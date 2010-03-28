@@ -186,7 +186,10 @@
 		// Also, set it for Melative.h
 		//Melative.fieldpassword = keychainItem.username;
 		//[Melative setFieldpassword:keychainItem.password];
-		
+	}
+	else {
+		fieldpassword = nil;
+		fieldusername = nil;
 	}
 	
 }

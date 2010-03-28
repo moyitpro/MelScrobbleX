@@ -24,7 +24,7 @@
 
 - (NSImage *)image
 {
-	return [NSImage imageNamed:@"Login.tiff"];
+	return [NSImage imageNamed:@"login.tiff"];
 }
 -(void)loadlogin
 {

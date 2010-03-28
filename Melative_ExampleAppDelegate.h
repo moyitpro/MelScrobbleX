@@ -10,8 +10,12 @@
 
 @interface Melative_ExampleAppDelegate : NSObject {
     IBOutlet NSWindow *window;
+	IBOutlet NSMenu *statusMenu;
+    NSStatusItem                *statusItem;
+    NSImage                        *statusImage;
+    NSImage                        *statusHighlightImage;
 }
-
+-(IBAction)togglescrobblewindow:(id)sender;
 @property (assign) IBOutlet NSWindow *window;
 
 @end

@@ -22,6 +22,7 @@
 		3A313512114D89E10046D05E /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350C114D89E10046D05E /* ASINetworkQueue.m */; };
 		3A313513114D89E10046D05E /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350E114D89E10046D05E /* ASINSStringAdditions.m */; };
 		3A4D7E8C115C304B005266C2 /* login.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A4D7E8B115C304B005266C2 /* login.tiff */; };
+		3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A51E9D311600F47005F1027 /* melativeicon.tiff */; };
 		3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */; };
 		3A7A6F58115C1DD700699FAB /* MBPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A6F56115C1DD700699FAB /* MBPreferencesController.m */; };
 		3A7A6F5D115C1DE600699FAB /* Updates.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A6F5C115C1DE600699FAB /* Updates.m */; };
@@ -84,6 +85,7 @@
 		3A31350D114D89E10046D05E /* ASINSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINSStringAdditions.h; sourceTree = "<group>"; };
 		3A31350E114D89E10046D05E /* ASINSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINSStringAdditions.m; sourceTree = "<group>"; };
 		3A4D7E8B115C304B005266C2 /* login.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = login.tiff; sourceTree = "<group>"; };
+		3A51E9D311600F47005F1027 /* melativeicon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = melativeicon.tiff; sourceTree = "<group>"; };
 		3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative_ExampleAppDelegate.m; sourceTree = "<group>"; };
 		3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
 		3A7A6F56115C1DD700699FAB /* MBPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPreferencesController.m; sourceTree = "<group>"; };
@@ -168,8 +170,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */,
 				3A7A6F5F115C1DF100699FAB /* Login.h */,
-				3A4D7E8B115C304B005266C2 /* login.tiff */,
 				3A7A6F60115C1DF100699FAB /* Login.m */,
 				3A7A6F5B115C1DE600699FAB /* Updates.h */,
 				3A7A6F5C115C1DE600699FAB /* Updates.m */,
@@ -183,9 +185,12 @@
 				3A7A70B0115C289C00699FAB /* EMKeychainItem.h */,
 				3A7A70B1115C289C00699FAB /* EMKeychainItem.m */,
 				3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */,
+				3A51E9D311600F47005F1027 /* melativeicon.tiff */,
 				3A313509114D89E10046D05E /* ASIInputStream.h */,
 				3A31350A114D89E10046D05E /* ASIInputStream.m */,
 				3A31350B114D89E10046D05E /* ASINetworkQueue.h */,
+				3A7A6F66115C1EA800699FAB /* PreferenceController.h */,
+				3A7A6F67115C1EA800699FAB /* PreferenceController.m */,
 				3A31350C114D89E10046D05E /* ASINetworkQueue.m */,
 				3A31350D114D89E10046D05E /* ASINSStringAdditions.h */,
 				3A31350E114D89E10046D05E /* ASINSStringAdditions.m */,
@@ -196,8 +201,6 @@
 		29B97314FDCFA39411CA2CEA /* MelScrobbleX */ = {
 			isa = PBXGroup;
 			children = (
-				3A9D1FA4115C152F008F7EF1 /* Updates.tiff */,
-				3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -208,10 +211,6 @@
 				3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */,
 				3A004E68115AF13800906875 /* ScriptingBridge.framework */,
 				3A041C1E115B0C6A00B2D20F /* Sparkle.framework */,
-				3A7A6F66115C1EA800699FAB /* PreferenceController.h */,
-				3A7A6F67115C1EA800699FAB /* PreferenceController.m */,
-				3A7A6F7A115C1F1300699FAB /* Login.xib */,
-				3A7A6F76115C1F0B00699FAB /* Updates.xib */,
 				3A98A2D9115EA70300FAA769 /* libicucore.dylib */,
 				3A98A4D2115EC0B700FAA769 /* OgreKit.framework */,
 			);
@@ -229,6 +228,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A9D1FA4115C152F008F7EF1 /* Updates.tiff */,
+				3A7A6F7A115C1F1300699FAB /* Login.xib */,
+				3A7A6F76115C1F0B00699FAB /* Updates.xib */,
+				3A4D7E8B115C304B005266C2 /* login.tiff */,
 				8D1107310486CEB800E47090 /* Melative_Example-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -295,6 +298,7 @@
 				3A7A6F77115C1F0B00699FAB /* Updates.xib in Resources */,
 				3A7A6F7B115C1F1300699FAB /* Login.xib in Resources */,
 				3A4D7E8C115C304B005266C2 /* login.tiff in Resources */,
+				3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
