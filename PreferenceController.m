@@ -22,7 +22,7 @@
 	 
 -(void)windowDidLoad
 {
-	NSLog(@"Nib file is loaded");
+//Check Login Keychain
 	[self loadlogin];
 }
 

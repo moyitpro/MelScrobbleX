@@ -17,14 +17,24 @@
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];
 	
 	// Defaults
-	
+	[defaultValues setObject:@"YES" forKey:@"ShowAtStartup"];
 	//Register Dictionary
 	[[NSUserDefaults standardUserDefaults]
 	 registerDefaults:defaultValues];
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
-	[window makeKeyAndOrderFront:nil];
+	//Show Scrobble Window at Launch?
+	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];;
+	if ([defaults boolForKey:@"ShowAtStartup"] == 0) {
+		// Hide Window
+		[window orderOut:self];
+	}
+	else {
+		// Show the Window
+		[window makeKeyAndOrderFront:nil];
+	}
+	
 }
 
 - (void) awakeFromNib{
@@ -71,7 +81,6 @@
 	if (!preferenceController) {
 		preferenceController = [[PreferenceController alloc] init];
 	}
-	NSLog(@"Showing %@", preferenceController);
 		[preferenceController showWindow:self];
 }
 @end
