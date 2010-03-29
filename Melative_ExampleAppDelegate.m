@@ -17,7 +17,7 @@
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];
 	
 	// Defaults
-	[defaultValues setObject:@"YES" forKey:@"ShowAtStartup"];
+	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowAtStartup"];
 	//Register Dictionary
 	[[NSUserDefaults standardUserDefaults]
 	 registerDefaults:defaultValues];

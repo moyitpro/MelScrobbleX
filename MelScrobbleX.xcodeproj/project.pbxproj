@@ -26,7 +26,6 @@
 		3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A51E9D311600F47005F1027 /* melativeicon.tiff */; };
 		3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */; };
 		3A7A6F68115C1EA800699FAB /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A6F67115C1EA800699FAB /* PreferenceController.m */; };
-		3A7A6F7B115C1F1300699FAB /* Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7A6F7A115C1F1300699FAB /* Login.xib */; };
 		3A7A70B2115C289C00699FAB /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A70B1115C289C00699FAB /* EMKeychainItem.m */; };
 		3A7A7110115C2BF100699FAB /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A710F115C2BF100699FAB /* Carbon.framework */; };
 		3A7A7115115C2C0000699FAB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A7114115C2C0000699FAB /* Security.framework */; };
@@ -92,7 +91,6 @@
 		3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
 		3A7A6F66115C1EA800699FAB /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
 		3A7A6F67115C1EA800699FAB /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
-		3A7A6F7A115C1F1300699FAB /* Login.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Login.xib; sourceTree = "<group>"; };
 		3A7A70B0115C289C00699FAB /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		3A7A70B1115C289C00699FAB /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		3A7A710F115C2BF100699FAB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -220,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				3A9D1FA4115C152F008F7EF1 /* Updates.tiff */,
-				3A7A6F7A115C1F1300699FAB /* Login.xib */,
 				3A4D7E8B115C304B005266C2 /* login.tiff */,
 				8D1107310486CEB800E47090 /* Melative_Example-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -286,7 +283,6 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				3A9D1FA6115C152F008F7EF1 /* Updates.tiff in Resources */,
-				3A7A6F7B115C1F1300699FAB /* Login.xib in Resources */,
 				3A4D7E8C115C304B005266C2 /* login.tiff in Resources */,
 				3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */,
 				3A33FEED11604686001D78D9 /* Preferences.xib in Resources */,
