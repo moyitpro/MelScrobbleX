@@ -7,7 +7,7 @@
 //
 
 #import "Melative_ExampleAppDelegate.h"
-
+#import "PreferenceController.h"
 @implementation Melative_ExampleAppDelegate
 
 @synthesize window;
@@ -64,5 +64,14 @@
 	} else { 
 		[window makeKeyAndOrderFront:self]; 
 	} 
+}
+-(void)showPreferences:(id)sender
+{
+	//Is preferenceController nil?
+	if (!preferenceController) {
+		preferenceController = [[PreferenceController alloc] init];
+	}
+	NSLog(@"Showing %@", preferenceController);
+		[preferenceController showWindow:self];
 }
 @end

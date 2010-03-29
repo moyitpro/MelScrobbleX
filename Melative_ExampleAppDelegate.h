@@ -7,15 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class PreferenceController;
 @interface Melative_ExampleAppDelegate : NSObject {
     IBOutlet NSWindow *window;
 	IBOutlet NSMenu *statusMenu;
     NSStatusItem                *statusItem;
     NSImage                        *statusImage;
     NSImage                        *statusHighlightImage;
+	PreferenceController * preferenceController;
 }
 -(IBAction)togglescrobblewindow:(id)sender;
+-(void)showPreferences:(id)sender;
 @property (assign) IBOutlet NSWindow *window;
 
 @end
