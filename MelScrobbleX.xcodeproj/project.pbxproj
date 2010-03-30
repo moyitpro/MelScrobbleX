@@ -22,6 +22,7 @@
 		3A313513114D89E10046D05E /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350E114D89E10046D05E /* ASINSStringAdditions.m */; };
 		3A33FEED11604686001D78D9 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A33FEEC11604686001D78D9 /* Preferences.xib */; };
 		3A33FF2C11604EBA001D78D9 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
+		3A49BD411162A78E0048007B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3A49BD401162A78E0048007B /* dsa_pub.pem */; };
 		3A4D7E8C115C304B005266C2 /* login.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A4D7E8B115C304B005266C2 /* login.tiff */; };
 		3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A51E9D311600F47005F1027 /* melativeicon.tiff */; };
 		3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */; };
@@ -85,6 +86,7 @@
 		3A31350E114D89E10046D05E /* ASINSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINSStringAdditions.m; sourceTree = "<group>"; };
 		3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/Shared/tohnominagi/InstalledProducts/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
 		3A33FEEC11604686001D78D9 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		3A49BD401162A78E0048007B /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		3A4D7E8B115C304B005266C2 /* login.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = login.tiff; sourceTree = "<group>"; };
 		3A51E9D311600F47005F1027 /* melativeicon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = melativeicon.tiff; sourceTree = "<group>"; };
 		3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative_ExampleAppDelegate.m; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				3A004E6D115AF14800906875 /* iTunes.h */,
+				3A49BD401162A78E0048007B /* dsa_pub.pem */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				3A4D7E8C115C304B005266C2 /* login.tiff in Resources */,
 				3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */,
 				3A33FEED11604686001D78D9 /* Preferences.xib in Resources */,
+				3A49BD411162A78E0048007B /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

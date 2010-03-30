@@ -21,8 +21,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="679"/>
+			<integer value="534"/>
 			<integer value="712"/>
+			<integer value="679"/>
+			<integer value="611"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -230,21 +232,21 @@
 			<object class="NSWindowTemplate" id="8151936">
 				<int key="NSWindowStyleMask">8215</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{157, 316}, {412, 145}}</string>
+				<string key="NSWindowRect">{{157, 328}, {410, 133}}</string>
 				<int key="NSWTFlags">1685586944</int>
 				<string key="NSWindowTitle">MelScrobbleX</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="926306345">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSButton" id="93671385">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{300, 3}, {98, 32}}</string>
+							<string key="NSFrame">{{306, 4}, {98, 32}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="11266554">
@@ -259,7 +261,7 @@
 								<reference key="NSControlView" ref="93671385"/>
 								<int key="NSButtonFlags">-2038284033</int>
 								<int key="NSButtonFlags2">1</int>
-								<object class="NSFont" key="NSAlternateImage">
+								<object class="NSFont" key="NSAlternateImage" id="1008543839">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
@@ -274,7 +276,7 @@
 						<object class="BGHUDLabel" id="983271139">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{7, 113}, {70, 17}}</string>
+							<string key="NSFrame">{{5, 105}, {70, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="928920825">
@@ -302,7 +304,7 @@
 						<object class="NSTextField" id="694339475">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{90, 110}, {302, 22}}</string>
+							<string key="NSFrame">{{88, 102}, {310, 22}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="265949380">
@@ -324,7 +326,7 @@
 						<object class="BGHUDLabel" id="35466355">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{9, 72}, {66, 17}}</string>
+							<string key="NSFrame">{{7, 73}, {66, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="1027427078">
@@ -341,7 +343,7 @@
 						<object class="NSTextField" id="367574053">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{90, 71}, {146, 22}}</string>
+							<string key="NSFrame">{{88, 72}, {146, 22}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="778221748">
@@ -358,7 +360,7 @@
 						<object class="NSTextField" id="560145156">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{90, 39}, {302, 22}}</string>
+							<string key="NSFrame">{{88, 40}, {310, 22}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="862484321">
@@ -375,7 +377,7 @@
 						<object class="BGHUDLabel" id="463631575">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{9, 41}, {66, 17}}</string>
+							<string key="NSFrame">{{7, 42}, {66, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="677326439">
@@ -392,7 +394,7 @@
 						<object class="NSPopUpButton" id="299213190">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{237, 68}, {100, 26}}</string>
+							<string key="NSFrame">{{235, 69}, {100, 26}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDPopUpButtonCell" key="NSCell" id="66354938">
@@ -458,7 +460,7 @@
 						<object class="NSButton" id="699841532">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{336, 65}, {70, 32}}</string>
+							<string key="NSFrame">{{334, 66}, {70, 32}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="913727476">
@@ -476,8 +478,65 @@
 								<string key="themeKey">gradientTheme</string>
 							</object>
 						</object>
+						<object class="BGHUDLabel" id="333749769">
+							<reference key="NSNextResponder" ref="926306345"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{5, 10}, {70, 17}}</string>
+							<reference key="NSSuperview" ref="926306345"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="806443688">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">71304192</int>
+								<string key="NSContents">Artist:</string>
+								<reference key="NSSupport" ref="762011864"/>
+								<reference key="NSControlView" ref="333749769"/>
+								<reference key="NSBackgroundColor" ref="320013687"/>
+								<reference key="NSTextColor" ref="192467632"/>
+							</object>
+							<string key="themeKey">gradientTheme</string>
+						</object>
+						<object class="NSTextField" id="522029691">
+							<reference key="NSNextResponder" ref="926306345"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{88, 10}, {124, 22}}</string>
+							<reference key="NSSuperview" ref="926306345"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="BGHUDTextFieldCell" key="NSCell" id="652004040">
+								<int key="NSCellFlags">-1804468671</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="762011864"/>
+								<reference key="NSControlView" ref="522029691"/>
+								<reference key="NSBackgroundColor" ref="948437307"/>
+								<reference key="NSTextColor" ref="192467632"/>
+								<string key="themeKey">gradientTheme</string>
+							</object>
+						</object>
+						<object class="NSButton" id="165188895">
+							<reference key="NSNextResponder" ref="926306345"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{214, 4}, {98, 32}}</string>
+							<reference key="NSSuperview" ref="926306345"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="BGHUDButtonCell" key="NSCell" id="1042337878">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">Scrobble</string>
+								<reference key="NSSupport" ref="762011864"/>
+								<reference key="NSControlView" ref="165188895"/>
+								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags2">1</int>
+								<reference key="NSAlternateImage" ref="1008543839"/>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+								<string key="themeKey">gradientTheme</string>
+							</object>
+						</object>
 					</object>
-					<string key="NSFrameSize">{412, 145}</string>
+					<string key="NSFrameSize">{410, 133}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -796,6 +855,22 @@
 					</object>
 					<int key="connectionID">758</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">scrobble:</string>
+						<reference key="source" ref="394617999"/>
+						<reference key="destination" ref="165188895"/>
+					</object>
+					<int key="connectionID">765</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">artist</string>
+						<reference key="source" ref="394617999"/>
+						<reference key="destination" ref="522029691"/>
+					</object>
+					<int key="connectionID">766</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -882,15 +957,18 @@
 						<reference key="object" ref="926306345"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="694339475"/>
-							<reference ref="367574053"/>
-							<reference ref="299213190"/>
-							<reference ref="463631575"/>
-							<reference ref="35466355"/>
-							<reference ref="983271139"/>
-							<reference ref="699841532"/>
-							<reference ref="560145156"/>
 							<reference ref="93671385"/>
+							<reference ref="983271139"/>
+							<reference ref="694339475"/>
+							<reference ref="35466355"/>
+							<reference ref="367574053"/>
+							<reference ref="560145156"/>
+							<reference ref="463631575"/>
+							<reference ref="299213190"/>
+							<reference ref="699841532"/>
+							<reference ref="333749769"/>
+							<reference ref="522029691"/>
+							<reference ref="165188895"/>
 						</object>
 						<reference key="parent" ref="8151936"/>
 					</object>
@@ -1234,6 +1312,48 @@
 						<reference key="object" ref="875835284"/>
 						<reference key="parent" ref="955505239"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">759</int>
+						<reference key="object" ref="333749769"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="806443688"/>
+						</object>
+						<reference key="parent" ref="926306345"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">760</int>
+						<reference key="object" ref="806443688"/>
+						<reference key="parent" ref="333749769"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">761</int>
+						<reference key="object" ref="522029691"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="652004040"/>
+						</object>
+						<reference key="parent" ref="926306345"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">762</int>
+						<reference key="object" ref="652004040"/>
+						<reference key="parent" ref="522029691"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">763</int>
+						<reference key="object" ref="165188895"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1042337878"/>
+						</object>
+						<reference key="parent" ref="926306345"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">764</int>
+						<reference key="object" ref="1042337878"/>
+						<reference key="parent" ref="165188895"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1259,16 +1379,20 @@
 					<string>570.IBPluginDependency</string>
 					<string>583.IBPluginDependency</string>
 					<string>584.IBPluginDependency</string>
+					<string>589.IBAttributePlaceholdersKey</string>
 					<string>589.IBPluginDependency</string>
 					<string>590.IBPluginDependency</string>
 					<string>595.IBPluginDependency</string>
 					<string>596.IBPluginDependency</string>
+					<string>597.IBAttributePlaceholdersKey</string>
 					<string>597.IBPluginDependency</string>
 					<string>598.IBPluginDependency</string>
+					<string>599.IBAttributePlaceholdersKey</string>
 					<string>599.IBPluginDependency</string>
 					<string>600.IBPluginDependency</string>
 					<string>601.IBPluginDependency</string>
 					<string>602.IBPluginDependency</string>
+					<string>603.IBAttributePlaceholdersKey</string>
 					<string>603.IBPluginDependency</string>
 					<string>604.IBPluginDependency</string>
 					<string>605.IBEditorWindowLastContentRect</string>
@@ -1309,6 +1433,14 @@
 					<string>740.IBPluginDependency</string>
 					<string>754.IBPluginDependency</string>
 					<string>755.IBPluginDependency</string>
+					<string>759.IBPluginDependency</string>
+					<string>760.IBPluginDependency</string>
+					<string>761.IBAttributePlaceholdersKey</string>
+					<string>761.IBPluginDependency</string>
+					<string>762.IBPluginDependency</string>
+					<string>763.IBAttributePlaceholdersKey</string>
+					<string>763.IBPluginDependency</string>
+					<string>764.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1322,25 +1454,57 @@
 					<string>{{480, 789}, {173, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{198, 428}, {412, 145}}</string>
+					<string>{{607, 289}, {410, 133}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{198, 428}, {412, 145}}</string>
+					<string>{{607, 289}, {410, 133}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="694339475"/>
+							<string key="toolTip">Specify a message here. No message is required if Media Title and Segment fields are filled. Not used for Scrobble.</string>
+						</object>
+					</object>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="367574053"/>
+							<string key="toolTip">Title of media</string>
+						</object>
+					</object>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="560145156"/>
+							<string key="toolTip">Segment of media. (Episode/Track)</string>
+						</object>
+					</object>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
-					<string>com.binarymethod.BGHUDAppKitPlugin</string>
-					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="299213190"/>
+							<string key="toolTip">Media type</string>
+						</object>
+					</object>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>{{472, 468}, {103, 63}}</string>
@@ -1349,16 +1513,29 @@
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">AccessibilityHelp</string>
-						<object class="IBAccessibilityAttribute" key="NS.object.0">
-							<string key="name">AccessibilityHelp</string>
-							<reference key="object" ref="699841532"/>
-							<string key="accessibilityValue">Detect Media</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>AccessibilityHelp</string>
+							<string>ToolTip</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBAccessibilityAttribute">
+								<string key="name">AccessibilityHelp</string>
+								<reference key="object" ref="699841532"/>
+								<string key="accessibilityValue">Detect Media</string>
+							</object>
+							<object class="IBToolTipAttribute">
+								<string key="name">ToolTip</string>
+								<reference key="object" ref="699841532"/>
+								<string key="toolTip">Detects currently playing media and outputs it to the Media Title/Segment and for Music, Artist field.  Anime will take output from MPlayer OS X Extended and Music will take output from iTunes.</string>
+							</object>
 						</object>
 					</object>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
-					<string>{{21, 779}, {89, 43}}</string>
+					<string>{{329, 779}, {86, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1388,6 +1565,28 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="522029691"/>
+							<string key="toolTip">Only used for Scrobble Command and Music mediatype.</string>
+						</object>
+					</object>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="165188895"/>
+							<string key="toolTip">Performs a Scrobble Command. This will update your library without posting a microblog post. Beware, when you use this command, there is a delay before you can rescrobble the same title and segment.</string>
+						</object>
+					</object>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1406,7 +1605,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">758</int>
+			<int key="maxID">766</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1420,9 +1619,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>getnowplaying:</string>
 							<string>postmessage:</string>
+							<string>scrobble:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1431,20 +1632,20 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>artist</string>
 							<string>fieldmessage</string>
 							<string>mediatitle</string>
 							<string>mediatypemenu</string>
 							<string>postbutton</string>
-							<string>progress</string>
 							<string>segment</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
+							<string>NSTextField</string>
 							<string>NSPopUpButton</string>
 							<string>NSButton</string>
-							<string>NSProgressIndicator</string>
 							<string>NSTextField</string>
 						</object>
 					</object>

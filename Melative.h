@@ -18,10 +18,12 @@
 	IBOutlet NSButton * postbutton;
 	IBOutlet NSPopUpButton * mediatypemenu;
 	int choice;
-	IBOutlet NSProgressIndicator * progress;
+	IBOutlet NSTextField * artist;
 }
 @property(copy, readwrite) NSString *fieldpassword;
 @property(copy, readwrite) NSString *fieldusername;
 -(IBAction)postmessage:(id)sender;
 -(IBAction)getnowplaying:(id)sender;
+-(IBAction)scrobble:(id)sender;
+-(void)loadlogin; 
 @end

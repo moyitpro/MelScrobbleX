@@ -169,10 +169,69 @@
 	else if ([mediatypemenu indexOfSelectedItem] == 1) {
 	// Init iTunes Scripting 
 		iTunesApplication *iTunes = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"]autorelease];
-	//Obtain the Alubm and Track Name and place them in the Media Title and Segment Fields
+	//Obtain the Album, Artist and Track Name and place them in the Media Title and Segment Fields
 		[mediatitle setObjectValue:iTunes.currentTrack.album];
 		[segment setObjectValue:iTunes.currentTrack.name];
+		[artist setObjectValue:iTunes.currentTrack.artist];
 	}
+}
+-(IBAction)scrobble:(id)sender
+{
+	//Scrobble the Title
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (fieldusername == nil || fieldusername !=[defaults objectForKey:@"Username"]) {
+	//Load Login
+	NSLog(@"Loading Login");
+	[self loadlogin];
+	}
+	if ( fieldpassword == nil ) {
+		//No account information. Show error message.
+		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
+	}
+	else {
+		if ( [[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
+			//No segment or title
+			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.", @"Enter a media title or segment and try the scrobble command again", @"OK", nil, nil, 8);
+		
+		}
+		else {
+			//Set library/scrobble API
+			NSURL *url = [NSURL URLWithString:@"http://melative.com/api/library/scrobble.json"];
+			ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+		//Ignore Cookies
+		[request setUseCookiePersistence:NO];
+		//Set Username
+		[request setUsername:fieldusername];
+		[request setPassword:fieldpassword];
+			if ( [mediatypemenu indexOfSelectedItem] == 0) {
+				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
+				[request setPostValue:@"episode" forKey:@"atribute_type"];
+				[request setPostValue:[segment stringValue] forKey:@"atribute_name"];	
+			}
+			else if ([mediatypemenu indexOfSelectedItem] == 1) {
+				[request setPostValue:[mediatitle stringValue] forKey:@"music"];
+				[request setPostValue:@"track" forKey:@"atribute_type"];
+				[request setPostValue:[segment stringValue] forKey:@"segment"];
+			}
+		[request startSynchronous];
+		// Get Status Code
+		int statusCode = [request responseStatusCode];
+		if (statusCode == 200 ) {
+			NSString *response = [request responseString];
+			//Post suggessful... or is it?
+			choice = NSRunAlertPanel(@"Scrobble Successful", response, @"OK", nil, nil, 8);
+			//release
+			response = nil;
+		}
+		else {
+			//Login Failed, show error message
+			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password", @"Check your username and password and try the scrobble command again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+		}
+		//release
+		request = nil;
+		url = nil;
+	}
+}
 }
 -(void)loadlogin
 {
