@@ -98,8 +98,8 @@
 					[EMGenericKeychainItem addGenericKeychainItemForService:@"MelScrobbleX" withUsername:[fieldusername stringValue] password:[fieldpassword stringValue]];
 					NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 					[defaults setObject:[fieldusername stringValue] forKey:@"Username"];
-					//[Melative setFieldusername:[fieldusername stringValue]];
-					//[Melative setFieldpassword:[fieldpassword stringValue]];
+					//Melative.fieldusername = [fieldusername stringValue];
+					//Melative.fieldpassword = [fieldpassword stringValue];
 					[clearbut setEnabled: YES];
 					//release
 					response = nil;
