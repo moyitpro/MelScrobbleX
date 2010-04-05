@@ -16,6 +16,7 @@
 	IBOutlet NSTextField * mediatitle;
 	IBOutlet NSTextField * segment;
 	IBOutlet NSButton * postbutton;
+	IBOutlet NSButton * completecheckbox;
 	IBOutlet NSPopUpButton * mediatypemenu;
 	int choice;
 	IBOutlet NSTextField * artist;

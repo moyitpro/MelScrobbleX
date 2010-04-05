@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class PreferenceController;
 @interface Melative_ExampleAppDelegate : NSObject {
     IBOutlet NSWindow *window;

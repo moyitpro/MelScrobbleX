@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "iTunes.h"
 #import "EMKeychainItem.h"
+#import "Melative_ExampleAppDelegate.h"
 
 @implementation Melative
 @synthesize fieldusername;
@@ -51,12 +52,25 @@
 					//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
 					NSString * mediamessage = @"/";
 					if ( [mediatypemenu indexOfSelectedItem] == 0) {
-						mediamessage = @"watching /anime/";
+						// Check if the media title is complete or not
+						if ([completecheckbox state] == 1) {
+							mediamessage = @"watched /anime/";
+						}
+						else {
+							mediamessage = @"watching /anime/";
+						}
+
 						// From Mplayer?
 						[request setPostValue:@"mplayer" forKey:@"source"];
 					}
 					else if ([mediatypemenu indexOfSelectedItem] == 1) {
-						mediamessage = @"listening /mu/";
+						// Check if the media title is complete or not
+						if ([completecheckbox state] == 1) {
+							mediamessage = @"listened /mu/";
+						}
+						else {
+							mediamessage = @"listening /mu/";
+						}
 						// Music Playing, must be from iTunes
 						[request setPostValue:@"iTunes" forKey:@"source"];
 					}
@@ -86,6 +100,8 @@
 					response = nil;
 					//Clear Message
 					[fieldmessage setObjectValue:@""];
+					//Unset "Complete" checkbox
+					[completecheckbox setState:0];
 				}
 				else {
 					//Login Failed, show error message
