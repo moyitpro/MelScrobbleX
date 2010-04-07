@@ -20,6 +20,7 @@
 	
 	// Defaults
 	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowAtStartup"];
+	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"SuccessDebug"];
 	//Register Dictionary
 	[[NSUserDefaults standardUserDefaults]
 	 registerDefaults:defaultValues];

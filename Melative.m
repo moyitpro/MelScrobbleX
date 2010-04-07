@@ -19,7 +19,8 @@
 
 -(IBAction)postmessage:(id)sender
 {
-	NSLog(@"%i",[mediatypemenu indexOfSelectedItem]);
+// Set Status
+[scrobblestatus setObjectValue:@"Posting..."];
 //Post the update
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	if (fieldusername == nil || fieldusername !=[defaults objectForKey:@"Username"]) {
@@ -47,6 +48,7 @@
 				//Set Username
 				[request setUsername:fieldusername];
 				[request setPassword:fieldpassword];
+				[request setDownloadProgressDelegate:APIProgress];
 				if ([[mediatitle stringValue]length] > 0) {
 					
 					//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
@@ -93,11 +95,14 @@
 				// Get Status Code
 				int statusCode = [request responseStatusCode];
 				if (statusCode == 200 ) {
+					if ([self reportoutput] == 1) {
 					NSString *response = [request responseString];
 					//Post suggessful... or is it?
 					choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
 					//release
 					response = nil;
+					}
+					[scrobblestatus setObjectValue:@"Post Successful..."];
 					//Clear Message
 					[fieldmessage setObjectValue:@""];
 					//Unset "Complete" checkbox
@@ -106,10 +111,13 @@
 				else {
 					//Login Failed, show error message
 					choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+					[scrobblestatus setObjectValue:@"Unable to Post..."];
 				}
 				//release
 				request = nil;
 				url = nil;
+				//Reset Progress
+				[APIProgress setDoubleValue:0];
 			}
 	}
 }
@@ -193,6 +201,8 @@
 }
 -(IBAction)scrobble:(id)sender
 {
+	// Set Status
+	[scrobblestatus setObjectValue:@"Scrobbling..."];
 	//Scrobble the Title
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	if (fieldusername == nil || fieldusername !=[defaults objectForKey:@"Username"]) {
@@ -219,6 +229,7 @@
 		//Set Username
 		[request setUsername:fieldusername];
 		[request setPassword:fieldpassword];
+		[request setDownloadProgressDelegate:APIProgress];
 			if ( [mediatypemenu indexOfSelectedItem] == 0) {
 				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
 				[request setPostValue:@"episode" forKey:@"atribute_type"];
@@ -232,20 +243,27 @@
 		[request startSynchronous];
 		// Get Status Code
 		int statusCode = [request responseStatusCode];
-		if (statusCode == 200 ) {
-			NSString *response = [request responseString];
-			//Post suggessful... or is it?
-			choice = NSRunAlertPanel(@"Scrobble Successful", response, @"OK", nil, nil, 8);
-			//release
-			response = nil;
+			if (statusCode == 200 ) {
+				if ([self reportoutput] == 1) {
+					NSString *response = [request responseString];
+					//Post suggessful... or is it?
+					choice = NSRunAlertPanel(@"Scrobble Successful", response, @"OK", nil, nil, 8);
+					//release
+					response = nil;
+				}
+			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
 		}
 		else {
 			//Login Failed, show error message
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password", @"Check your username and password and try the scrobble command again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+			// Set Status
+			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
 		}
 		//release
 		request = nil;
 		url = nil;
+		//Reset Progress
+		[APIProgress setDoubleValue:0];
 	}
 }
 }
@@ -267,6 +285,13 @@
 		fieldusername = nil;
 	}
 	
+}
+-(BOOL)reportoutput
+{
+// Load Settings
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	return [defaults boolForKey:@"SuccessDebug"];
+	[defaults release];
 }
 - (void)dealloc {
     [fieldusername release];

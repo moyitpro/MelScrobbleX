@@ -20,6 +20,8 @@
 	IBOutlet NSPopUpButton * mediatypemenu;
 	int choice;
 	IBOutlet NSTextField * artist;
+	IBOutlet NSTextField * scrobblestatus;
+	IBOutlet NSProgressIndicator * APIProgress;
 }
 @property(copy, readwrite) NSString *fieldpassword;
 @property(copy, readwrite) NSString *fieldusername;
@@ -27,4 +29,5 @@
 -(IBAction)getnowplaying:(id)sender;
 -(IBAction)scrobble:(id)sender;
 -(void)loadlogin; 
+-(BOOL)reportoutput;
 @end

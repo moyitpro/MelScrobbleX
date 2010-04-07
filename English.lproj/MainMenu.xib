@@ -21,10 +21,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="534"/>
-			<integer value="29"/>
 			<integer value="712"/>
+			<integer value="534"/>
 			<integer value="611"/>
+			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1025,6 +1025,32 @@
 								<string key="themeKey">gradientTheme</string>
 							</object>
 						</object>
+						<object class="BGHUDLabel" id="94803314">
+							<reference key="NSNextResponder" ref="926306345"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{37, 7}, {163, 17}}</string>
+							<reference key="NSSuperview" ref="926306345"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="321872653">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="762011864"/>
+								<reference key="NSControlView" ref="94803314"/>
+								<reference key="NSBackgroundColor" ref="320013687"/>
+								<reference key="NSTextColor" ref="192467632"/>
+							</object>
+							<string key="themeKey">gradientTheme</string>
+						</object>
+						<object class="NSProgressIndicator" id="151024335">
+							<reference key="NSNextResponder" ref="926306345"/>
+							<int key="NSvFlags">1292</int>
+							<object class="NSPSMatrix" key="NSDrawMatrix"/>
+							<string key="NSFrame">{{10, 8}, {16, 16}}</string>
+							<reference key="NSSuperview" ref="926306345"/>
+							<int key="NSpiFlags">20744</int>
+							<double key="NSMaxValue">100</double>
+						</object>
 					</object>
 					<string key="NSFrameSize">{408, 152}</string>
 					<reference key="NSSuperview"/>
@@ -1642,6 +1668,22 @@
 					</object>
 					<int key="connectionID">878</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">scrobblestatus</string>
+						<reference key="source" ref="394617999"/>
+						<reference key="destination" ref="94803314"/>
+					</object>
+					<int key="connectionID">884</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">APIProgress</string>
+						<reference key="source" ref="394617999"/>
+						<reference key="destination" ref="151024335"/>
+					</object>
+					<int key="connectionID">885</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1744,6 +1786,8 @@
 							<reference ref="522029691"/>
 							<reference ref="165188895"/>
 							<reference ref="171930822"/>
+							<reference ref="94803314"/>
+							<reference ref="151024335"/>
 						</object>
 						<reference key="parent" ref="8151936"/>
 					</object>
@@ -2518,6 +2562,25 @@
 						<reference key="object" ref="1051238037"/>
 						<reference key="parent" ref="171930822"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">880</int>
+						<reference key="object" ref="94803314"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="321872653"/>
+						</object>
+						<reference key="parent" ref="926306345"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">881</int>
+						<reference key="object" ref="321872653"/>
+						<reference key="parent" ref="94803314"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">883</int>
+						<reference key="object" ref="151024335"/>
+						<reference key="parent" ref="926306345"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2670,6 +2733,9 @@
 					<string>876.IBAttributePlaceholdersKey</string>
 					<string>876.IBPluginDependency</string>
 					<string>877.IBPluginDependency</string>
+					<string>880.IBPluginDependency</string>
+					<string>881.IBPluginDependency</string>
+					<string>883.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2888,6 +2954,9 @@
 					</object>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2906,7 +2975,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">878</int>
+			<int key="maxID">885</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2933,22 +3002,26 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>APIProgress</string>
 							<string>artist</string>
 							<string>completecheckbox</string>
 							<string>fieldmessage</string>
 							<string>mediatitle</string>
 							<string>mediatypemenu</string>
 							<string>postbutton</string>
+							<string>scrobblestatus</string>
 							<string>segment</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSProgressIndicator</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSPopUpButton</string>
 							<string>NSButton</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 						</object>
 					</object>
@@ -3492,6 +3565,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSPopUpButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSProgressIndicator</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSProgressIndicator.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
