@@ -8,6 +8,8 @@
 
 #import "Melative_ExampleAppDelegate.h"
 #import "PreferenceController.h"
+#import "PFMoveApplication.h"
+
 @implementation Melative_ExampleAppDelegate
 
 @synthesize window;
@@ -23,7 +25,8 @@
 	 registerDefaults:defaultValues];
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application 
+	//Check if Application is in the /Applications Folder
+	PFMoveToApplicationsFolderIfNecessary();
 	//Show Scrobble Window at Launch?
 	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];;
 	if ([defaults boolForKey:@"ShowAtStartup"] == 0) {
