@@ -17,8 +17,7 @@
 @synthesize fieldusername;
 @synthesize fieldpassword;
 
--(IBAction)postmessage:(id)sender
-{
+-(IBAction)postmessage:(id)sender {
 // Set Status
 [scrobblestatus setObjectValue:@"Posting..."];
 //Post the update
@@ -31,13 +30,14 @@
 		if ( fieldpassword == nil ) {
 			//No account information. Show error message.
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
+			[scrobblestatus setObjectValue:@"No Account Info..."];
 		}
 		else {
 
 			if ( [[fieldmessage stringValue] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
 				//No message, show error
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
-			
+			[scrobblestatus setObjectValue:@"No Message Entered.."];
 			}
 			else {
 				//Set micro/update API
@@ -121,31 +121,54 @@
 			}
 	}
 }
--(IBAction)getnowplaying:(id)sender
-{
+-(IBAction)getnowplaying:(id)sender {
 	if ([mediatypemenu indexOfSelectedItem] == 0) {
+		// Init Anime Detection
+		[self animedetect];
+	}
+	else if ([mediatypemenu indexOfSelectedItem] == 1) {
+		// Init Music Detection
+		[self musicdetect];
+	}
+}
+-(void)musicdetect {
+	// Init iTunes Scripting 
+	iTunesApplication *iTunes = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"]autorelease];
+	if (iTunes.currentTrack == nil) {
+		//Show Error Message
+		[scrobblestatus setObjectValue:@"Detect Failed: Nothing is playing..."];
+	}
+	else {
+		//Obtain the Album, Artist and Track Name and place them in the Media Title and Segment Fields
+		[mediatitle setObjectValue:iTunes.currentTrack.album];
+		[segment setObjectValue:iTunes.currentTrack.name];
+		[artist setObjectValue:iTunes.currentTrack.artist];
+		[scrobblestatus setObjectValue:@"Detected current iTunes track..."];
+	}
+}
+-(void)animedetect {
 	// LSOF mplayer to get the media title and segment
-		NSTask *task;
-		task = [[NSTask alloc] init];
-		[task setLaunchPath: @"/usr/sbin/lsof"];
-		//lsof -c 'mplayer' -Fn		
-		[task setArguments: [NSArray arrayWithObjects:@"-c", @"mplayer", @"-F", @"n", nil]];
-		
-		NSPipe *pipe;
-		pipe = [NSPipe pipe];
-		[task setStandardOutput: pipe];
-		
-		NSFileHandle *file;
-		file = [pipe fileHandleForReading];
-		
-		[task launch];
-		
-		NSData *data;
-		data = [file readDataToEndOfFile];
-		
-		NSString *string;
-		string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]autorelease];
-		if (string.length > 0) {
+	NSTask *task;
+	task = [[NSTask alloc] init];
+	[task setLaunchPath: @"/usr/sbin/lsof"];
+	//lsof -c 'mplayer' -Fn		
+	[task setArguments: [NSArray arrayWithObjects:@"-c", @"mplayer", @"-F", @"n", nil]];
+	
+	NSPipe *pipe;
+	pipe = [NSPipe pipe];
+	[task setStandardOutput: pipe];
+	
+	NSFileHandle *file;
+	file = [pipe fileHandleForReading];
+	
+	[task launch];
+	
+	NSData *data;
+	data = [file readDataToEndOfFile];
+	
+	NSString *string;
+	string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]autorelease];
+	if (string.length > 0) {
 		//Regex time
 		//Setup OgreKit
 		OGRegularExpressionMatch    *match;
@@ -176,31 +199,28 @@
 		// Set Title Info
 		regex = [OGRegularExpression regularExpressionWithString:@"( \\-)? (episode |ep |ep|e)?(\\d+)([\\w\\-! ]*)$"];
 		[mediatitle setObjectValue:[regex replaceAllMatchesInString:string
-									   withString:@""]];
+														 withString:@""]];
 		// Set Segment Info
-				regex = [OGRegularExpression regularExpressionWithString:@" - "];
-				string = [regex replaceAllMatchesInString:string
-											   withString:@" "];
-				regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
-				[segment setObjectValue:[regex replaceAllMatchesInString:string
-															  withString:@"Episode"]];
+		regex = [OGRegularExpression regularExpressionWithString:@" - "];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@" "];
+		regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
+		[segment setObjectValue:[regex replaceAllMatchesInString:string
+													  withString:@"Episode"]];
 		//release
 		regex = nil;
 		enumerator = nil;
-		}
-		string = nil;
+		// Set Status
+		[scrobblestatus setObjectValue:@"Detected currently playing video..."];
 	}
-	else if ([mediatypemenu indexOfSelectedItem] == 1) {
-	// Init iTunes Scripting 
-		iTunesApplication *iTunes = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"]autorelease];
-	//Obtain the Album, Artist and Track Name and place them in the Media Title and Segment Fields
-		[mediatitle setObjectValue:iTunes.currentTrack.album];
-		[segment setObjectValue:iTunes.currentTrack.name];
-		[artist setObjectValue:iTunes.currentTrack.artist];
+	else {
+		// Show error
+		[scrobblestatus setObjectValue:@"Detect Failed: Nothing is playing..."];
 	}
+	string = nil;
+
 }
--(IBAction)scrobble:(id)sender
-{
+-(IBAction)scrobble:(id)sender {
 	// Set Status
 	[scrobblestatus setObjectValue:@"Scrobbling..."];
 	//Scrobble the Title
@@ -213,12 +233,13 @@
 	if ( fieldpassword == nil ) {
 		//No account information. Show error message.
 		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
+		[scrobblestatus setObjectValue:@"No Account Info..."];
 	}
 	else {
 		if ( [[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
 			//No segment or title
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.", @"Enter a media title or segment and try the scrobble command again", @"OK", nil, nil, 8);
-		
+			[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
 		}
 		else {
 			//Set library/scrobble API
@@ -267,8 +288,7 @@
 	}
 }
 }
--(void)loadlogin
-{
+-(void)loadlogin {
 	// Load Username
 	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];
 	fieldusername = [defaults objectForKey:@"Username"];
@@ -286,13 +306,14 @@
 	}
 	
 }
--(BOOL)reportoutput
-{
+
+-(BOOL)reportoutput {
 // Load Settings
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	return [defaults boolForKey:@"SuccessDebug"];
 	[defaults release];
 }
+
 - (void)dealloc {
     [fieldusername release];
 	[fieldpassword release];

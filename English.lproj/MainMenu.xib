@@ -21,10 +21,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="533"/>
 			<integer value="712"/>
-			<integer value="534"/>
-			<integer value="611"/>
 			<integer value="29"/>
+			<integer value="611"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1028,14 +1028,18 @@
 						<object class="BGHUDLabel" id="94803314">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{37, 7}, {163, 17}}</string>
+							<string key="NSFrame">{{31, 6}, {178, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="321872653">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
 								<string key="NSContents"/>
-								<reference key="NSSupport" ref="762011864"/>
+								<object class="NSFont" key="NSSupport">
+									<string key="NSName">LucidaGrande</string>
+									<double key="NSSize">11</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<reference key="NSControlView" ref="94803314"/>
 								<reference key="NSBackgroundColor" ref="320013687"/>
 								<reference key="NSTextColor" ref="192467632"/>

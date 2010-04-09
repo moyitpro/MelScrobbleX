@@ -25,9 +25,12 @@
 }
 @property(copy, readwrite) NSString *fieldpassword;
 @property(copy, readwrite) NSString *fieldusername;
+
 -(IBAction)postmessage:(id)sender;
 -(IBAction)getnowplaying:(id)sender;
 -(IBAction)scrobble:(id)sender;
 -(void)loadlogin; 
+-(void)musicdetect;
+-(void)animedetect;
 -(BOOL)reportoutput;
 @end
