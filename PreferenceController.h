@@ -21,4 +21,5 @@
 -(IBAction)startlogin:(id)sender;
 -(IBAction)clearlogin:(id)sender;
 -(IBAction)registermelative:(id)sender;
+-(void)createcookie:(NSString *)Username:(NSString *)Password;
 @end

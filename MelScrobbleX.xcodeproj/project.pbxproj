@@ -29,13 +29,11 @@
 		3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A51E9D311600F47005F1027 /* melativeicon.tiff */; };
 		3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */; };
 		3A7A6F68115C1EA800699FAB /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A6F67115C1EA800699FAB /* PreferenceController.m */; };
-		3A7A70B2115C289C00699FAB /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A70B1115C289C00699FAB /* EMKeychainItem.m */; };
-		3A7A7110115C2BF100699FAB /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A710F115C2BF100699FAB /* Carbon.framework */; };
-		3A7A7115115C2C0000699FAB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A7114115C2C0000699FAB /* Security.framework */; };
 		3A98A2DA115EA70300FAA769 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A2D9115EA70300FAA769 /* libicucore.dylib */; };
 		3A98A4D7115EC0C200FAA769 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
 		3A9D1FA6115C152F008F7EF1 /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D1FA4115C152F008F7EF1 /* Updates.tiff */; };
 		3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */; };
+		3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A7114115C2C0000699FAB /* Security.framework */; };
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
 		5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
 		5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
@@ -98,8 +96,6 @@
 		3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
 		3A7A6F66115C1EA800699FAB /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
 		3A7A6F67115C1EA800699FAB /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
-		3A7A70B0115C289C00699FAB /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
-		3A7A70B1115C289C00699FAB /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		3A7A710F115C2BF100699FAB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		3A7A7114115C2C0000699FAB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3A98A2D9115EA70300FAA769 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -125,13 +121,12 @@
 				3A3134FF114D89BB0046D05E /* SystemConfiguration.framework in Frameworks */,
 				3A2E0FD3114DDAF80050E16D /* BGHUDAppKit.framework in Frameworks */,
 				3A004E69115AF13800906875 /* ScriptingBridge.framework in Frameworks */,
-				3A7A7110115C2BF100699FAB /* Carbon.framework in Frameworks */,
-				3A7A7115115C2C0000699FAB /* Security.framework in Frameworks */,
 				3A98A2DA115EA70300FAA769 /* libicucore.dylib in Frameworks */,
 				5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */,
 				5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */,
 				5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */,
 				3A2E51431162B01B00BFD793 /* ShortcutRecorder.framework in Frameworks */,
+				3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,8 +176,6 @@
 				3A313505114D89E10046D05E /* ASIFormDataRequest.m */,
 				3A313507114D89E10046D05E /* ASIHTTPRequest.m */,
 				3A313506114D89E10046D05E /* ASIHTTPRequest.h */,
-				3A7A70B0115C289C00699FAB /* EMKeychainItem.h */,
-				3A7A70B1115C289C00699FAB /* EMKeychainItem.m */,
 				3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */,
 				3A51E9D311600F47005F1027 /* melativeicon.tiff */,
 				3A313509114D89E10046D05E /* ASIInputStream.h */,
@@ -320,7 +313,6 @@
 				3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */,
 				3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */,
 				3A7A6F68115C1EA800699FAB /* PreferenceController.m in Sources */,
-				3A7A70B2115C289C00699FAB /* EMKeychainItem.m in Sources */,
 				3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

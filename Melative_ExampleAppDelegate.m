@@ -21,6 +21,7 @@
 	// Defaults
 	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowAtStartup"];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"SuccessDebug"];
+	[defaultValues setObject:@"" forKey:@"APIKey"];
 	//Register Dictionary
 	[[NSUserDefaults standardUserDefaults]
 	 registerDefaults:defaultValues];

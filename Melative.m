@@ -10,24 +10,23 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "iTunes.h"
-#import "EMKeychainItem.h"
 #import "Melative_ExampleAppDelegate.h"
 
 @implementation Melative
 @synthesize fieldusername;
-@synthesize fieldpassword;
+@synthesize apikey;
 
 -(IBAction)postmessage:(id)sender {
 // Set Status
 [scrobblestatus setObjectValue:@"Posting..."];
 //Post the update
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if (fieldusername == nil || fieldusername !=[defaults objectForKey:@"Username"]) {
+	if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
 		//Load Login
 		NSLog(@"Loading Login");
-		[self loadlogin];
+		apikey = [defaults objectForKey:@"APIKey"];
 	}
-		if ( fieldpassword == nil ) {
+		if ( apikey.length == 0 ) {
 			//No account information. Show error message.
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
 			[scrobblestatus setObjectValue:@"No Account Info..."];
@@ -45,9 +44,9 @@
 				ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 				//Ignore Cookies
 				[request setUseCookiePersistence:NO];
-				//Set Username
-				[request setUsername:fieldusername];
-				[request setPassword:fieldpassword];
+				//Set API Key
+				[request addRequestHeader:@"Cookie" value:apikey];
+				//Set Progress
 				[request setDownloadProgressDelegate:APIProgress];
 				if ([[mediatitle stringValue]length] > 0) {
 					
@@ -225,12 +224,12 @@
 	[scrobblestatus setObjectValue:@"Scrobbling..."];
 	//Scrobble the Title
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if (fieldusername == nil || fieldusername !=[defaults objectForKey:@"Username"]) {
+	if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
 	//Load Login
 	NSLog(@"Loading Login");
-	[self loadlogin];
+		apikey = [defaults objectForKey:@"APIKey"];
 	}
-	if ( fieldpassword == nil ) {
+	if ( apikey.length < 0 ) {
 		//No account information. Show error message.
 		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
 		[scrobblestatus setObjectValue:@"No Account Info..."];
@@ -247,9 +246,8 @@
 			ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 		//Ignore Cookies
 		[request setUseCookiePersistence:NO];
-		//Set Username
-		[request setUsername:fieldusername];
-		[request setPassword:fieldpassword];
+		//Set API Key
+				[request addRequestHeader:@"Cookie" value:apikey];
 		[request setDownloadProgressDelegate:APIProgress];
 			if ( [mediatypemenu indexOfSelectedItem] == 0) {
 				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
@@ -288,24 +286,6 @@
 	}
 }
 }
--(void)loadlogin {
-	// Load Username
-	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];
-	fieldusername = [defaults objectForKey:@"Username"];
-	// Load Keychain, if exists
-	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: fieldusername];
-	if (keychainItem.password != nil) {
-		fieldpassword = keychainItem.password;
-		// Also, set it for Melative.h
-		//Melative.fieldpassword = keychainItem.username;
-		//[Melative setFieldpassword:keychainItem.password];
-	}
-	else {
-		fieldpassword = nil;
-		fieldusername = nil;
-	}
-	
-}
 
 -(BOOL)reportoutput {
 // Load Settings
@@ -316,7 +296,7 @@
 
 - (void)dealloc {
     [fieldusername release];
-	[fieldpassword release];
+	[apikey release];
     [super dealloc];
 }
 @end

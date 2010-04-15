@@ -8,7 +8,7 @@
 
 #import "PreferenceController.h"
 #import "ASIHTTPRequest.h"
-#import "EMKeychainItem.h"
+#import "ASIFormDataRequest.h"
 #import "Melative.h"
 
 
@@ -30,9 +30,8 @@
 {
 	// Load Username
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	// Load Keychain, if exists
-	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: [defaults objectForKey:@"Username"]];
-	if (keychainItem.password != nil) {
+	NSString *APIKey = [defaults objectForKey:@"APIKey"];
+	if (APIKey.length > 0) {
 		[clearbut setEnabled: YES];
 		[savebut setEnabled: NO];
 	}
@@ -42,7 +41,7 @@
 		[savebut setEnabled: YES];
 	}
 	//Release Keychain Item
-	keychainItem = nil;
+	[APIKey release];
 	
 }
 -(IBAction)clearlogin:(id)sender
@@ -51,7 +50,7 @@
 	NSLog(@"%i", choice);
 	if (choice == 1) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[[EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: [defaults objectForKey:@"Username"]]remove];
+		[defaults setObject:@"" forKey:@"APIKey"];
 		// Clear Username
 		[defaults setObject:@"" forKey:@"Username"];
 		//Disable Clearbut
@@ -94,9 +93,9 @@
 					NSString *response = [request responseString];
 					//Login successful
 					choice = NSRunAlertPanel(@"Login Successful", response, @"OK", nil, nil, 8);
-					// Save Password
-					[EMGenericKeychainItem addGenericKeychainItemForService:@"MelScrobbleX" withUsername:[fieldusername stringValue] password:[fieldpassword stringValue]];
-					NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+					// Generate API Key
+						NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults] autorelease];
+					[self createcookie:[fieldusername stringValue] :[fieldpassword stringValue]];
 					[defaults setObject:[fieldusername stringValue] forKey:@"Username"];
 					//Melative.fieldusername = [fieldusername stringValue];
 					//Melative.fieldpassword = [fieldpassword stringValue];
@@ -126,6 +125,38 @@
 {
 	//Show Melative Registration Page
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://melative.com/register"]];
+}
+-(void)createcookie:(NSString *)Username:(NSString *)Password
+{
+	//Set Login URL
+	NSURL *url = [NSURL URLWithString:@"http://melative.com/api/session/create.xml"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	//Ignore Cookies
+	[request setUseCookiePersistence:NO];
+	//Set Username
+	[request setPostValue:Username forKey:@"user"];
+	[request setPostValue:Password forKey:@"password"];
+	//Vertify Username/Password
+	[request startSynchronous];
+	// Get Status Code
+	int statusCode = [request responseStatusCode];
+	if (statusCode == 200 ) {
+		//Store cookie
+			NSString *apikey = [[request responseHeaders] objectForKey:@"Set-Cookie"];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setObject:apikey forKey:@"APIKey"];
+
+	}
+	else {
+		//Login Failed, show error message
+		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to log you in since you don't have the correct username and/or password", @"Check your username and password and try logging in again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+		[savebut setEnabled: YES];
+		[savebut setKeyEquivalent:@"\r"];
+	}
+	//release
+	request = nil;
+	url = nil;
+	
 }
 
 @end

@@ -11,7 +11,7 @@
 
 @interface Melative : NSObject {
 	NSString * fieldusername;
-	NSString * fieldpassword;
+	NSString * apikey;
 	IBOutlet NSTextField * fieldmessage;
 	IBOutlet NSTextField * mediatitle;
 	IBOutlet NSTextField * segment;
@@ -23,13 +23,12 @@
 	IBOutlet NSTextField * scrobblestatus;
 	IBOutlet NSProgressIndicator * APIProgress;
 }
-@property(copy, readwrite) NSString *fieldpassword;
+@property(copy, readwrite) NSString *apikey;
 @property(copy, readwrite) NSString *fieldusername;
 
 -(IBAction)postmessage:(id)sender;
 -(IBAction)getnowplaying:(id)sender;
 -(IBAction)scrobble:(id)sender;
--(void)loadlogin; 
 -(void)musicdetect;
 -(void)animedetect;
 -(BOOL)reportoutput;
