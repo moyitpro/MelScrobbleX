@@ -186,10 +186,10 @@
 		regex = [OGRegularExpression regularExpressionWithString:@"\\.\\w+$"];
 		string = [regex replaceAllMatchesInString:string
 									   withString:@""];
-		regex = [OGRegularExpression regularExpressionWithString:@"\\s*\\[[^\\]]+\\]\\s*"];
+		regex = [OGRegularExpression regularExpressionWithString:@"[\\s_]*\\[[^\\]]+\\]\\s*"];
 		string = [regex replaceAllMatchesInString:string
 									   withString:@""];
-		regex = [OGRegularExpression regularExpressionWithString:@"\\s*\\([^\\)]+\\)$"];
+		regex = [OGRegularExpression regularExpressionWithString:@"[\\s_]*\\([^\\)]+\\)$"];
 		string = [regex replaceAllMatchesInString:string
 									   withString:@""];
 		regex = [OGRegularExpression regularExpressionWithString:@"_"];
