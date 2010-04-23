@@ -76,7 +76,7 @@
 						[request setPostValue:@"iTunes" forKey:@"source"];
 					}
 					if ([[segment stringValue]length] >0) {
-						mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+						mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
 					}
 					else{
 						mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
@@ -202,10 +202,10 @@
 		// Set Segment Info
 		regex = [OGRegularExpression regularExpressionWithString:@" - "];
 		string = [regex replaceAllMatchesInString:string
-									   withString:@" "];
+									   withString:@""];
 		regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
 		[segment setObjectValue:[regex replaceAllMatchesInString:string
-													  withString:@"Episode"]];
+													  withString:@""]];
 		//release
 		regex = nil;
 		enumerator = nil;
@@ -251,13 +251,13 @@
 		[request setDownloadProgressDelegate:APIProgress];
 			if ( [mediatypemenu indexOfSelectedItem] == 0) {
 				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
-				[request setPostValue:@"episode" forKey:@"atribute_type"];
-				[request setPostValue:[segment stringValue] forKey:@"atribute_name"];	
+				[request setPostValue:@"episode" forKey:@"attributew_type"];
+				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
 			}
 			else if ([mediatypemenu indexOfSelectedItem] == 1) {
 				[request setPostValue:[mediatitle stringValue] forKey:@"music"];
-				[request setPostValue:@"track" forKey:@"atribute_type"];
-				[request setPostValue:[segment stringValue] forKey:@"segment"];
+				[request setPostValue:@"track" forKey:@"attribute_type"];
+				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
 			}
 		[request startSynchronous];
 		// Get Status Code
