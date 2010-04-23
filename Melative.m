@@ -251,7 +251,7 @@
 		[request setDownloadProgressDelegate:APIProgress];
 			if ( [mediatypemenu indexOfSelectedItem] == 0) {
 				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
-				[request setPostValue:@"episode" forKey:@"attributew_type"];
+				[request setPostValue:@"episode" forKey:@"attribute_type"];
 				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
 			}
 			else if ([mediatypemenu indexOfSelectedItem] == 1) {
