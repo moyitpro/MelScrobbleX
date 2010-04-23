@@ -94,6 +94,8 @@
 		3A51E9D311600F47005F1027 /* melativeicon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = melativeicon.tiff; sourceTree = "<group>"; };
 		3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative_ExampleAppDelegate.m; sourceTree = "<group>"; };
 		3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
+		3A71703611825AE200E082C2 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		3A71703711825AE200E082C2 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		3A7A6F66115C1EA800699FAB /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
 		3A7A6F67115C1EA800699FAB /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
 		3A7A710F115C2BF100699FAB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -175,6 +177,8 @@
 				3A313504114D89E10046D05E /* ASIFormDataRequest.h */,
 				3A313505114D89E10046D05E /* ASIFormDataRequest.m */,
 				3A313507114D89E10046D05E /* ASIHTTPRequest.m */,
+				3A71703611825AE200E082C2 /* ASIHTTPRequestDelegate.h */,
+				3A71703711825AE200E082C2 /* ASIProgressDelegate.h */,
 				3A313506114D89E10046D05E /* ASIHTTPRequest.h */,
 				3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */,
 				3A51E9D311600F47005F1027 /* melativeicon.tiff */,

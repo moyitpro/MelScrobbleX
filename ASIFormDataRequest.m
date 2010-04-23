@@ -97,8 +97,7 @@
 			fileName = [(NSString *)data lastPathComponent];
 		}
 	
-		// If we were given the path to a file, and the user didn't specify a mime type, we can detect it (currently only on Mac OS)
-		// Will return 'application/octet-stream' on iPhone, or if the mime type cannot be determined
+		// If we were given the path to a file, and the user didn't specify a mime type, we can detect it from the file extension
 		if (!contentType) {
 			contentType = [ASIHTTPRequest mimeTypeForFileAtPath:data];
 		}
@@ -244,8 +243,8 @@
 	
 	NSEnumerator *e = [[self postData] keyEnumerator];
 	NSString *key;
-	int i=0;
-	int count = [[self postData] count]-1;
+	NSUInteger i=0;
+	NSUInteger count = [[self postData] count]-1;
 	while (key = [e nextObject]) {
         NSString *data = [NSString stringWithFormat:@"%@=%@%@", [self encodeURL:key], [self encodeURL:[[self postData] objectForKey:key]],(i<count ?  @"&" : @"")]; 
 		[self appendPostString:data];
