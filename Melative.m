@@ -76,7 +76,12 @@
 						[request setPostValue:@"iTunes" forKey:@"source"];
 					}
 					if ([[segment stringValue]length] >0) {
+						if ([mediatypemenu indexOfSelectedItem] == 0) {
 						mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+						}
+						else if ([mediatypemenu indexOfSelectedItem] == 1) {
+						mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+						}
 					}
 					else{
 						mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];

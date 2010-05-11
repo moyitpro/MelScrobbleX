@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">10D573</string>
-		<string key="IBDocument.InterfaceBuilderVersion">759</string>
+		<string key="IBDocument.InterfaceBuilderVersion">762</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
 		<string key="IBDocument.HIToolboxVersion">460.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -15,16 +15,16 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>759</string>
+				<string>762</string>
 				<string>1</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="534"/>
-			<integer value="712"/>
-			<integer value="611"/>
 			<integer value="29"/>
+			<integer value="534"/>
+			<integer value="611"/>
+			<integer value="712"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -695,7 +695,7 @@
 			<object class="NSWindowTemplate" id="8151936">
 				<int key="NSWindowStyleMask">8215</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{157, 278}, {409, 183}}</string>
+				<string key="NSWindowRect">{{157, 275}, {425, 186}}</string>
 				<int key="NSWTFlags">1685586944</int>
 				<string key="NSWindowTitle">MelScrobbleX</string>
 				<string key="NSWindowClass">NSPanel</string>
@@ -709,7 +709,7 @@
 						<object class="NSButton" id="93671385">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{303, -1}, {98, 32}}</string>
+							<string key="NSFrame">{{319, 1}, {98, 32}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="11266554">
@@ -739,7 +739,7 @@
 						<object class="BGHUDLabel" id="983271139">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{4, 156}, {70, 17}}</string>
+							<string key="NSFrame">{{4, 159}, {70, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="928920825">
@@ -767,7 +767,7 @@
 						<object class="NSTextField" id="694339475">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{87, 120}, {310, 52}}</string>
+							<string key="NSFrame">{{87, 123}, {324, 52}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="265949380">
@@ -789,7 +789,7 @@
 						<object class="BGHUDLabel" id="35466355">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{6, 92}, {66, 17}}</string>
+							<string key="NSFrame">{{6, 95}, {66, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="1027427078">
@@ -806,7 +806,7 @@
 						<object class="NSTextField" id="367574053">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{87, 91}, {146, 22}}</string>
+							<string key="NSFrame">{{87, 94}, {154, 22}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="778221748">
@@ -823,7 +823,7 @@
 						<object class="NSTextField" id="560145156">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{87, 62}, {310, 22}}</string>
+							<string key="NSFrame">{{87, 65}, {324, 22}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="862484321">
@@ -840,7 +840,7 @@
 						<object class="BGHUDLabel" id="463631575">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{6, 64}, {66, 17}}</string>
+							<string key="NSFrame">{{6, 67}, {66, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="677326439">
@@ -857,7 +857,7 @@
 						<object class="NSPopUpButton" id="299213190">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{234, 88}, {100, 26}}</string>
+							<string key="NSFrame">{{246, 91}, {100, 26}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDPopUpButtonCell" key="NSCell" id="66354938">
@@ -923,7 +923,7 @@
 						<object class="NSButton" id="699841532">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{333, 85}, {70, 32}}</string>
+							<string key="NSFrame">{{347, 87}, {70, 32}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="913727476">
@@ -944,7 +944,7 @@
 						<object class="BGHUDLabel" id="333749769">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{4, 32}, {70, 17}}</string>
+							<string key="NSFrame">{{4, 35}, {70, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="806443688">
@@ -961,7 +961,7 @@
 						<object class="NSTextField" id="522029691">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{87, 32}, {181, 22}}</string>
+							<string key="NSFrame">{{87, 35}, {200, 22}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="652004040">
@@ -978,7 +978,7 @@
 						<object class="NSButton" id="165188895">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{207, -1}, {98, 32}}</string>
+							<string key="NSFrame">{{221, 1}, {98, 32}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="1042337878">
@@ -1000,7 +1000,7 @@
 						<object class="NSButton" id="171930822">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{279, 34}, {120, 18}}</string>
+							<string key="NSFrame">{{293, 37}, {120, 18}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="1051238037">
@@ -1028,7 +1028,7 @@
 						<object class="BGHUDLabel" id="94803314">
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{36, 8}, {178, 17}}</string>
+							<string key="NSFrame">{{28, 8}, {194, 17}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="321872653">
@@ -1050,13 +1050,13 @@
 							<reference key="NSNextResponder" ref="926306345"/>
 							<int key="NSvFlags">1292</int>
 							<object class="NSPSMatrix" key="NSDrawMatrix"/>
-							<string key="NSFrame">{{15, 8}, {16, 16}}</string>
+							<string key="NSFrame">{{7, 10}, {16, 16}}</string>
 							<reference key="NSSuperview" ref="926306345"/>
 							<int key="NSpiFlags">20744</int>
 							<double key="NSMaxValue">100</double>
 						</object>
 					</object>
-					<string key="NSFrameSize">{409, 183}</string>
+					<string key="NSFrameSize">{425, 186}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -1777,21 +1777,21 @@
 						<reference key="object" ref="926306345"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="93671385"/>
 							<reference ref="983271139"/>
 							<reference ref="35466355"/>
-							<reference ref="367574053"/>
 							<reference ref="560145156"/>
 							<reference ref="463631575"/>
-							<reference ref="299213190"/>
-							<reference ref="699841532"/>
 							<reference ref="333749769"/>
-							<reference ref="522029691"/>
+							<reference ref="151024335"/>
+							<reference ref="93671385"/>
 							<reference ref="165188895"/>
 							<reference ref="171930822"/>
-							<reference ref="94803314"/>
 							<reference ref="694339475"/>
-							<reference ref="151024335"/>
+							<reference ref="299213190"/>
+							<reference ref="699841532"/>
+							<reference ref="367574053"/>
+							<reference ref="522029691"/>
+							<reference ref="94803314"/>
 						</object>
 						<reference key="parent" ref="8151936"/>
 					</object>
@@ -2753,9 +2753,9 @@
 					<string>{{550, 469}, {173, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{279, 297}, {409, 183}}</string>
+					<string>{{313, 270}, {425, 186}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{279, 297}, {409, 183}}</string>
+					<string>{{313, 270}, {425, 186}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
@@ -3718,5 +3718,20 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../MelScrobbleX.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>NSMenuCheckmark</string>
+				<string>NSMenuMixedState</string>
+				<string>NSSwitch</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{9, 8}</string>
+				<string>{7, 2}</string>
+				<string>{15, 15}</string>
+			</object>
+		</object>
 	</data>
 </archive>
