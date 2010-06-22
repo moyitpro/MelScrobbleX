@@ -211,6 +211,8 @@
 		regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
 		[segment setObjectValue:[regex replaceAllMatchesInString:string
 													  withString:@""]];
+		// Trim Whitespace
+		[mediatitle setObjectValue:[[mediatitle stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 		//release
 		regex = nil;
 		enumerator = nil;

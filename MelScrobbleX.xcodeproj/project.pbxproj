@@ -12,8 +12,6 @@
 		3A041C23115B0CC900B2D20F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
 		3A2E0F9B114DD9C50050E16D /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */; };
 		3A2E0FD3114DDAF80050E16D /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */; };
-		3A2E51431162B01B00BFD793 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2E51421162B01B00BFD793 /* ShortcutRecorder.framework */; };
-		3A2E514B1162B14100BFD793 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A2E51421162B01B00BFD793 /* ShortcutRecorder.framework */; };
 		3A3134F8114D89960046D05E /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3134F7114D89960046D05E /* libz.1.2.3.dylib */; };
 		3A3134FA114D89A90046D05E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3134F9114D89A90046D05E /* CoreServices.framework */; };
 		3A3134FF114D89BB0046D05E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */; };
@@ -50,7 +48,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3A2E514B1162B14100BFD793 /* ShortcutRecorder.framework in CopyFiles */,
 				3A33FF2C11604EBA001D78D9 /* BWToolkitFramework.framework in CopyFiles */,
 				3A98A4D7115EC0C200FAA769 /* OgreKit.framework in CopyFiles */,
 				3A041C23115B0CC900B2D20F /* Sparkle.framework in CopyFiles */,
@@ -72,7 +69,6 @@
 		3A004E6D115AF14800906875 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		3A041C1E115B0C6A00B2D20F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Users/Shared/tohnominagi/InstalledProducts/Sparkle.framework; sourceTree = "<absolute>"; };
 		3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
-		3A2E51421162B01B00BFD793 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShortcutRecorder.framework; path = /Users/Shared/tohnominagi/InstalledProducts/ShortcutRecorder.framework; sourceTree = "<absolute>"; };
 		3A3134F7114D89960046D05E /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		3A3134F9114D89A90046D05E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -127,7 +123,6 @@
 				5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */,
 				5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */,
 				5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */,
-				3A2E51431162B01B00BFD793 /* ShortcutRecorder.framework in Frameworks */,
 				3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +207,6 @@
 				3A98A2D9115EA70300FAA769 /* libicucore.dylib */,
 				3A98A4D2115EC0B700FAA769 /* OgreKit.framework */,
 				3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */,
-				3A2E51421162B01B00BFD793 /* ShortcutRecorder.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";
