@@ -18,13 +18,23 @@
 #import "ASIHTTPRequestConfig.h"
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIProgressDelegate.h"
+#import "ASICacheDelegate.h"
 
 extern NSString *ASIHTTPRequestVersion;
 
-// Make targeting 2.2.1 more reliable
+// Make targeting different platforms more reliable
 // See: http://www.blumtnwerx.com/blog/2009/06/cross-sdk-code-hygiene-in-xcode/
-#ifndef __IPHONE_3_0
-	#define __IPHONE_3_0 30000
+#ifndef __IPHONE_3_2
+	#define __IPHONE_3_2 30200
+#endif
+#ifndef __IPHONE_4_0
+	#define __IPHONE_4_0 40000
+#endif
+#ifndef __MAC_10_5
+	#define __MAC_10_5 1050
+#endif
+#ifndef __MAC_10_6
+	#define __MAC_10_6 1060
 #endif
 
 typedef enum _ASIAuthenticationState {
@@ -68,6 +78,7 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	
 	// Another delegate that is also notified of request status changes and progress updates
 	// Generally, you won't use this directly, but ASINetworkQueue sets itself as the queue so it can proxy updates to its own delegates
+	// NOTE: WILL BE RETAINED BY THE REQUEST
 	id <ASIHTTPRequestDelegate, ASIProgressDelegate> queue;
 	
 	// HTTP method to use (GET / POST / PUT / DELETE / HEAD). Defaults to GET
@@ -143,6 +154,12 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	// When the request fails or completes successfully, complete will be true
 	BOOL complete;
 	
+    // external "finished" indicator, subject of KVO notifications; updates after 'complete'
+    BOOL finished;
+    
+    // True if our 'cancel' selector has been called
+    BOOL cancelled;
+    
 	// If an error occurs, error will contain an NSError
 	// If error code is = ASIConnectionFailureErrorType (1, Connection failure occurred) - inspect [[error userInfo] objectForKey:NSUnderlyingErrorKey] for more information
 	NSError *error;
@@ -179,7 +196,7 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	
 	// Used for authentication
     CFHTTPAuthenticationRef requestAuthentication; 
-	NSMutableDictionary *requestCredentials;
+	NSDictionary *requestCredentials;
 	
 	// Used during NTLM authentication
 	int authenticationRetryCount;
@@ -202,7 +219,7 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	
 	// Used for proxy authentication
     CFHTTPAuthenticationRef proxyAuthentication; 
-	NSMutableDictionary *proxyCredentials;
+	NSDictionary *proxyCredentials;
 	
 	// Used during authentication with an NTLM proxy
 	int proxyAuthenticationRetryCount;
@@ -320,6 +337,10 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	NSString *proxyHost;
 	int proxyPort;
 	
+	// ASIHTTPRequest will assume kCFProxyTypeHTTP if the proxy type could not be automatically determined
+	// Set to kCFProxyTypeSOCKS if you are manually configuring a SOCKS proxy
+	NSString *proxyType;
+
 	// URL for a PAC (Proxy Auto Configuration) file. If you want to set this yourself, it's probably best if you use a local file
 	NSURL *PACurl;
 	
@@ -332,9 +353,6 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	// This only affects credentials stored in the session cache when useSessionPersistence is YES. Credentials from the keychain are never presented unless the server asks for them
 	// Default is YES
 	BOOL shouldPresentCredentialsBeforeChallenge;
-	
-	// YES when the request is run with runSynchronous, NO otherwise. READ-ONLY
-	BOOL isSynchronous;
 	
 	// YES when the request hasn't finished yet. Will still be YES even if the request isn't doing anything (eg it's waiting for delegate authentication). READ-ONLY
 	BOOL inProgress;
@@ -374,9 +392,6 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	//   The stream will be closed + released either when another request comes to use the connection, or when the timer fires to tell the connection to expire
 	NSMutableDictionary *connectionInfo;
 	
-	// This timer checks up on the request every 0.25 seconds, and updates progress
-	NSTimer *statusTimer;
-	
 	// When set to YES, 301 and 302 automatic redirects will use the original method and and body, according to the HTTP 1.1 standard
 	// Default is NO (to follow the behaviour of most browsers)
 	BOOL shouldUseRFC2616RedirectBehaviour;
@@ -389,6 +404,25 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 	
 	// Will be ASIHTTPRequestRunLoopMode for synchronous requests, NSDefaultRunLoopMode for all other requests
 	NSString *runLoopMode;
+	
+	// This timer checks up on the request every 0.25 seconds, and updates progress
+	NSTimer *statusTimer;
+
+	
+	// The download cache that will be used for this request (use [ASIHTTPRequest setDefaultCache:cache] to configure a default cache
+	id <ASICacheDelegate> downloadCache;
+	
+	// The cache policy that will be used for this request - See ASICacheDelegate.h for possible values
+	ASICachePolicy cachePolicy;
+	
+	// The cache storage policy that will be used for this request - See ASICacheDelegate.h for possible values
+	ASICacheStoragePolicy cacheStoragePolicy;
+	
+	// Will be true when the response was pulled from the cache rather than downloaded
+	BOOL didUseCachedResponse;
+
+	// Set secondsToCache to use a custom time interval for expiring the response when it is stored in a cache
+	NSTimeInterval secondsToCache;
 }
 
 #pragma mark init / dealloc
@@ -398,6 +432,9 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 
 // Convenience constructor
 + (id)requestWithURL:(NSURL *)newURL;
+
++ (id)requestWithURL:(NSURL *)newURL usingCache:(id <ASICacheDelegate>)cache;
++ (id)requestWithURL:(NSURL *)newURL usingCache:(id <ASICacheDelegate>)cache andCachePolicy:(ASICachePolicy)policy;
 
 #pragma mark setup request
 
@@ -478,10 +515,10 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 - (void)incrementUploadSizeBy:(long long)length;
 
 // Helper method for interacting with progress indicators to abstract the details of different APIS (NSProgressIndicator and UIProgressView)
-+ (void)updateProgressIndicator:(id)indicator withProgress:(unsigned long long)progress ofTotal:(unsigned long long)total;
++ (void)updateProgressIndicator:(id *)indicator withProgress:(unsigned long long)progress ofTotal:(unsigned long long)total;
 
 // Helper method used for performing invocations on the main thread (used for progress)
-+ (void)performSelector:(SEL)selector onTarget:(id)target withObject:(id)object amount:(void *)amount;
++ (void)performSelector:(SEL)selector onTarget:(id *)target withObject:(id)object amount:(void *)amount;
 
 #pragma mark handling request complete / failure
 
@@ -508,6 +545,9 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 // Also initiates request redirection when shouldRedirect is true
 // And works out if HTTP auth is required
 - (void)readResponseHeaders;
+
+// Attempts to set the correct encoding by looking at the Content-Type header, if this is one
+- (void)parseStringEncodingFromHeaders;
 
 #pragma mark http authentication stuff
 
@@ -547,6 +587,8 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 - (void)handleStreamComplete;
 - (void)handleStreamError;
 
+#pragma mark persistent connections
+
 // Get the ID of the connection this request used (only really useful in tests and debugging)
 - (NSNumber *)connectionID;
 
@@ -571,7 +613,6 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 
 - (NSDictionary *)findSessionProxyAuthenticationCredentials;
 - (NSDictionary *)findSessionAuthenticationCredentials;
-
 
 #pragma mark keychain storage
 
@@ -661,24 +702,53 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 // Turns on throttling automatically when WWAN is connected using a custom limit, and turns it off automatically when it isn't
 + (void)throttleBandwidthForWWANUsingLimit:(unsigned long)limit;
 
-
 #pragma mark reachability
+
 // Returns YES when an iPhone OS device is connected via WWAN, false when connected via WIFI or not connected
 + (BOOL)isNetworkReachableViaWWAN;
 
 #endif
 
+#pragma mark queue
+
+// Returns the shared queue
++ (NSOperationQueue *)sharedQueue;
+
+#pragma mark cache
+
++ (void)setDefaultCache:(id <ASICacheDelegate>)cache;
++ (id <ASICacheDelegate>)defaultCache;
+
 // Returns the maximum amount of data we can read as part of the current measurement period, and sleeps this thread if our allowance is used up
 + (unsigned long)maxUploadReadLength;
 
-#pragma mark miscellany 
+#pragma mark network activity
 
-// Determines whether we're on iPhone OS 2.0 at runtime, currently used to determine whether we should apply a workaround for an issue with converting longs to doubles on iPhone OS 2
-+ (BOOL)isiPhoneOS2;
++ (BOOL)isNetworkInUse;
+#if TARGET_OS_IPHONE
++ (void)setShouldUpdateNetworkActivityIndicator:(BOOL)shouldUpdate;
+#endif
+
+#pragma mark miscellany
 
 // Used for generating Authorization header when using basic authentication when shouldPresentCredentialsBeforeChallenge is true
 // And also by ASIS3Request
 + (NSString *)base64forData:(NSData *)theData;
+
+// Returns a date from a string in RFC1123 format
++ (NSDate *)dateFromRFC1123String:(NSString *)string;
+
+#pragma mark threading behaviour
+
+// In the default implementation, all requests run in a single background thread
+// Advanced users only: Override this method in a subclass for a different threading behaviour
+// Eg: return [NSThread mainThread] to run all requests in the main thread
+// Alternatively, you can create a thread on demand, or manage a pool of threads
+// Threads returned by this method will need to run the runloop in default mode (eg CFRunLoopRun())
+// Requests will stop the runloop when they complete
+// If you have multiple requests sharing the thread you'll need to restart the runloop when this happens
++ (NSThread *)threadForRequest:(ASIHTTPRequest *)request;
+
 
 #pragma mark ===
 
@@ -692,13 +762,14 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 
 @property (retain) NSString *proxyHost;
 @property (assign) int proxyPort;
+@property (retain) NSString *proxyType;
 
 @property (retain,setter=setURL:) NSURL *url;
 @property (retain) NSURL *originalURL;
-@property (assign) id delegate;
-@property (assign) id queue;
-@property (assign) id uploadProgressDelegate;
-@property (assign) id downloadProgressDelegate;
+@property (assign, nonatomic) id delegate;
+@property (retain, nonatomic) id queue;
+@property (assign, nonatomic) id uploadProgressDelegate;
+@property (assign, nonatomic) id downloadProgressDelegate;
 @property (assign) BOOL useKeychainPersistence;
 @property (assign) BOOL useSessionPersistence;
 @property (retain) NSString *downloadDestinationPath;
@@ -712,7 +783,7 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 @property (retain,readonly) NSString *proxyAuthenticationRealm;
 @property (retain) NSError *error;
 @property (assign,readonly) BOOL complete;
-@property (retain,readonly) NSDictionary *responseHeaders;
+@property (retain) NSDictionary *responseHeaders;
 @property (retain) NSMutableDictionary *requestHeaders;
 @property (retain) NSMutableArray *requestCookies;
 @property (retain,readonly) NSArray *responseCookies;
@@ -721,7 +792,7 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 @property (retain) NSDictionary *proxyCredentials;
 @property (assign,readonly) int responseStatusCode;
 @property (retain,readonly) NSString *responseStatusMessage;
-@property (retain,readonly) NSMutableData *rawResponseData;
+@property (retain) NSMutableData *rawResponseData;
 @property (assign) NSTimeInterval timeOutSeconds;
 @property (retain) NSString *requestMethod;
 @property (retain) NSMutableData *postBody;
@@ -757,7 +828,6 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 @property (assign, readonly) int proxyAuthenticationRetryCount;
 @property (assign) BOOL haveBuiltRequestHeaders;
 @property (assign, nonatomic) BOOL haveBuiltPostBody;
-@property (assign, readonly) BOOL isSynchronous;
 @property (assign, readonly) BOOL inProgress;
 @property (assign) int numberOfTimesToRetryOnTimeout;
 @property (assign, readonly) int retryCount;
@@ -766,4 +836,9 @@ extern unsigned long const ASIWWANBandwidthThrottleAmount;
 @property (assign) BOOL shouldUseRFC2616RedirectBehaviour;
 @property (assign, readonly) BOOL connectionCanBeReused;
 @property (retain, readonly) NSNumber *requestID;
+@property (assign) id <ASICacheDelegate> downloadCache;
+@property (assign) ASICachePolicy cachePolicy;
+@property (assign) ASICacheStoragePolicy cacheStoragePolicy;
+@property (assign, readonly) BOOL didUseCachedResponse;
+@property (assign) NSTimeInterval secondsToCache;
 @end

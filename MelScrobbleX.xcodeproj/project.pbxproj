@@ -102,6 +102,7 @@
 		3A9F25A3116D25CC00C61E05 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
 		3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_Example_Prefix.pch; sourceTree = "<group>"; };
+		3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative.h; sourceTree = "<group>"; };
 		3AEAC2C1115AD3D500286BE4 /* Melative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Melative_Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Melative_Example-Info.plist"; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				3A004E6D115AF14800906875 /* iTunes.h */,
+				3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */,
 				3A49BD401162A78E0048007B /* dsa_pub.pem */,
 			);
 			name = "Linked Frameworks";

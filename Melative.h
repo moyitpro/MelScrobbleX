@@ -21,7 +21,13 @@
 	int choice;
 	IBOutlet NSTextField * artist;
 	IBOutlet NSTextField * scrobblestatus;
+	IBOutlet NSMenuItem * togglescrobbler;
 	IBOutlet NSProgressIndicator * APIProgress;
+    BOOL scrobblesuccess;
+	NSString * ScrobbledMediaTitle;
+	NSString * ScrobbledMediaSegment;
+	NSTimer * timer;
+
 }
 @property(copy, readwrite) NSString *apikey;
 @property(copy, readwrite) NSString *fieldusername;
@@ -32,4 +38,6 @@
 -(void)musicdetect;
 -(void)animedetect;
 -(BOOL)reportoutput;
+-(IBAction)toggletimer:(id)sender;
+-(void)firetimer;
 @end

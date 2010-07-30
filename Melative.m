@@ -301,6 +301,106 @@
 	[defaults release];
 }
 
+- (IBAction)toggletimer:(id)sender {
+	if (timer == nil) {
+	//Create Timer
+		NSLog(@"Creating Timer");
+		timer = [[NSTimer scheduledTimerWithTimeInterval:180
+												  target:self
+												selector:@selector(firetimer:)
+												userInfo:nil
+												 repeats:YES] retain];
+		[togglescrobbler setTitle:@"Stop Auto Scrobbling"];
+	}
+	else {
+		//Stop Timer
+		NSLog(@"Stopping Timer");
+		// Remove Timer
+		[timer invalidate];
+		[timer release];
+		timer = nil;
+		[togglescrobbler setTitle:@"Start Auto Scrobbling"];
+	}
+
+}
+- (void)firetimer:(NSTimer *)aTimer {
+	NSLog(@"BOO!");
+	//Start Detection
+	if ([mediatypemenu indexOfSelectedItem] == 0) {
+		// Init Anime Detection
+		[self animedetect];
+	}
+	else if ([mediatypemenu indexOfSelectedItem] == 1) {
+		// Init Music Detection
+		[self musicdetect];
+	}
+	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
+		// Do Nothing
+	}
+	else if ([mediatitle stringValue] == ScrobbledMediaTitle && [segment stringValue] == ScrobbledMediaSegment && scrobblesuccess == YES) {
+		// Do Nothing
+		}
+	else {
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
+			//Load Login
+			NSLog(@"Loading Login");
+			apikey = [defaults objectForKey:@"APIKey"];
+		}
+		if ( apikey.length < 0 ) {
+			//No account information. Show error message.
+			[scrobblestatus setObjectValue:@"No Account Info..."];
+			scrobblesuccess = NO;
+		}
+		else {
+		//Set library/scrobble API
+		NSURL *url = [NSURL URLWithString:@"http://melative.com/api/library/scrobble.json"];
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+		//Ignore Cookies
+		[request setUseCookiePersistence:NO];
+		//Set API Key
+		[request addRequestHeader:@"Cookie" value:apikey];
+		[request setDownloadProgressDelegate:APIProgress];
+		if ( [mediatypemenu indexOfSelectedItem] == 0) {
+			[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
+			[request setPostValue:@"episode" forKey:@"attribute_type"];
+			[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
+		}
+		else if ([mediatypemenu indexOfSelectedItem] == 1) {
+			[request setPostValue:[mediatitle stringValue] forKey:@"music"];
+			[request setPostValue:@"track" forKey:@"attribute_type"];
+			[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
+		}
+		[request startSynchronous];
+		// Get Status Code
+		int statusCode = [request responseStatusCode];
+		if (statusCode == 200 ) {
+			if ([self reportoutput] == 1) {
+				NSString *response = [request responseString];
+				//Post suggessful... or is it?
+				choice = NSRunAlertPanel(@"Scrobble Successful", response, @"OK", nil, nil, 8);
+				//release
+				response = nil;
+			}
+			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+			ScrobbledMediaTitle = [mediatitle stringValue];
+			ScrobbledMediaSegment = [segment stringValue];
+			scrobblesuccess = YES;
+		}
+		else {
+			// Set Status
+			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+			scrobblesuccess = NO;
+		}
+		//release
+		request = nil;
+		url = nil;
+		//Reset Progress
+		[APIProgress setDoubleValue:0];
+	}
+	}
+}
+
 - (void)dealloc {
     [fieldusername release];
 	[apikey release];
