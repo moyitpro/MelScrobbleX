@@ -25,6 +25,7 @@
 	//Register Dictionary
 	[[NSUserDefaults standardUserDefaults]
 	 registerDefaults:defaultValues];
+
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	//Check if Application is in the /Applications Folder
@@ -38,6 +39,17 @@
 	else {
 		// Show the Window
 		[window makeKeyAndOrderFront:nil];
+	}
+	//Register Growl
+	NSBundle *myBundle = [NSBundle bundleForClass:[Melative_ExampleAppDelegate class]];
+	NSString *growlPath = [[myBundle privateFrameworksPath] stringByAppendingPathComponent:@"Growl.framework"];
+	NSBundle *growlBundle = [NSBundle bundleWithPath:growlPath];
+	if (growlBundle && [growlBundle load]) {
+		// Register ourselves as a Growl delegate
+		[GrowlApplicationBridge setGrowlDelegate:self];
+	}
+	else {
+		NSLog(@"ERROR: Could not load Growl.framework");
 	}
 	
 }

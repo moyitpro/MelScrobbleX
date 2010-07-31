@@ -311,6 +311,13 @@
 												userInfo:nil
 												 repeats:YES] retain];
 		[togglescrobbler setTitle:@"Stop Auto Scrobbling"];
+		[GrowlApplicationBridge notifyWithTitle:@"MelScrobbleX"
+									description:@"Auto Scrobble is now turned on."
+							   notificationName:@"Message"
+									   iconData:nil
+									   priority:0
+									   isSticky:NO
+								   clickContext:[NSDate date]];
 	}
 	else {
 		//Stop Timer
@@ -320,6 +327,13 @@
 		[timer release];
 		timer = nil;
 		[togglescrobbler setTitle:@"Start Auto Scrobbling"];
+		[GrowlApplicationBridge notifyWithTitle:@"MelScrobbleX"
+									description:@"Auto Scrobble is now turned off."
+							   notificationName:@"Message"
+									   iconData:nil
+									   priority:0
+									   isSticky:NO
+								   clickContext:[NSDate date]];
 	}
 
 }
@@ -350,6 +364,13 @@
 		if ( apikey.length < 0 ) {
 			//No account information. Show error message.
 			[scrobblestatus setObjectValue:@"No Account Info..."];
+			[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
+										description:@"No Login Information Stored. Create a Login Token in Preferences and try again." 
+								   notificationName:@"Message"
+										   iconData:nil
+										   priority:0
+										   isSticky:NO
+									   clickContext:[NSDate date]];
 			scrobblesuccess = NO;
 		}
 		else {
@@ -383,6 +404,13 @@
 				response = nil;
 			}
 			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+			 [GrowlApplicationBridge notifyWithTitle:@"Scrobble Successful"
+										 description:[NSString stringWithFormat:@"%@ - %@", [mediatitle stringValue], [segment stringValue]] 
+									notificationName:@"Message"
+											iconData:nil
+											priority:0
+											isSticky:NO
+										clickContext:[NSDate date]];
 			ScrobbledMediaTitle = [mediatitle stringValue];
 			ScrobbledMediaSegment = [segment stringValue];
 			scrobblesuccess = YES;
@@ -390,6 +418,13 @@
 		else {
 			// Set Status
 			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+			[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
+										description:@"Check your login information and try scrobbling again." 
+								   notificationName:@"Message"
+										   iconData:nil
+										   priority:0
+										   isSticky:NO
+									   clickContext:[NSDate date]];
 			scrobblesuccess = NO;
 		}
 		//release

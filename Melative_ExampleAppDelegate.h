@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Growl/Growl.h>
 
 @class PreferenceController;
-@interface Melative_ExampleAppDelegate : NSObject {
+@interface Melative_ExampleAppDelegate : NSObject <GrowlApplicationBridgeDelegate> {
     IBOutlet NSWindow *window;
 	IBOutlet NSMenu *statusMenu;
     NSStatusItem                *statusItem;
