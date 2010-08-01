@@ -82,6 +82,12 @@
     [statusImage release];
     [statusHighlightImage release];
 	[window release];
+	if (!preferenceController) {
+	}
+	else {
+		[preferenceController release];
+	}
+
     [super dealloc];
 }
 -(IBAction)togglescrobblewindow:(id)sender

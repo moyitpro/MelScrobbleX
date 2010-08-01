@@ -52,38 +52,42 @@
 					
 					//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
 					NSString * mediamessage = @"/";
-					if ( [mediatypemenu indexOfSelectedItem] == 0) {
-						// Check if the media title is complete or not
-						if ([completecheckbox state] == 1) {
-							mediamessage = @"watched /anime/";
-						}
-						else {
-							mediamessage = @"watching /anime/";
-						}
+					switch ([mediatypemenu indexOfSelectedItem]) {
+						case 0:
+							// Check if the media title is complete or not
+							if ([completecheckbox state] == 1) {
+								mediamessage = @"watched /anime/";
+							}
+							else {
+								mediamessage = @"watching /anime/";
+							}
 
-						// From Mplayer?
-						[request setPostValue:@"mplayer" forKey:@"source"];
-					}
-					else if ([mediatypemenu indexOfSelectedItem] == 1) {
-						// Check if the media title is complete or not
-						if ([completecheckbox state] == 1) {
-							mediamessage = @"listened /mu/";
-						}
-						else {
-							mediamessage = @"listening /mu/";
-						}
-						// Music Playing, must be from iTunes
-						[request setPostValue:@"iTunes" forKey:@"source"];
+							// From Mplayer?
+							[request setPostValue:@"mplayer" forKey:@"source"];
+							break;
+						case 1:
+							// Check if the media title is complete or not
+							if ([completecheckbox state] == 1) {
+								mediamessage = @"listened /mu/";
+							}
+							else {
+								mediamessage = @"listening /mu/";
+							}
+							// Music Playing, must be from iTunes
+							[request setPostValue:@"iTunes" forKey:@"source"];
+							break;
 					}
 					if ([[segment stringValue]length] >0) {
-						if ([mediatypemenu indexOfSelectedItem] == 0) {
-						mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
-						}
-						else if ([mediatypemenu indexOfSelectedItem] == 1) {
-						mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+						switch ([mediatypemenu indexOfSelectedItem]) {
+							case 0:
+								mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+								break;
+							case 1:
+								mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+								break;
 						}
 					}
-					else{
+					else {
 						mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
 					}
 					[request setPostValue:mediamessage forKey:@"message"];
@@ -126,13 +130,15 @@
 	}
 }
 -(IBAction)getnowplaying:(id)sender {
-	if ([mediatypemenu indexOfSelectedItem] == 0) {
-		// Init Anime Detection
-		[self animedetect];
-	}
-	else if ([mediatypemenu indexOfSelectedItem] == 1) {
-		// Init Music Detection
-		[self musicdetect];
+	switch ([mediatypemenu indexOfSelectedItem]) {
+		case 0:
+			// Init Anime Detection
+			[self animedetect];
+			break;
+		case 1:
+			// Init Music Detection
+			[self musicdetect];
+			break;
 	}
 }
 -(void)musicdetect {
@@ -256,15 +262,17 @@
 		//Set API Key
 				[request addRequestHeader:@"Cookie" value:apikey];
 		[request setDownloadProgressDelegate:APIProgress];
-			if ( [mediatypemenu indexOfSelectedItem] == 0) {
+			switch ([mediatypemenu indexOfSelectedItem]) {
+				case 0:
 				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
 				[request setPostValue:@"episode" forKey:@"attribute_type"];
 				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
-			}
-			else if ([mediatypemenu indexOfSelectedItem] == 1) {
+				break;
+				case 1:
 				[request setPostValue:[mediatitle stringValue] forKey:@"music"];
 				[request setPostValue:@"track" forKey:@"attribute_type"];
 				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
+				break;
 			}
 		[request startSynchronous];
 		// Get Status Code
@@ -304,7 +312,6 @@
 - (IBAction)toggletimer:(id)sender {
 	if (timer == nil) {
 	//Create Timer
-		NSLog(@"Creating Timer");
 		timer = [[NSTimer scheduledTimerWithTimeInterval:180
 												  target:self
 												selector:@selector(firetimer:)
@@ -321,7 +328,6 @@
 	}
 	else {
 		//Stop Timer
-		NSLog(@"Stopping Timer");
 		// Remove Timer
 		[timer invalidate];
 		[timer release];
@@ -338,15 +344,15 @@
 
 }
 - (void)firetimer:(NSTimer *)aTimer {
-	NSLog(@"BOO!");
-	//Start Detection
-	if ([mediatypemenu indexOfSelectedItem] == 0) {
-		// Init Anime Detection
-		[self animedetect];
-	}
-	else if ([mediatypemenu indexOfSelectedItem] == 1) {
-		// Init Music Detection
-		[self musicdetect];
+	switch ([mediatypemenu indexOfSelectedItem]) {
+		case 0:
+			// Init Anime Detection
+			[self animedetect];
+			break;
+		case 1:
+			// Init Music Detection
+			[self musicdetect];
+			break;
 	}
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
 		// Do Nothing
@@ -382,27 +388,22 @@
 		//Set API Key
 		[request addRequestHeader:@"Cookie" value:apikey];
 		[request setDownloadProgressDelegate:APIProgress];
-		if ( [mediatypemenu indexOfSelectedItem] == 0) {
-			[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
-			[request setPostValue:@"episode" forKey:@"attribute_type"];
-			[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
-		}
-		else if ([mediatypemenu indexOfSelectedItem] == 1) {
-			[request setPostValue:[mediatitle stringValue] forKey:@"music"];
-			[request setPostValue:@"track" forKey:@"attribute_type"];
-			[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
+		switch ([mediatypemenu indexOfSelectedItem]) {
+			case 0:
+				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
+				[request setPostValue:@"episode" forKey:@"attribute_type"];
+				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
+				break;
+			case 1:
+				[request setPostValue:[mediatitle stringValue] forKey:@"music"];
+				[request setPostValue:@"track" forKey:@"attribute_type"];
+				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
+				break;
 		}
 		[request startSynchronous];
 		// Get Status Code
 		int statusCode = [request responseStatusCode];
 		if (statusCode == 200 ) {
-			if ([self reportoutput] == 1) {
-				NSString *response = [request responseString];
-				//Post suggessful... or is it?
-				choice = NSRunAlertPanel(@"Scrobble Successful", response, @"OK", nil, nil, 8);
-				//release
-				response = nil;
-			}
 			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
 			 [GrowlApplicationBridge notifyWithTitle:@"Scrobble Successful"
 										 description:[NSString stringWithFormat:@"%@ - %@", [mediatitle stringValue], [segment stringValue]] 

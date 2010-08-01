@@ -39,5 +39,5 @@
 -(void)animedetect;
 -(BOOL)reportoutput;
 -(IBAction)toggletimer:(id)sender;
--(void)firetimer;
+-(void)firetimer:(NSTimer *)aTimer ;
 @end

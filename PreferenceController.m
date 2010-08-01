@@ -46,7 +46,7 @@
 }
 -(IBAction)clearlogin:(id)sender
 {
-	choice = NSRunCriticalAlertPanel(@"Are you sure you want to remove the login from your Keychain?", @"Once done, this action cannot be undone,", @"Yes", @"No", nil, 8);
+	choice = NSRunCriticalAlertPanel(@"Are you sure you want to remove this token?", @"Once done, this action cannot be undone,", @"Yes", @"No", nil, 8);
 	NSLog(@"%i", choice);
 	if (choice == 1) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

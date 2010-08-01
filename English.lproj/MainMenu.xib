@@ -21,10 +21,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="712"/>
-			<integer value="611"/>
 			<integer value="29"/>
 			<integer value="534"/>
+			<integer value="611"/>
+			<integer value="712"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3029,7 +3029,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">902</int>
+			<int key="maxID">905</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
