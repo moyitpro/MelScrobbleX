@@ -98,7 +98,6 @@
 		3A71703711825AE200E082C2 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		3A7A6F66115C1EA800699FAB /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
 		3A7A6F67115C1EA800699FAB /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
-		3A7A710F115C2BF100699FAB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		3A7A7114115C2C0000699FAB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3A8228C912039ED80091127F /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		3A82297B1203A2EC0091127F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = /Users/Shared/tohnominagi/InstalledProducts/Growl.framework; sourceTree = "<absolute>"; };
@@ -167,7 +166,6 @@
 				3AEAC2C1115AD3D500286BE4 /* Melative.m */,
 				3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */,
 				3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */,
-				3A7A710F115C2BF100699FAB /* Carbon.framework */,
 				3A7A7114115C2C0000699FAB /* Security.framework */,
 			);
 			name = "Other Frameworks";

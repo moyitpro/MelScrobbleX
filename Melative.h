@@ -17,6 +17,7 @@
 	IBOutlet NSTextField * segment;
 	IBOutlet NSButton * postbutton;
 	IBOutlet NSButton * completecheckbox;
+	IBOutlet NSButton * sendtotwitter;
 	IBOutlet NSPopUpButton * mediatypemenu;
 	int choice;
 	IBOutlet NSTextField * artist;

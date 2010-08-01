@@ -48,6 +48,10 @@
 				[request addRequestHeader:@"Cookie" value:apikey];
 				//Set Progress
 				[request setDownloadProgressDelegate:APIProgress];
+				//Twitter Bridge
+				if ([sendtotwitter state] == 1) {
+					[fieldmessage setObjectValue:[NSString stringWithFormat:@"%@ @tw", [fieldmessage stringValue]]];
+				}
 				if ([[mediatitle stringValue]length] > 0) {
 					
 					//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
@@ -113,8 +117,9 @@
 					[scrobblestatus setObjectValue:@"Post Successful..."];
 					//Clear Message
 					[fieldmessage setObjectValue:@""];
-					//Unset "Complete" checkbox
+					//Unset "Complete" and "Send to Twitter" checkboxes
 					[completecheckbox setState:0];
+					[sendtotwitter setState:0];
 				}
 				else {
 					//Login Failed, show error message
