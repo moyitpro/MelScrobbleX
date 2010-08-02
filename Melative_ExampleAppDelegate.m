@@ -106,4 +106,8 @@
 	}
 		[preferenceController showWindow:self];
 }
+-(void)setStatusToolTip:(NSString*)toolTip
+{
+    [statusItem setToolTip:toolTip];
+}
 @end

@@ -20,6 +20,7 @@
 }
 -(IBAction)togglescrobblewindow:(id)sender;
 -(void)showPreferences:(id)sender;
+-(void)setStatusToolTip:(NSString*)toolTip;
 @property (assign) IBOutlet NSWindow *window;
 
 @end

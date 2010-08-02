@@ -110,7 +110,7 @@
 					if ([self reportoutput] == 1) {
 					NSString *response = [request responseString];
 					//Post suggessful... or is it?
-					choice = NSRunAlertPanel(@"Post Successful", response, @"OK", nil, nil, 8);
+					choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
 					//release
 					response = nil;
 					}
@@ -238,73 +238,24 @@
 
 }
 -(IBAction)scrobble:(id)sender {
-	// Set Status
-	[scrobblestatus setObjectValue:@"Scrobbling..."];
-	//Scrobble the Title
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
-	//Load Login
-	NSLog(@"Loading Login");
-		apikey = [defaults objectForKey:@"APIKey"];
-	}
-	if ( apikey.length < 0 ) {
-		//No account information. Show error message.
-		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
-		[scrobblestatus setObjectValue:@"No Account Info..."];
-	}
-	else {
-		if ( [[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
-			//No segment or title
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.", @"Enter a media title or segment and try the scrobble command again", @"OK", nil, nil, 8);
-			[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
-		}
-		else {
-			//Set library/scrobble API
-			NSURL *url = [NSURL URLWithString:@"http://melative.com/api/library/scrobble.json"];
-			ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-		//Ignore Cookies
-		[request setUseCookiePersistence:NO];
-		//Set API Key
-				[request addRequestHeader:@"Cookie" value:apikey];
-		[request setDownloadProgressDelegate:APIProgress];
-			switch ([mediatypemenu indexOfSelectedItem]) {
-				case 0:
-				[request setPostValue:[mediatitle stringValue] forKey:@"anime"];
-				[request setPostValue:@"episode" forKey:@"attribute_type"];
-				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
-				break;
-				case 1:
-				[request setPostValue:[mediatitle stringValue] forKey:@"music"];
-				[request setPostValue:@"track" forKey:@"attribute_type"];
-				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
-				break;
-			}
-		[request startSynchronous];
-		// Get Status Code
-		int statusCode = [request responseStatusCode];
-			if (statusCode == 200 ) {
-				if ([self reportoutput] == 1) {
-					NSString *response = [request responseString];
-					//Post suggessful... or is it?
-					choice = NSRunAlertPanel(@"Scrobble Successful", response, @"OK", nil, nil, 8);
-					//release
-					response = nil;
-				}
+	int httperror = [self scrobble];
+	switch (httperror) {
+		case 200:
 			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
-		}
-		else {
+			break;
+		case 401:
 			//Login Failed, show error message
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password", @"Check your username and password and try the scrobble command again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
 			// Set Status
 			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
-		}
-		//release
-		request = nil;
-		url = nil;
-		//Reset Progress
-		[APIProgress setDoubleValue:0];
+			break;
+		default:
+			//Login Failed, show error message
+			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble because of an unknown error.", [NSString stringWithFormat:@"Error %i", httperror], @"OK", nil, nil, 8);
+			// Set Status
+			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+			break;
 	}
-}
 }
 
 -(BOOL)reportoutput {
@@ -317,7 +268,7 @@
 - (IBAction)toggletimer:(id)sender {
 	if (timer == nil) {
 	//Create Timer
-		timer = [[NSTimer scheduledTimerWithTimeInterval:180
+		timer = [[NSTimer scheduledTimerWithTimeInterval:10
 												  target:self
 												selector:@selector(firetimer:)
 												userInfo:nil
@@ -349,6 +300,9 @@
 
 }
 - (void)firetimer:(NSTimer *)aTimer {
+	NSLog(@"ScrobbledMediaTitle = %@", ScrobbledMediaTitle);
+	NSLog(@"ScrobbledMediaSegment = %@" , ScrobbledMediaSegment);
+	NSLog(@"BOOL = %d", (int)scrobblesuccess);
 	switch ([mediatypemenu indexOfSelectedItem]) {
 		case 0:
 			// Init Anime Detection
@@ -362,29 +316,72 @@
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
 		// Do Nothing
 	}
-	else if ([mediatitle stringValue] == ScrobbledMediaTitle && [segment stringValue] == ScrobbledMediaSegment && scrobblesuccess == YES) {
+	else if ([mediatitle stringValue] == ScrobbledMediaTitle && [segment stringValue] == ScrobbledMediaSegment && scrobblesuccess == 1) {
 		// Do Nothing
 		}
 	else {
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
-			//Load Login
-			NSLog(@"Loading Login");
-			apikey = [defaults objectForKey:@"APIKey"];
+		int httperror = [self scrobble];
+		switch (httperror) {
+			case 200:
+				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Successful"
+											description:[NSString stringWithFormat:@"%@ - %@", [mediatitle stringValue], [segment stringValue]] 
+									   notificationName:@"Message"
+											   iconData:nil
+											   priority:0
+											   isSticky:NO
+										   clickContext:[NSDate date]];
+				ScrobbledMediaTitle = [mediatitle stringValue];
+				ScrobbledMediaSegment = [segment stringValue];
+				scrobblesuccess = YES;
+				//Set up Delegate
+				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
+				//Set last successful scrobble to statusItem Tooltip
+				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];				
+				NSLog(@"ScrobbledMediaTitle = %@", ScrobbledMediaTitle);
+				NSLog(@"ScrobbledMediaSegment = %@" , ScrobbledMediaSegment);
+				NSLog(@"BOOL = %d", (int)scrobblesuccess);				
+				break;
+			case 401:
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
+											description:@"Check your login information and try scrobbling again." 
+									   notificationName:@"Message"
+											   iconData:nil
+											   priority:0
+											   isSticky:NO
+										   clickContext:[NSDate date]];
+				scrobblesuccess = NO;
+				break;
+			default:
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
+											description:[NSString stringWithFormat:@"Unknown Error. Error %i", httperror]
+									   notificationName:@"Message"
+											   iconData:nil
+											   priority:0
+											   isSticky:NO
+										   clickContext:[NSDate date]];
+				scrobblesuccess = NO;
+				break;				
 		}
-		if ( apikey.length < 0 ) {
-			//No account information. Show error message.
-			[scrobblestatus setObjectValue:@"No Account Info..."];
-			[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
-										description:@"No Login Information Stored. Create a Login Token in Preferences and try again." 
-								   notificationName:@"Message"
-										   iconData:nil
-										   priority:0
-										   isSticky:NO
-									   clickContext:[NSDate date]];
-			scrobblesuccess = NO;
-		}
-		else {
+	
+}
+}
+
+-(int)scrobble {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
+		//Load Login
+		NSLog(@"Loading Login");
+		apikey = [defaults objectForKey:@"APIKey"];
+	}
+	if ( apikey.length < 0 ) {
+		return 401;
+	}
+	else {
 		//Set library/scrobble API
 		NSURL *url = [NSURL URLWithString:@"http://melative.com/api/library/scrobble.json"];
 		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -407,41 +404,21 @@
 		}
 		[request startSynchronous];
 		// Get Status Code
-		int statusCode = [request responseStatusCode];
-		if (statusCode == 200 ) {
-			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
-			 [GrowlApplicationBridge notifyWithTitle:@"Scrobble Successful"
-										 description:[NSString stringWithFormat:@"%@ - %@", [mediatitle stringValue], [segment stringValue]] 
-									notificationName:@"Message"
-											iconData:nil
-											priority:0
-											isSticky:NO
-										clickContext:[NSDate date]];
-			ScrobbledMediaTitle = [mediatitle stringValue];
-			ScrobbledMediaSegment = [segment stringValue];
-			scrobblesuccess = YES;
+		if ([self reportoutput] == 1) {
+			//Post suggessful... or is it?
+		    NSString *response = [request responseString];
+			choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
+			//release
+			response = nil;
 		}
-		else {
-			// Set Status
-			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
-			[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
-										description:@"Check your login information and try scrobbling again." 
-								   notificationName:@"Message"
-										   iconData:nil
-										   priority:0
-										   isSticky:NO
-									   clickContext:[NSDate date]];
-			scrobblesuccess = NO;
-		}
+		return [request responseStatusCode];
 		//release
 		request = nil;
 		url = nil;
 		//Reset Progress
 		[APIProgress setDoubleValue:0];
 	}
-	}
 }
-
 - (void)dealloc {
     [fieldusername release];
 	[apikey release];

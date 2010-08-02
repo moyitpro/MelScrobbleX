@@ -38,6 +38,7 @@
 -(IBAction)scrobble:(id)sender;
 -(void)musicdetect;
 -(void)animedetect;
+-(int)scrobble;
 -(BOOL)reportoutput;
 -(IBAction)toggletimer:(id)sender;
 -(void)firetimer:(NSTimer *)aTimer ;
