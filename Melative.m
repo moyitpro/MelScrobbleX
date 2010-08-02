@@ -15,7 +15,6 @@
 @implementation Melative
 @synthesize fieldusername;
 @synthesize apikey;
-
 -(IBAction)postmessage:(id)sender {
 // Set Status
 [scrobblestatus setObjectValue:@"Posting..."];
@@ -34,101 +33,34 @@
 		else {
 
 			if ( [[fieldmessage stringValue] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
-				//No message, show error
+			//No message, show error
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
 			[scrobblestatus setObjectValue:@"No Message Entered.."];
 			}
 			else {
-				//Set micro/update API
-				NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
-				ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-				//Ignore Cookies
-				[request setUseCookiePersistence:NO];
-				//Set API Key
-				[request addRequestHeader:@"Cookie" value:apikey];
-				//Set Progress
-				[request setDownloadProgressDelegate:APIProgress];
-				//Twitter Bridge
-				if ([sendtotwitter state] == 1) {
-					[fieldmessage setObjectValue:[NSString stringWithFormat:@"%@ @tw", [fieldmessage stringValue]]];
-				}
-				if ([[mediatitle stringValue]length] > 0) {
-					
-					//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
-					NSString * mediamessage = @"/";
-					switch ([mediatypemenu indexOfSelectedItem]) {
-						case 0:
-							// Check if the media title is complete or not
-							if ([completecheckbox state] == 1) {
-								mediamessage = @"watched /anime/";
-							}
-							else {
-								mediamessage = @"watching /anime/";
-							}
+				int httperror = [self postupdate];
+				switch (httperror) {
+					case 200: // 200 - OK
+						[scrobblestatus setObjectValue:@"Post Successful..."];
+						//Clear Message
+						[fieldmessage setObjectValue:@""];
+						//Unset "Complete" and "Send to Twitter" checkboxes
+						[completecheckbox setState:0];
+						[sendtotwitter setState:0];
+						break;
+						
+						case 401: // 401 - Unauthorized
+						//Login Failed, show error message
+						choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+						[scrobblestatus setObjectValue:@"Unable to Post..."];
+						break;
 
-							// From Mplayer?
-							[request setPostValue:@"mplayer" forKey:@"source"];
-							break;
-						case 1:
-							// Check if the media title is complete or not
-							if ([completecheckbox state] == 1) {
-								mediamessage = @"listened /mu/";
-							}
-							else {
-								mediamessage = @"listening /mu/";
-							}
-							// Music Playing, must be from iTunes
-							[request setPostValue:@"iTunes" forKey:@"source"];
-							break;
-					}
-					if ([[segment stringValue]length] >0) {
-						switch ([mediatypemenu indexOfSelectedItem]) {
-							case 0:
-								mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
-								break;
-							case 1:
-								mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
-								break;
-						}
-					}
-					else {
-						mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
-					}
-					[request setPostValue:mediamessage forKey:@"message"];
-					// Get rid of Mediamessage. Not needed
-					mediamessage = nil;
+					default:
+						//Some other error...
+						choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update because of an unknown error.",[NSString stringWithFormat:@"Error %i", httperror] , @"OK", nil, nil, 8);
+						[scrobblestatus setObjectValue:@"Unable to Post..."];
+						break;
 				}
-				else {
-					//Send message only
-					[request setPostValue:[fieldmessage stringValue] forKey:@"message"];
-					[request setPostValue:@"MelScrobbleX" forKey:@"source"];
-				}
-				[request startSynchronous];
-				// Get Status Code
-				int statusCode = [request responseStatusCode];
-				if (statusCode == 200 ) {
-					if ([self reportoutput] == 1) {
-					NSString *response = [request responseString];
-					//Post suggessful... or is it?
-					choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
-					//release
-					response = nil;
-					}
-					[scrobblestatus setObjectValue:@"Post Successful..."];
-					//Clear Message
-					[fieldmessage setObjectValue:@""];
-					//Unset "Complete" and "Send to Twitter" checkboxes
-					[completecheckbox setState:0];
-					[sendtotwitter setState:0];
-				}
-				else {
-					//Login Failed, show error message
-					choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
-					[scrobblestatus setObjectValue:@"Unable to Post..."];
-				}
-				//release
-				request = nil;
-				url = nil;
 				//Reset Progress
 				[APIProgress setDoubleValue:0];
 			}
@@ -238,23 +170,30 @@
 
 }
 -(IBAction)scrobble:(id)sender {
-	int httperror = [self scrobble];
-	switch (httperror) {
-		case 200:
-			[scrobblestatus setObjectValue:@"Scrobble Successful..."];
-			break;
-		case 401:
-			//Login Failed, show error message
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password", @"Check your username and password and try the scrobble command again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
-			// Set Status
-			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
-			break;
-		default:
-			//Login Failed, show error message
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble because of an unknown error.", [NSString stringWithFormat:@"Error %i", httperror], @"OK", nil, nil, 8);
-			// Set Status
-			[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
-			break;
+	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
+		// No segment or title	
+		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.", @"Enter a media title or segment and try the scrobble command again", @"OK", nil, nil, 8);
+		[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+	}
+	else {
+		int httperror = [self scrobble];
+		switch (httperror) {
+			case 200:
+				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				break;
+			case 401:
+				//Login Failed, show error message
+				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password", @"Check your username and password and try the scrobble command again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+			default:
+				//Login Failed, show error message
+				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble because of an unknown error.", [NSString stringWithFormat:@"Error %i", httperror], @"OK", nil, nil, 8);
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+		}
 	}
 }
 
@@ -337,6 +276,10 @@
 				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
 				//Set last successful scrobble to statusItem Tooltip
 				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];						
+				//Retain values for later use
+				[ScrobbledMediaTitle retain];
+				[ScrobbledMediaSegment retain];
+				[scrobblestatus retain];
 				break;
 			case 401:
 				// Set Status
@@ -406,16 +349,89 @@
 			//Post suggessful... or is it?
 		    NSString *response = [request responseString];
 			choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
-			//release
-			response = nil;
 		}
-		return [request responseStatusCode];
-		//release
-		request = nil;
-		url = nil;
 		//Reset Progress
 		[APIProgress setDoubleValue:0];
+		return [request responseStatusCode];
 	}
+}
+-(int)postupdate {
+	//Update command
+	//Set micro/update API
+	NSURL *url = [NSURL URLWithString:@"http://melative.com/api/micro/update.json"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	//Ignore Cookies
+	[request setUseCookiePersistence:NO];
+	//Set API Key
+	[request addRequestHeader:@"Cookie" value:apikey];
+	//Set Progress
+	[request setDownloadProgressDelegate:APIProgress];
+	//Twitter Bridge
+	if ([sendtotwitter state] == 1) {
+		[fieldmessage setObjectValue:[NSString stringWithFormat:@"%@ @tw", [fieldmessage stringValue]]];
+	}
+	if ([[mediatitle stringValue]length] > 0) {
+		
+		//Generate the mediamessage in /<action> /<mediatype>/<mediatitle>/<segment>: <message> format
+		NSString * mediamessage = @"/";
+		switch ([mediatypemenu indexOfSelectedItem]) {
+			case 0:
+				// Check if the media title is complete or not
+				if ([completecheckbox state] == 1) {
+					mediamessage = @"watched /anime/";
+				}
+				else {
+					mediamessage = @"watching /anime/";
+				}
+				
+				// From Mplayer?
+				[request setPostValue:@"mplayer" forKey:@"source"];
+				break;
+			case 1:
+				// Check if the media title is complete or not
+				if ([completecheckbox state] == 1) {
+					mediamessage = @"listened /mu/";
+				}
+				else {
+					mediamessage = @"listening /mu/";
+				}
+				// Music Playing, must be from iTunes
+				[request setPostValue:@"iTunes" forKey:@"source"];
+				break;
+		}
+		if ([[segment stringValue]length] >0) {
+			switch ([mediatypemenu indexOfSelectedItem]) {
+				case 0:
+					mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+					break;
+				case 1:
+					mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+					break;
+			}
+		}
+		else {
+			mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
+		}
+		[request setPostValue:mediamessage forKey:@"message"];
+		// Get rid of Mediamessage. Not needed
+		mediamessage = nil;
+	}
+	else {
+		//Send message only
+		[request setPostValue:[fieldmessage stringValue] forKey:@"message"];
+		[request setPostValue:@"MelScrobbleX" forKey:@"source"];
+	}
+	[request startSynchronous];
+	// Show API Output
+	if ([self reportoutput] == 1) {
+		NSString *response = [request responseString];
+		//Post suggessful... or is it?
+		choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
+		//release
+		response = nil;
+	}
+	// Get Status Code
+	return [request responseStatusCode];
 }
 - (void)dealloc {
     [fieldusername release];

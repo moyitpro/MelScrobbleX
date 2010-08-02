@@ -28,7 +28,6 @@
 	NSString * ScrobbledMediaTitle;
 	NSString * ScrobbledMediaSegment;
 	NSTimer * timer;
-
 }
 @property(copy, readwrite) NSString *apikey;
 @property(copy, readwrite) NSString *fieldusername;
@@ -39,7 +38,8 @@
 -(void)musicdetect;
 -(void)animedetect;
 -(int)scrobble;
+-(int)postupdate;
 -(BOOL)reportoutput;
 -(IBAction)toggletimer:(id)sender;
--(void)firetimer:(NSTimer *)aTimer ;
+-(void)firetimer:(NSTimer *)aTimer;
 @end
