@@ -268,7 +268,7 @@
 - (IBAction)toggletimer:(id)sender {
 	if (timer == nil) {
 	//Create Timer
-		timer = [[NSTimer scheduledTimerWithTimeInterval:10
+		timer = [[NSTimer scheduledTimerWithTimeInterval:180
 												  target:self
 												selector:@selector(firetimer:)
 												userInfo:nil
@@ -300,9 +300,6 @@
 
 }
 - (void)firetimer:(NSTimer *)aTimer {
-	NSLog(@"ScrobbledMediaTitle = %@", ScrobbledMediaTitle);
-	NSLog(@"ScrobbledMediaSegment = %@" , ScrobbledMediaSegment);
-	NSLog(@"BOOL = %d", (int)scrobblesuccess);
 	switch ([mediatypemenu indexOfSelectedItem]) {
 		case 0:
 			// Init Anime Detection
@@ -316,10 +313,12 @@
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
 		// Do Nothing
 	}
-	else if ([mediatitle stringValue] == ScrobbledMediaTitle && [segment stringValue] == ScrobbledMediaSegment && scrobblesuccess == 1) {
+	else if ([[mediatitle stringValue] isEqualToString:ScrobbledMediaTitle] && [[segment stringValue] isEqualToString: ScrobbledMediaSegment] && scrobblesuccess == 1) {
 		// Do Nothing
+		NSLog(@"Already Scrobbled");
 		}
 	else {
+		//Execute Scrobble Command and retrieve HTTPCode
 		int httperror = [self scrobble];
 		switch (httperror) {
 			case 200:
@@ -337,10 +336,7 @@
 				//Set up Delegate
 				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
 				//Set last successful scrobble to statusItem Tooltip
-				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];				
-				NSLog(@"ScrobbledMediaTitle = %@", ScrobbledMediaTitle);
-				NSLog(@"ScrobbledMediaSegment = %@" , ScrobbledMediaSegment);
-				NSLog(@"BOOL = %d", (int)scrobblesuccess);				
+				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];						
 				break;
 			case 401:
 				// Set Status
@@ -354,7 +350,7 @@
 										   clickContext:[NSDate date]];
 				scrobblesuccess = NO;
 				break;
-			default:
+			default: // Any error codes thats not 200 or 401
 				// Set Status
 				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
 				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
@@ -372,6 +368,8 @@
 }
 
 -(int)scrobble {
+	// Scrobble Command 
+	// Usage: <integer> = [self scrobble];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	if (apikey == nil || apikey !=[defaults objectForKey:@"APIKey"]) {
 		//Load Login
