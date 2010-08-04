@@ -13,7 +13,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>MelScrobbleX.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.chikorita157sanimeblog.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

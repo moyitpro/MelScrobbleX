@@ -20,12 +20,13 @@
 		3A313511114D89E10046D05E /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350A114D89E10046D05E /* ASIInputStream.m */; };
 		3A313512114D89E10046D05E /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350C114D89E10046D05E /* ASINetworkQueue.m */; };
 		3A313513114D89E10046D05E /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A31350E114D89E10046D05E /* ASINSStringAdditions.m */; };
-		3A33FEED11604686001D78D9 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A33FEEC11604686001D78D9 /* Preferences.xib */; };
 		3A33FF2C11604EBA001D78D9 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
+		3A4431E0120730B500078773 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4431DF120730B400078773 /* Preferences.xib */; };
 		3A49BD411162A78E0048007B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3A49BD401162A78E0048007B /* dsa_pub.pem */; };
 		3A4D7E8C115C304B005266C2 /* login.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A4D7E8B115C304B005266C2 /* login.tiff */; };
 		3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A51E9D311600F47005F1027 /* melativeicon.tiff */; };
 		3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */; };
+		3A7A196B12092965002057DA /* MelScrobbleX.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3A7A196A12092965002057DA /* MelScrobbleX.icns */; };
 		3A7A6F68115C1EA800699FAB /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A6F67115C1EA800699FAB /* PreferenceController.m */; };
 		3A8228CA12039ED80091127F /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 3A8228C912039ED80091127F /* Growl Registration Ticket.growlRegDict */; };
 		3A82297C1203A2EC0091127F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A82297B1203A2EC0091127F /* Growl.framework */; };
@@ -88,7 +89,7 @@
 		3A31350D114D89E10046D05E /* ASINSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINSStringAdditions.h; sourceTree = "<group>"; };
 		3A31350E114D89E10046D05E /* ASINSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINSStringAdditions.m; sourceTree = "<group>"; };
 		3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/Shared/tohnominagi/InstalledProducts/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
-		3A33FEEC11604686001D78D9 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		3A33FEEC11604686001D78D9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		3A49BD401162A78E0048007B /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		3A4D7E8B115C304B005266C2 /* login.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = login.tiff; sourceTree = "<group>"; };
 		3A51E9D311600F47005F1027 /* melativeicon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = melativeicon.tiff; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_ExampleAppDelegate.h; sourceTree = "<group>"; };
 		3A71703611825AE200E082C2 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
 		3A71703711825AE200E082C2 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		3A7A196A12092965002057DA /* MelScrobbleX.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MelScrobbleX.icns; sourceTree = "<group>"; };
 		3A7A6F66115C1EA800699FAB /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
 		3A7A6F67115C1EA800699FAB /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
 		3A7A7114115C2C0000699FAB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -186,6 +188,7 @@
 				3A51E9D311600F47005F1027 /* melativeicon.tiff */,
 				3A313509114D89E10046D05E /* ASIInputStream.h */,
 				3A31350A114D89E10046D05E /* ASIInputStream.m */,
+				3A7A196A12092965002057DA /* MelScrobbleX.icns */,
 				3A31350B114D89E10046D05E /* ASINetworkQueue.h */,
 				3A7A6F66115C1EA800699FAB /* PreferenceController.h */,
 				3A7A6F67115C1EA800699FAB /* PreferenceController.m */,
@@ -236,7 +239,7 @@
 				8D1107310486CEB800E47090 /* Melative_Example-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				3A33FEEC11604686001D78D9 /* Preferences.xib */,
+				3A4431DF120730B400078773 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -294,13 +297,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A7A196B12092965002057DA /* MelScrobbleX.icns in Resources */,
 				3A8228CA12039ED80091127F /* Growl Registration Ticket.growlRegDict in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				3A9D1FA6115C152F008F7EF1 /* Updates.tiff in Resources */,
 				3A4D7E8C115C304B005266C2 /* login.tiff in Resources */,
 				3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */,
-				3A33FEED11604686001D78D9 /* Preferences.xib in Resources */,
+				3A4431E0120730B500078773 /* Preferences.xib in Resources */,
 				3A49BD411162A78E0048007B /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +346,14 @@
 				1DDD58150DA1D0A300B32029 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		3A4431DF120730B400078773 /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A33FEEC11604686001D78D9 /* English */,
+			);
+			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
