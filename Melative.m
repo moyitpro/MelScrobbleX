@@ -406,8 +406,8 @@
 					mediamessage = @"watching /anime/";
 				}
 				
-				// From Mplayer?
-				[request setPostValue:@"mplayer" forKey:@"source"];
+				// Set Player Source
+				[request setPostValue:[self reportplayer] forKey:@"source"];
 				break;
 			case 1:
 				// Check if the media title is complete or not
@@ -454,6 +454,27 @@
 	}
 	// Get Status Code
 	return [request responseStatusCode];
+}
+-(NSString*) reportplayer {
+	//Reports back Player Name set in Settings
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	switch ([defaults integerForKey:@"PlayerSel"]) {
+		case 0:
+			return @"mplayer";
+			break;
+		case 1:
+			return @"Quicktime Player";
+			break;
+		case 2:
+			return @"vlc";
+			break;
+		case 3:
+			return @"Quicktime Player";
+			break;
+		default:
+			return @"MelScrobbleX";
+			break;
+	}
 }
 - (void)dealloc {
     [fieldusername release];
