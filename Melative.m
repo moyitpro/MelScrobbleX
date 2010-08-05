@@ -98,8 +98,30 @@
 	NSTask *task;
 	task = [[NSTask alloc] init];
 	[task setLaunchPath: @"/usr/sbin/lsof"];
-	//lsof -c 'mplayer' -Fn		
-	[task setArguments: [NSArray arrayWithObjects:@"-c", @"mplayer", @"-F", @"n", nil]];
+	NSString * player;
+	//Load Selected Player from Preferences
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	// Player Selection
+	switch ([defaults integerForKey:@"PlayerSel"]) {
+		case 0:
+			player = @"mplayer";
+			break;
+		case 1:
+			player = @"QTKitServer";
+			break;
+		case 2:
+			player = @"vlc";
+			break;
+		case 3:
+			player = @"Quicktime Player";
+			break;
+		default:
+			break;
+	}
+	//lsof -c '<player name>' -Fn		
+	[task setArguments: [NSArray arrayWithObjects:@"-c", player, @"-F", @"n", nil]];
+	
+	[player release];
 	
 	NSPipe *pipe;
 	pipe = [NSPipe pipe];

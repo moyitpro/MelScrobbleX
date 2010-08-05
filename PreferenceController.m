@@ -26,6 +26,11 @@
 	[self loadlogin];
 }
 
+- (void)windowWillClose:(NSNotification *)aNotification
+{
+	[self release];
+}
+
 -(void)loadlogin
 {
 	// Load Username

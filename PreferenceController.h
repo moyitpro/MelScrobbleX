@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Sparkle/Sparkle.h>
+#import <AppKit/AppKit.h>
 
-@interface PreferenceController : NSWindowController {
+@interface PreferenceController  : NSWindowController {
 	IBOutlet NSTextField * fieldusername;
 	IBOutlet NSTextField * fieldpassword;
 	IBOutlet NSButton * savebut;
@@ -22,4 +23,5 @@
 -(IBAction)clearlogin:(id)sender;
 -(IBAction)registermelative:(id)sender;
 -(void)createcookie:(NSString *)Username:(NSString *)Password;
+-(void)windowWillClose:(NSNotification *)aNotification;
 @end
