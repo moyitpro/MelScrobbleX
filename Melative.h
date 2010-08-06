@@ -12,7 +12,7 @@
 @interface Melative : NSObject {
 	NSString * fieldusername;
 	NSString * apikey;
-	IBOutlet NSTextField * fieldmessage;
+	IBOutlet NSTextView * fieldmessage;
 	IBOutlet NSTextField * mediatitle;
 	IBOutlet NSTextField * segment;
 	IBOutlet NSButton * postbutton;

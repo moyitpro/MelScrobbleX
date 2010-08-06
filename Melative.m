@@ -32,7 +32,7 @@
 		}
 		else {
 
-			if ( [[fieldmessage stringValue] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
+			if ( [[fieldmessage string] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
 			//No message, show error
 			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
 			[scrobblestatus setObjectValue:@"No Message Entered.."];
@@ -43,7 +43,7 @@
 					case 200: // 200 - OK
 						[scrobblestatus setObjectValue:@"Post Successful..."];
 						//Clear Message
-						[fieldmessage setObjectValue:@""];
+						[fieldmessage setString:@""];
 						//Unset "Complete" and "Send to Twitter" checkboxes
 						[completecheckbox setState:0];
 						[sendtotwitter setState:0];
@@ -390,7 +390,7 @@
 	[request setDownloadProgressDelegate:APIProgress];
 	//Twitter Bridge
 	if ([sendtotwitter state] == 1) {
-		[fieldmessage setObjectValue:[NSString stringWithFormat:@"%@ @tw", [fieldmessage stringValue]]];
+		[fieldmessage setString:[NSString stringWithFormat:@"%@ @tw", [fieldmessage string]]];
 	}
 	if ([[mediatitle stringValue]length] > 0) {
 		
@@ -424,15 +424,15 @@
 		if ([[segment stringValue]length] >0) {
 			switch ([mediatypemenu indexOfSelectedItem]) {
 				case 0:
-					mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+					mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage string]];
 					break;
 				case 1:
-					mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage stringValue]];
+					mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage string]];
 					break;
 			}
 		}
 		else {
-			mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage stringValue]];
+			mediamessage = [mediamessage stringByAppendingFormat:@"%@/: %@",[mediatitle stringValue], [fieldmessage string]];
 		}
 		[request setPostValue:mediamessage forKey:@"message"];
 		// Get rid of Mediamessage. Not needed
@@ -440,7 +440,7 @@
 	}
 	else {
 		//Send message only
-		[request setPostValue:[fieldmessage stringValue] forKey:@"message"];
+		[request setPostValue:[fieldmessage string] forKey:@"message"];
 		[request setPostValue:@"MelScrobbleX" forKey:@"source"];
 	}
 	[request startSynchronous];
@@ -463,13 +463,13 @@
 			return @"mplayer";
 			break;
 		case 1:
-			return @"Quicktime Player";
+			return @"Quicktime";
 			break;
 		case 2:
 			return @"vlc";
 			break;
 		case 3:
-			return @"Quicktime Player";
+			return @"Quicktime";
 			break;
 		default:
 			return @"MelScrobbleX";
