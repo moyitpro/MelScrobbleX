@@ -120,7 +120,7 @@
 			player = @"vlc";
 			break;
 		case 3:
-			player = @"Quicktime Player";
+			player = @"QuickTime Player";
 			break;
 		default:
 			break;
@@ -141,6 +141,9 @@
 	
 	NSData *data;
 	data = [file readDataToEndOfFile];
+	
+	//Release task
+	[task autorelease];
 	
 	NSString *string;
 	string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]autorelease];
