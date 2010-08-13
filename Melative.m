@@ -117,7 +117,7 @@
 			player = @"QTKitServer";
 			break;
 		case 2:
-			player = @"vlc";
+			player = @"VLC";
 			break;
 		case 3:
 			player = @"QuickTime Player";

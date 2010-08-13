@@ -42,5 +42,5 @@
 -(BOOL)reportoutput;
 -(IBAction)toggletimer:(id)sender;
 -(void)firetimer:(NSTimer *)aTimer;
--(NSString*) reportplayer;
+-(NSString*) reportplayer;;
 @end
