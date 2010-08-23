@@ -212,6 +212,9 @@
 		switch (httperror) {
 			case 200:
 				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				//Set up Delegate
+				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
+				[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
 				break;
 			case 401:
 				//Login Failed, show error message
@@ -308,6 +311,8 @@
 				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
 				//Set last successful scrobble to statusItem Tooltip
 				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];						
+				//Add to History
+				[appDelegate addrecord:ScrobbledMediaTitle mediasegment:ScrobbledMediaSegment Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
 				//Retain values for later use
 				[ScrobbledMediaTitle retain];
 				[ScrobbledMediaSegment retain];

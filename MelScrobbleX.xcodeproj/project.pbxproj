@@ -40,6 +40,7 @@
 		5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
 		5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
 		5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
+		5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -112,6 +113,7 @@
 		3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative.h; sourceTree = "<group>"; };
 		3AEAC2C1115AD3D500286BE4 /* Melative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative.m; sourceTree = "<group>"; };
+		5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MelScrobbleX_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Melative_Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Melative_Example-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MelScrobbleX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelScrobbleX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -161,6 +163,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -326,6 +329,7 @@
 				3A6DAA53115B066300695124 /* Melative_ExampleAppDelegate.m in Sources */,
 				3A7A6F68115C1EA800699FAB /* PreferenceController.m in Sources */,
 				3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */,
+				5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
