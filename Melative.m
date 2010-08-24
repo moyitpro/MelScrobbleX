@@ -34,14 +34,14 @@
 	}
 		if ( apikey.length == 0 ) {
 			//No account information. Show error message.
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't set any account information", @"Set your account information in Preferences and try again.", @"OK", nil, nil, 8);
+			[self showsheetmessage:@"MelScrobbleX was unable to post an update since you didn't set any account information." explaination:@"Set your account information in Preferences and try again."];
 			[scrobblestatus setObjectValue:@"No Account Info..."];
 		}
 		else {
 
 			if ( [[fieldmessage string] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
 			//No message, show error
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you didn't enter a message", @"Enter a message and try posting again", @"OK", nil, nil, 8);
+				[self showsheetmessage:@"MelScrobbleX was unable to post an update since you didn't enter a message." explaination:@"Enter a message and try posting again"];
 			[scrobblestatus setObjectValue:@"No Message Entered.."];
 			}
 			else {
@@ -56,15 +56,15 @@
 						[sendtotwitter setState:0];
 						break;
 						
-						case 401: // 401 - Unauthorized
+					case 401: // 401 - Unauthorized
 						//Login Failed, show error message
-						choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"Check your username and password and try posting again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+						[self showsheetmessage:@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password" explaination:@"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again."];
 						[scrobblestatus setObjectValue:@"Unable to Post..."];
 						break;
 
 					default:
 						//Some other error...
-						choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to post an update because of an unknown error.",[NSString stringWithFormat:@"Error %i", httperror] , @"OK", nil, nil, 8);
+						[self showsheetmessage:@"MelScrobbleX was unable to post an update because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
 						[scrobblestatus setObjectValue:@"Unable to Post..."];
 						break;
 				}
@@ -204,7 +204,7 @@
 -(IBAction)scrobble:(id)sender {
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
 		// No segment or title	
-		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.", @"Enter a media title or segment and try the scrobble command again", @"OK", nil, nil, 8);
+		[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info." explaination:@"Enter a media title or segment and try the scrobble command again."];
 		[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
 	}
 	else {
@@ -218,13 +218,13 @@
 				break;
 			case 401:
 				//Login Failed, show error message
-				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password", @"Check your username and password and try the scrobble command again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" explaination:@"Check your username and password and try the scrobble command again. If you recently changed your password, enter your new password and try again."];
 				// Set Status
 				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
 				break;
 			default:
 				//Login Failed, show error message
-				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to scrobble because of an unknown error.", [NSString stringWithFormat:@"Error %i", httperror], @"OK", nil, nil, 8);
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
 				// Set Status
 				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
 				break;
@@ -467,6 +467,12 @@
 		//release
 		response = nil;
 	}
+	if ([request responseStatusCode] == 200 && [completecheckbox state] == 1 ) {
+		//Record Completed Title to History
+		Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];					
+		//Add to History
+		[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
+	}
 	// Get Status Code
 	return [request responseStatusCode];
 }
@@ -490,6 +496,23 @@
 			return @"MelScrobbleX";
 			break;
 	}
+}
+-(void)showsheetmessage:(NSString *)message
+		   explaination:(NSString *)explaination
+{
+	// Set Up Prompt Message Window
+	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+	[alert addButtonWithTitle:@"OK"];
+	[alert setMessageText:message];
+	[alert setInformativeText:explaination];
+	// Set Message type to Warning
+	[alert setAlertStyle:1];
+	Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];	
+	// Show as Sheet on Preference Window
+	[alert beginSheetModalForWindow:[appDelegate window]
+					  modalDelegate:self
+					 didEndSelector:nil
+						contextInfo:NULL];
 }
 - (void)dealloc {
     [fieldusername release];

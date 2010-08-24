@@ -15,7 +15,6 @@
 	IBOutlet NSTextField * fieldpassword;
 	IBOutlet NSButton * savebut;
 	IBOutlet NSButton * clearbut;
-	int choice;
 }
 -(IBAction)checkupdates:(id)sender;
 -(void)loadlogin;
@@ -23,5 +22,10 @@
 -(IBAction)clearlogin:(id)sender;
 -(IBAction)registermelative:(id)sender;
 -(void)createcookie:(NSString *)Username:(NSString *)Password;
+-(void)clearcookieended:(NSAlert *)alert
+				   code:(int)achoice
+				 conext:(void *)v;
+-(void)showsheetmessage:(NSString *)message
+		   explaination:(NSString *)explaination;
 -(void)windowWillClose:(NSNotification *)aNotification;
 @end

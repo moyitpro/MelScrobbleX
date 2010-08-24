@@ -51,17 +51,19 @@
 }
 -(IBAction)clearlogin:(id)sender
 {
-	choice = NSRunCriticalAlertPanel(@"Are you sure you want to remove this token?", @"Once done, this action cannot be undone,", @"Yes", @"No", nil, 8);
-	NSLog(@"%i", choice);
-	if (choice == 1) {
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setObject:@"" forKey:@"APIKey"];
-		// Clear Username
-		[defaults setObject:@"" forKey:@"Username"];
-		//Disable Clearbut
-		[clearbut setEnabled: NO];
-		[savebut setEnabled: YES];
-	}
+	// Set Up Prompt Message Window
+	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert addButtonWithTitle:@"No"];
+	[alert setMessageText:@"Are you sure you want to remove this token?"];
+	[alert setInformativeText:@"Once done, this action cannot be undone."];
+	// Set Message type to Warning
+	[alert setAlertStyle:NSWarningAlertStyle];
+	// Show as Sheet on historywindow
+	[alert beginSheetModalForWindow:[self window]
+					  modalDelegate:self
+					 didEndSelector:@selector(clearcookieended:code:conext:)
+						contextInfo:NULL];
 }
 -(IBAction)startlogin:(id)sender
 {
@@ -72,13 +74,13 @@
 		[savebut displayIfNeeded];
 		if ( [[fieldusername stringValue] length] == 0) {
 			//No Username Entered! Show error message
-			choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to log you in since you didn't enter a username", @"Enter a valid username and try logging in again", @"OK", nil, nil, 8);
+			[self showsheetmessage:@"MelScrobbleX was unable to log you in since you didn't enter a username." explaination:@"Enter a valid username and try logging in again"];
 			[savebut setEnabled: YES];
 		}
 		else {
 			if ( [[fieldpassword stringValue] length] == 0 ) {
 				//No Password Entered! Show error message.
-				choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to log you in since you didn't enter a password", @"Enter a valid password and try logging in again", @"OK", nil, nil, 8);
+				[self showsheetmessage:@"MelScrobbleX was unable to log you in since you didn't enter a password." explaination:@"Enter a valid password and try logging in again."];
 				[savebut setEnabled: YES];
 			}
 			else {
@@ -97,9 +99,9 @@
 				if (statusCode == 200 ) {
 					NSString *response = [request responseString];
 					//Login successful
-					choice = NSRunAlertPanel(@"Login Successful", response, @"OK", nil, nil, 8);
+					[self showsheetmessage:@"Login Successful." explaination:response];
 					// Generate API Key
-						NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults] autorelease];
+					NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults] autorelease];
 					[self createcookie:[fieldusername stringValue] :[fieldpassword stringValue]];
 					[defaults setObject:[fieldusername stringValue] forKey:@"Username"];
 					//Melative.fieldusername = [fieldusername stringValue];
@@ -110,7 +112,7 @@
 				}
 				else {
 					//Login Failed, show error message
-					choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to log you in since you don't have the correct username and/or password", @"Check your username and password and try logging in again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+					[self showsheetmessage:@"MelScrobbleX was unable to log you in since you don't have the correct username and/or password." explaination:@"Check your username and password and try logging in again. If you recently changed your password, ener you new password and try again."];
 					[savebut setEnabled: YES];
 					[savebut setKeyEquivalent:@"\r"];
 				}
@@ -154,7 +156,7 @@
 	}
 	else {
 		//Login Failed, show error message
-		choice = NSRunCriticalAlertPanel(@"MelScrobbleX was unable to log you in since you don't have the correct username and/or password", @"Check your username and password and try logging in again. If you recently changed your password, ener you new password and try again.", @"OK", nil, nil, 8);
+		[self showsheetmessage:@"MelScrobbleX was unable to log you in since you don't have the correct username and/or password" explaination:@"Check your username and password and try logging in again. If you recently changed your password, ener you new password and try again."];
 		[savebut setEnabled: YES];
 		[savebut setKeyEquivalent:@"\r"];
 	}
@@ -163,5 +165,34 @@
 	url = nil;
 	
 }
-
+-(void)clearcookieended:(NSAlert *)alert
+					code:(int)achoice
+				  conext:(void *)v
+{
+		if (achoice == 1000) {
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+			[defaults setObject:@"" forKey:@"APIKey"];
+			// Clear Username
+			[defaults setObject:@"" forKey:@"Username"];
+			//Disable Clearbut
+			[clearbut setEnabled: NO];
+			[savebut setEnabled: YES];
+		}
+}
+-(void)showsheetmessage:(NSString *)message
+		   explaination:(NSString *)explaination
+{
+	// Set Up Prompt Message Window
+	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+	[alert addButtonWithTitle:@"OK"];
+	[alert setMessageText:message];
+	[alert setInformativeText:explaination];
+	// Set Message type to Warning
+	[alert setAlertStyle:1];
+	// Show as Sheet on Preference Window
+	[alert beginSheetModalForWindow:[self window]
+					  modalDelegate:self
+					 didEndSelector:nil
+						contextInfo:NULL];
+}
 @end
