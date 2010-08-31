@@ -540,6 +540,74 @@
 					 didEndSelector:nil
 						contextInfo:NULL];
 }
+-(IBAction)uploadimage:(id)sender
+{
+	NSOpenPanel *op = [NSOpenPanel openPanel];
+	
+	// Create Delegate to Main App Controller
+		Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];	
+	//Show Open Panel
+	[op beginSheetForDirectory:nil 
+					 file:nil 
+					types:[NSImage imageFileTypes]
+		   modalForWindow:[appDelegate window] 
+		    modalDelegate:self 
+		   didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
+			  contextInfo:NULL];
+}
+-(void)openPanelDidEnd:(NSOpenPanel *)openPanel
+			returnCode:(int)returnCode
+		   contextInfo:(void *)x
+{
+	// Did they chosose "Open"
+	if (returnCode == NSOKButton) {
+	// Start Upload
+		//Set URL to Imageshack Upload API
+		NSURL *url = [NSURL URLWithString:@"http://www.imageshack.us/upload_api.php"];
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+		//Ignore Cookies
+		[request setUseCookiePersistence:NO];
+		//Set API Key
+		[request setPostValue:@"5BSZ4EAH87ff1baa0805a78ac1ac39b55e213213" forKey:@"key"]; // DO NOT USE THIS KEY IN ANY OTHER APPLICATION EXCEPTTHIS ONE
+		//Set File
+		[request setFile:[openPanel filename] forKey:@"fileupload"];
+		//Set Progress
+		[request setDownloadProgressDelegate:APIProgress];
+		[request startSynchronous];
+		//Show API Output
+		NSString *response = [request responseString];
+		int httpcode = [request responseStatusCode];
+		if (httpcode == 200) {
+			//XML Parsing to retrieve Image Link
+			NSError * error;
+			NSArray *itemNodes;
+			NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
+			NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:data 
+															 options:0 
+															   error:&error];
+			NSMutableArray* imglinks = [[NSMutableArray alloc] initWithCapacity:13];
+			itemNodes = [doc nodesForXPath:@"//links/image_link" error:&error];
+			for(NSXMLElement* xmlElement in itemNodes)
+				[imglinks addObject:[xmlElement stringValue]];
+			//Insert Image Link to Message Textfield
+			[fieldmessage setString:[NSString stringWithFormat:@"#image %@ \n%@",[imglinks objectAtIndex:0],[fieldmessage string]]];
+			//Report Status
+			[scrobblestatus setObjectValue:@"Image Successfully Uploaded..."];
+			//Release Unneeded Items
+			[itemNodes release];
+			[doc release];
+			[data release];
+			[imglinks release];
+		}
+		else {
+			// If the Upload Fails...
+			[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected" explaination:[NSString stringWithFormat:@"Error: %i \n \n%@", httpcode, response]];
+			//Report Status
+			[scrobblestatus setObjectValue:@"Image Upload Unsuccessful..."];
+		}
+	}
+}
+
 - (void)dealloc {
     [fieldusername release];
 	[apikey release];
