@@ -83,6 +83,10 @@
 			// Init Music Detection
 			[self musicdetect];
 			break;
+		case 2:
+			// Init Adrama Detection
+			[self animedetect];
+			break;
 	}
 }
 -(void)musicdetect {
@@ -379,6 +383,13 @@
 				[request setPostValue:@"track" forKey:@"attribute_type"];
 				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];
 				break;
+			case 2:
+				[request setPostValue:[mediatitle stringValue] forKey:@"adrama"];
+				[request setPostValue:@"episode" forKey:@"attribute_type"];
+				[request setPostValue:[segment stringValue] forKey:@"attribute_name"];	
+				break;
+				break;
+
 		}
 		[request startSynchronous];
 		// Get Status Code
@@ -435,6 +446,17 @@
 				// Music Playing, must be from iTunes
 				[request setPostValue:@"iTunes" forKey:@"source"];
 				break;
+			case 2:
+				// Check if the media title is complete or not
+				if ([completecheckbox state] == 1) {
+					mediamessage = @"watched /adrama/";
+				}
+				else {
+					mediamessage = @"watching /adrama/";
+				}
+				
+				// Set Player Source
+				[request setPostValue:[self reportplayer] forKey:@"source"];
 		}
 		if ([[segment stringValue]length] >0) {
 			switch ([mediatypemenu indexOfSelectedItem]) {
@@ -444,6 +466,10 @@
 				case 1:
 					mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage string]];
 					break;
+				case 2:
+					mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",[mediatitle stringValue], [segment stringValue], [fieldmessage string]];
+					break;
+
 			}
 		}
 		else {

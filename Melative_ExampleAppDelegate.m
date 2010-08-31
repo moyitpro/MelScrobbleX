@@ -130,8 +130,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	//Check if Application is in the /Applications Folder
 	PFMoveToApplicationsFolderIfNecessary();
+	//Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
+		[NSApp activateIgnoringOtherApps:YES];
 	//Show Scrobble Window at Launch?
-	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];;
+	NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults]autorelease];
 	if ([defaults boolForKey:@"ShowAtStartup"] == 0) {
 		// Hide Window
 		[window orderOut:self];

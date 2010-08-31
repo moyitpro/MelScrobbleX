@@ -24,10 +24,10 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1002"/>
-			<integer value="1027"/>
-			<integer value="611"/>
 			<integer value="534"/>
+			<integer value="611"/>
 			<integer value="712"/>
+			<integer value="1027"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1225,6 +1225,14 @@
 						<reference key="NSOnImage" ref="232574375"/>
 						<reference key="NSMixedImage" ref="330218821"/>
 					</object>
+					<object class="NSMenuItem" id="214414819">
+						<reference key="NSMenu" ref="988558160"/>
+						<string key="NSTitle">ADrama</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="232574375"/>
+						<reference key="NSMixedImage" ref="330218821"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSCustomObject" id="394617999">
@@ -2038,6 +2046,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="589810339"/>
 							<reference ref="560042491"/>
+							<reference ref="214414819"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">MediaTypeMenu</string>
@@ -2590,6 +2599,11 @@
 						<reference key="object" ref="860863177"/>
 						<reference key="parent" ref="507769160"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1150</int>
+						<reference key="object" ref="214414819"/>
+						<reference key="parent" ref="988558160"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2637,6 +2651,7 @@
 					<string>1146.IBDateFormatterBehaviorMetadataKey</string>
 					<string>1146.IBPluginDependency</string>
 					<string>1149.IBPluginDependency</string>
+					<string>1150.IBPluginDependency</string>
 					<string>29.IBEditorWindowLastContentRect</string>
 					<string>29.IBPluginDependency</string>
 					<string>29.ImportedFromIB2</string>
@@ -2777,6 +2792,7 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{420, 545}, {243, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -2857,7 +2873,7 @@
 					</object>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
-					<string>{{329, 779}, {86, 43}}</string>
+					<string>{{329, 759}, {98, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2967,7 +2983,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1149</int>
+			<int key="maxID">1150</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
