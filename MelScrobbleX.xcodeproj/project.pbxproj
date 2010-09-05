@@ -37,10 +37,15 @@
 		3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */; };
 		3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A7114115C2C0000699FAB /* Security.framework */; };
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
+		5C0F28541233E75E00EE7759 /* applications-multimedia.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */; };
+		5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F28ED1233FD1200EE7759 /* FTPUpload.m */; };
+		5C0F28F31233FDF600EE7759 /* S7FTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F28F21233FDF600EE7759 /* S7FTPRequest.m */; };
 		5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
 		5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
 		5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
 		5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */; };
+		5CBA4F67123415B20059C314 /* CMCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBA4F66123415B20059C314 /* CMCrashReporter.framework */; };
+		5CBA4F6A123415B70059C314 /* CMCrashReporter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5CBA4F66123415B20059C314 /* CMCrashReporter.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -53,6 +58,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5CBA4F6A123415B70059C314 /* CMCrashReporter.framework in CopyFiles */,
 				3A82297C1203A2EC0091127F /* Growl.framework in CopyFiles */,
 				3A33FF2C11604EBA001D78D9 /* BWToolkitFramework.framework in CopyFiles */,
 				3A98A4D7115EC0C200FAA769 /* OgreKit.framework in CopyFiles */,
@@ -113,7 +119,15 @@
 		3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative.h; sourceTree = "<group>"; };
 		3AEAC2C1115AD3D500286BE4 /* Melative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative.m; sourceTree = "<group>"; };
+		5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "applications-multimedia.tiff"; sourceTree = "<group>"; };
+		5C0F28EC1233FD1200EE7759 /* FTPUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPUpload.h; sourceTree = "<group>"; };
+		5C0F28ED1233FD1200EE7759 /* FTPUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPUpload.m; sourceTree = "<group>"; };
+		5C0F28F11233FDF600EE7759 /* S7FTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7FTPRequest.h; sourceTree = "<group>"; };
+		5C0F28F21233FDF600EE7759 /* S7FTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S7FTPRequest.m; sourceTree = "<group>"; };
+		5C0F2920123400F400EE7759 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		5C0F2A821234017400EE7759 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MelScrobbleX_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5CBA4F66123415B20059C314 /* CMCrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CMCrashReporter.framework; path = /Users/Shared/tohnominagi/InstalledProducts/CMCrashReporter.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Melative_Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Melative_Example-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MelScrobbleX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelScrobbleX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +149,7 @@
 				5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */,
 				5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */,
 				3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */,
+				5CBA4F67123415B20059C314 /* CMCrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +159,35 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */,
+				3A313504114D89E10046D05E /* ASIFormDataRequest.h */,
+				3A313505114D89E10046D05E /* ASIFormDataRequest.m */,
+				3A313507114D89E10046D05E /* ASIHTTPRequest.m */,
+				3A71703611825AE200E082C2 /* ASIHTTPRequestDelegate.h */,
+				3A71703711825AE200E082C2 /* ASIProgressDelegate.h */,
+				3A313506114D89E10046D05E /* ASIHTTPRequest.h */,
+				3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */,
+				3A313509114D89E10046D05E /* ASIInputStream.h */,
+				3A31350A114D89E10046D05E /* ASIInputStream.m */,
+				3A31350B114D89E10046D05E /* ASINetworkQueue.h */,
+				3A7A6F66115C1EA800699FAB /* PreferenceController.h */,
+				3A7A6F67115C1EA800699FAB /* PreferenceController.m */,
+				3A31350C114D89E10046D05E /* ASINetworkQueue.m */,
+				3A9F25A3116D25CC00C61E05 /* PFMoveApplication.h */,
+				3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */,
+				3A31350D114D89E10046D05E /* ASINSStringAdditions.h */,
+				5C0F28EC1233FD1200EE7759 /* FTPUpload.h */,
+				5C0F28ED1233FD1200EE7759 /* FTPUpload.m */,
+				5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */,
+				3AEAC2C0115AD3D500286BE4 /* Melative.h */,
+				5C0F28F11233FDF600EE7759 /* S7FTPRequest.h */,
+				5C0F28F21233FDF600EE7759 /* S7FTPRequest.m */,
+				3AEAC2C1115AD3D500286BE4 /* Melative.m */,
+				3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */,
+				3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */,
+				3A31350E114D89E10046D05E /* ASINSStringAdditions.m */,
+				3A004E6D115AF14800906875 /* iTunes.h */,
+				3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -153,9 +197,17 @@
 			children = (
 				3A2E0EBD114DD93E0050E16D /* BGHUDAppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				3A004E6D115AF14800906875 /* iTunes.h */,
-				3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */,
-				3A49BD401162A78E0048007B /* dsa_pub.pem */,
+				3A3134F7114D89960046D05E /* libz.1.2.3.dylib */,
+				3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */,
+				3A82297B1203A2EC0091127F /* Growl.framework */,
+				5C0F2920123400F400EE7759 /* CoreFoundation.framework */,
+				3A3134F9114D89A90046D05E /* CoreServices.framework */,
+				3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */,
+				3A004E68115AF13800906875 /* ScriptingBridge.framework */,
+				3A041C1E115B0C6A00B2D20F /* Sparkle.framework */,
+				3A98A2D9115EA70300FAA769 /* libicucore.dylib */,
+				3A98A4D2115EC0B700FAA769 /* OgreKit.framework */,
+				5CBA4F66123415B20059C314 /* CMCrashReporter.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -163,14 +215,10 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */,
+				5C0F2A821234017400EE7759 /* Foundation.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-				3AEAC2C0115AD3D500286BE4 /* Melative.h */,
-				3AEAC2C1115AD3D500286BE4 /* Melative.m */,
-				3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */,
-				3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */,
 				3A7A7114115C2C0000699FAB /* Security.framework */,
 			);
 			name = "Other Frameworks";
@@ -179,28 +227,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */,
 				8D1107320486CEB800E47090 /* MelScrobbleX.app */,
-				3A313504114D89E10046D05E /* ASIFormDataRequest.h */,
-				3A313505114D89E10046D05E /* ASIFormDataRequest.m */,
-				3A313507114D89E10046D05E /* ASIHTTPRequest.m */,
-				3A71703611825AE200E082C2 /* ASIHTTPRequestDelegate.h */,
-				3A71703711825AE200E082C2 /* ASIProgressDelegate.h */,
-				3A313506114D89E10046D05E /* ASIHTTPRequest.h */,
-				3A313508114D89E10046D05E /* ASIHTTPRequestConfig.h */,
-				3A51E9D311600F47005F1027 /* melativeicon.tiff */,
-				3A313509114D89E10046D05E /* ASIInputStream.h */,
-				3A31350A114D89E10046D05E /* ASIInputStream.m */,
-				3A7A196A12092965002057DA /* MelScrobbleX.icns */,
-				3A31350B114D89E10046D05E /* ASINetworkQueue.h */,
-				3A7A6F66115C1EA800699FAB /* PreferenceController.h */,
-				3A7A6F67115C1EA800699FAB /* PreferenceController.m */,
-				3A31350C114D89E10046D05E /* ASINetworkQueue.m */,
-				3A9F25A3116D25CC00C61E05 /* PFMoveApplication.h */,
-				3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */,
-				3A8228C912039ED80091127F /* Growl Registration Ticket.growlRegDict */,
-				3A31350D114D89E10046D05E /* ASINSStringAdditions.h */,
-				3A31350E114D89E10046D05E /* ASINSStringAdditions.m */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,15 +240,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				3A3134F7114D89960046D05E /* libz.1.2.3.dylib */,
-				3A3134F9114D89A90046D05E /* CoreServices.framework */,
-				3A3134FE114D89BB0046D05E /* SystemConfiguration.framework */,
-				3A004E68115AF13800906875 /* ScriptingBridge.framework */,
-				3A041C1E115B0C6A00B2D20F /* Sparkle.framework */,
-				3A98A2D9115EA70300FAA769 /* libicucore.dylib */,
-				3A98A4D2115EC0B700FAA769 /* OgreKit.framework */,
-				3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */,
-				3A82297B1203A2EC0091127F /* Growl.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";
@@ -237,7 +255,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A51E9D311600F47005F1027 /* melativeicon.tiff */,
+				3A7A196A12092965002057DA /* MelScrobbleX.icns */,
+				3A8228C912039ED80091127F /* Growl Registration Ticket.growlRegDict */,
+				5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */,
 				3A9D1FA4115C152F008F7EF1 /* Updates.tiff */,
+				3A49BD401162A78E0048007B /* dsa_pub.pem */,
 				3A4D7E8B115C304B005266C2 /* login.tiff */,
 				8D1107310486CEB800E47090 /* Melative_Example-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -309,6 +332,7 @@
 				3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */,
 				3A4431E0120730B500078773 /* Preferences.xib in Resources */,
 				3A49BD411162A78E0048007B /* dsa_pub.pem in Resources */,
+				5C0F28541233E75E00EE7759 /* applications-multimedia.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +354,8 @@
 				3A7A6F68115C1EA800699FAB /* PreferenceController.m in Sources */,
 				3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */,
 				5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */,
+				5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */,
+				5C0F28F31233FDF600EE7759 /* S7FTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +427,7 @@
 					"\"$(DEVELOPER_DIR)/Local/Frameworks\"",
 					"\"$(SRCROOT)/../../../Shared/tohnominagi/InstalledProducts\"",
 				);
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Melative_Example_Prefix.pch;
@@ -433,7 +460,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "James M.";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;

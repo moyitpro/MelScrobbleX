@@ -8,6 +8,10 @@
 	<string>http://chikorita157.notcliche.com/malclientosx/melscrobblerx.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>CMSubmitURL</key>
+	<string>http://chikorita157.com/tools/bugreport.php</string>
+	<key>CMMaxReports</key>
+	<integer>5</integer>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -25,11 +29,11 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3.5a</string>
+	<string>0.3.6a</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>CFBundleVersion</key>
-	<string>0.3.5a</string>
+	<string>0.3.6a</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSHumanReadableCopyright</key>

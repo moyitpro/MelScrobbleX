@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
+#import <CMCrashReporter/CMCrashReporter.h>
 
 @class PreferenceController;
 @interface Melative_ExampleAppDelegate : NSObject <GrowlApplicationBridgeDelegate> {

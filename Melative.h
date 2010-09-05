@@ -49,4 +49,6 @@
 -(void)openPanelDidEnd:(NSOpenPanel *)openPanel
 			returnCode:(int)returnCode
 		   contextInfo:(void *)x;
+-(void)UploadtoImageshack:(NSString *)filename;
+-(void)UploadtoImgur:(NSString *)filename;
 @end

@@ -119,15 +119,20 @@
 	// Defaults
 	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowAtStartup"];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"SuccessDebug"];
+	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"UseFTP"];
 	[defaultValues setObject:@"" forKey:@"APIKey"];
 	[defaultValues setObject:[NSNumber numberWithInt:0] forKey:@"PlayerSel"];
 	[defaultValues setObject:[NSNumber numberWithInt:0] forKey:@"MediaType"];
+	[defaultValues setObject:[NSNumber numberWithInt:0] forKey:@"ImageService"];
+	[defaultValues setObject:[NSNumber numberWithInt:21] forKey:@"FTPPort"];
 	//Register Dictionary
 	[[NSUserDefaults standardUserDefaults]
 	 registerDefaults:defaultValues];
 
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	// Check for Crash Reports
+	[CMCrashReporter check];
 	//Check if Application is in the /Applications Folder
 	PFMoveToApplicationsFolderIfNecessary();
 	//Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
