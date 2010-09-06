@@ -43,7 +43,7 @@
 		EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: @"ftp"];
 		if ([[defaults objectForKey:@"FTPServer"] length] == 0 || [[defaults objectForKey:@"FTPUsername"] length] == 0 || [[defaults objectForKey:@"FTPWebAddress"] length] == 0)
 		{
-			[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected." explaination:@"FTP Server, Username, or Web Address is missing. Please fill in the missing information in Preferences and try uploading the image again."];
+			[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected." explaination:@"FTP Server, Username and/or Web Address is missing. Please fill in the missing information in Preferences and try uploading the image again."];
 		}
 		else if(keychainItem.password.length == 0) {
 			[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected." explaination:@"FTP Password is missing. Please fill in the missing information in Preferences and try uploading the image again."];
@@ -77,11 +77,13 @@
 
 - (void)curlIsConnecting:(RemoteObject *)record
 {
+	[uploadstatus setObjectValue:@"Connecting to FTP Server..."];
 	NSLog(@"curlIsConnecting");
 }
 
 - (void)curlDidConnect:(RemoteObject *)record
 {
+	[uploadstatus setObjectValue:@"Connected..."];
 	NSLog(@"curlDidConnect");
 }
 
@@ -91,14 +93,14 @@
 
 - (void)uploadDidBegin:(Upload *)record
 {
+    [uploadstatus setObjectValue:@"Starting Upload..."];
 	NSLog(@"uploadDidBegin");
 }
 
 
 - (void)uploadDidProgress:(Upload *)record toPercent:(NSNumber *)percent;
 {
-	[UploadProgress setMaxValue:100];
-	[UploadProgress setDoubleValue:[record progress]];
+    [uploadstatus setObjectValue:[NSString stringWithFormat:@"Uploading Image... %i%",[record progress]]];
 }
 
 
@@ -116,27 +118,12 @@
 }
 
 
-- (void)uploadDidFail:(Upload *)record message:(NSString *)message;
+- (void)uploadDidFail:(Upload *)record message:(NSString *)errmessage;
 {
-	[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected" explaination:message];
+	[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected" explaination:errmessage];
 	[uploadstatus setObjectValue:@"Image Upload Unsuccessful..."];
 }
 
-
-- (int)acceptUnknownHostFingerprint:(NSString *)fingerprint forUpload:(NSString *)record
-{
-	NSLog(@"acceptUnknownHostFingerprint: %@", fingerprint);
-	
-	return 0;
-}
-
-
-- (int)acceptMismatchedHostFingerprint:(NSString *)fingerprint forUpload:(NSString *)record
-{
-	NSLog(@"acceptMismatchedHostFingerprint: %@", fingerprint);
-	
-	return 0;
-}
 -(void)showsheetmessage:(NSString *)alertmessage
 		   explaination:(NSString *)explaination
 {
