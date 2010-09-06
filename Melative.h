@@ -35,6 +35,7 @@
 -(IBAction)postmessage:(id)sender;
 -(IBAction)getnowplaying:(id)sender;
 -(IBAction)scrobble:(id)sender;
+-(IBAction)resetfields:(id)sender;
 -(void)musicdetect;
 -(void)animedetect;
 -(int)scrobble;

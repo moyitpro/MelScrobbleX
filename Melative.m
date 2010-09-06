@@ -523,6 +523,15 @@
 			break;
 	}
 }
+-(IBAction)resetfields:(id)sender
+{
+	// Clear All Fields
+	[fieldmessage setString:@""];
+	[mediatitle setObjectValue:@""];
+	[segment setObjectValue:@""];
+	[artist setObjectValue:@""];
+	[scrobblestatus setObjectValue:@"All fields cleared..."];
+}
 -(void)showsheetmessage:(NSString *)message
 		   explaination:(NSString *)explaination
 {
