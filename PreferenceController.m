@@ -37,6 +37,7 @@
 
 - (void)windowWillClose:(NSNotification *)aNotification
 {
+	NSLog(@"Releasing Preference Window");
 	[self release];
 }
 

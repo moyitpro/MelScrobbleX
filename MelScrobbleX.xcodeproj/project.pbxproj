@@ -33,11 +33,10 @@
 		3A8229901203A3110091127F /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A82297B1203A2EC0091127F /* Growl.framework */; };
 		3A98A2DA115EA70300FAA769 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A2D9115EA70300FAA769 /* libicucore.dylib */; };
 		3A98A4D7115EC0C200FAA769 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
-		3A9D1FA6115C152F008F7EF1 /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D1FA4115C152F008F7EF1 /* Updates.tiff */; };
 		3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */; };
 		3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7A7114115C2C0000699FAB /* Security.framework */; };
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
-		5C0F28541233E75E00EE7759 /* applications-multimedia.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */; };
+		5C024F271235442900529CB8 /* ImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C024F261235442900529CB8 /* ImageServices.m */; };
 		5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F28ED1233FD1200EE7759 /* FTPUpload.m */; };
 		5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
 		5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
@@ -47,6 +46,9 @@
 		5C621ECC123455EC00666F86 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C621ECB123455EC00666F86 /* EMKeychainItem.m */; };
 		5C621F5212345E7200666F86 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C621F5112345E7200666F86 /* Carbon.framework */; };
 		5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */; };
+		5C9E42A91235313C00703A35 /* GeneralPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E42A81235313C00703A35 /* GeneralPreferences.tiff */; };
+		5C9E42AB1235318900703A35 /* picture.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E42AA1235318900703A35 /* picture.tiff */; };
+		5C9E42AD123531A300703A35 /* movies.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E42AC123531A300703A35 /* movies.tiff */; };
 		5CBA4F67123415B20059C314 /* CMCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBA4F66123415B20059C314 /* CMCrashReporter.framework */; };
 		5CBA4F6A123415B70059C314 /* CMCrashReporter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5CBA4F66123415B20059C314 /* CMCrashReporter.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -116,14 +118,14 @@
 		3A82297B1203A2EC0091127F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = /Users/Shared/tohnominagi/InstalledProducts/Growl.framework; sourceTree = "<absolute>"; };
 		3A98A2D9115EA70300FAA769 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3A98A4D2115EC0B700FAA769 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = /Users/Shared/tohnominagi/InstalledProducts/OgreKit.framework; sourceTree = "<absolute>"; };
-		3A9D1FA4115C152F008F7EF1 /* Updates.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updates.tiff; sourceTree = "<group>"; };
 		3A9F25A3116D25CC00C61E05 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
 		3A9F25A4116D25CC00C61E05 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative_Example_Prefix.pch; sourceTree = "<group>"; };
 		3AE8C73612037CCD00D693A7 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		3AEAC2C0115AD3D500286BE4 /* Melative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melative.h; sourceTree = "<group>"; };
 		3AEAC2C1115AD3D500286BE4 /* Melative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melative.m; sourceTree = "<group>"; };
-		5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "applications-multimedia.tiff"; sourceTree = "<group>"; };
+		5C024F251235442900529CB8 /* ImageServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageServices.h; sourceTree = "<group>"; };
+		5C024F261235442900529CB8 /* ImageServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageServices.m; sourceTree = "<group>"; };
 		5C0F28EC1233FD1200EE7759 /* FTPUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPUpload.h; sourceTree = "<group>"; };
 		5C0F28ED1233FD1200EE7759 /* FTPUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPUpload.m; sourceTree = "<group>"; };
 		5C0F2920123400F400EE7759 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,9 @@
 		5C621ECB123455EC00666F86 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		5C621F5112345E7200666F86 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MelScrobbleX_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5C9E42A81235313C00703A35 /* GeneralPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GeneralPreferences.tiff; sourceTree = "<group>"; };
+		5C9E42AA1235318900703A35 /* picture.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = picture.tiff; sourceTree = "<group>"; };
+		5C9E42AC123531A300703A35 /* movies.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = movies.tiff; sourceTree = "<group>"; };
 		5CBA4F66123415B20059C314 /* CMCrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CMCrashReporter.framework; path = /Users/Shared/tohnominagi/InstalledProducts/CMCrashReporter.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Melative_Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Melative_Example-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MelScrobbleX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelScrobbleX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +172,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5C024F251235442900529CB8 /* ImageServices.h */,
+				5C024F261235442900529CB8 /* ImageServices.m */,
 				5C621ECA123455EC00666F86 /* EMKeychainItem.h */,
 				5C621ECB123455EC00666F86 /* EMKeychainItem.m */,
 				3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */,
@@ -224,6 +231,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C621F5112345E7200666F86 /* Carbon.framework */,
 				5C0F2A821234017400EE7759 /* Foundation.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
@@ -249,7 +257,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				5C621F5112345E7200666F86 /* Carbon.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";
@@ -265,11 +272,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C9E42AC123531A300703A35 /* movies.tiff */,
+				5C9E42AA1235318900703A35 /* picture.tiff */,
+				5C9E42A81235313C00703A35 /* GeneralPreferences.tiff */,
 				3A51E9D311600F47005F1027 /* melativeicon.tiff */,
 				3A7A196A12092965002057DA /* MelScrobbleX.icns */,
 				3A8228C912039ED80091127F /* Growl Registration Ticket.growlRegDict */,
-				5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */,
-				3A9D1FA4115C152F008F7EF1 /* Updates.tiff */,
 				3A49BD401162A78E0048007B /* dsa_pub.pem */,
 				3A4D7E8B115C304B005266C2 /* login.tiff */,
 				8D1107310486CEB800E47090 /* Melative_Example-Info.plist */,
@@ -337,12 +345,13 @@
 				3A8228CA12039ED80091127F /* Growl Registration Ticket.growlRegDict in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				3A9D1FA6115C152F008F7EF1 /* Updates.tiff in Resources */,
 				3A4D7E8C115C304B005266C2 /* login.tiff in Resources */,
 				3A51E9D411600F47005F1027 /* melativeicon.tiff in Resources */,
 				3A4431E0120730B500078773 /* Preferences.xib in Resources */,
 				3A49BD411162A78E0048007B /* dsa_pub.pem in Resources */,
-				5C0F28541233E75E00EE7759 /* applications-multimedia.tiff in Resources */,
+				5C9E42A91235313C00703A35 /* GeneralPreferences.tiff in Resources */,
+				5C9E42AB1235318900703A35 /* picture.tiff in Resources */,
+				5C9E42AD123531A300703A35 /* movies.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +375,7 @@
 				5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */,
 				5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */,
 				5C621ECC123455EC00666F86 /* EMKeychainItem.m in Sources */,
+				5C024F271235442900529CB8 /* ImageServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

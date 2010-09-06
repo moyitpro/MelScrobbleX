@@ -45,10 +45,4 @@
 -(void)showsheetmessage:(NSString *)message
 		   explaination:(NSString *)explaination;
 -(NSString*) reportplayer;;
--(IBAction)uploadimage:(id)sender;
--(void)openPanelDidEnd:(NSOpenPanel *)openPanel
-			returnCode:(int)returnCode
-		   contextInfo:(void *)x;
--(void)UploadtoImageshack:(NSString *)filename;
--(void)UploadtoImgur:(NSString *)filename;
 @end
