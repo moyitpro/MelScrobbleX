@@ -3,16 +3,18 @@
 //  MelScrobbleX
 //
 //  Created by Fujibayashi Kyou on 9/5/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 James M.. All rights reserved. Covered under the GNU Public License V3
 //
 
 #import "FTPUpload.h"
 #import "Melative_ExampleAppDelegate.h"
 #import "Melative.h"
-#import "S7FTPRequest.h"
-
+#import "EMKeychainItem.h"
 
 @implementation FTPUpload
+
+@synthesize upload;
+
 -(IBAction)ftpuploadimage:(id)sender
 {
 	NSOpenPanel *op = [NSOpenPanel openPanel];
@@ -37,76 +39,103 @@
 		[openPanel close];
 		//Load FTP Info
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		//Load Keychain for FTP
+		EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: @"ftp"];
 		if ([[defaults objectForKey:@"FTPServer"] length] == 0 || [[defaults objectForKey:@"FTPUsername"] length] == 0 || [[defaults objectForKey:@"FTPWebAddress"] length] == 0)
 		{
-			NSLog(@"Insufficient Info to Upload File");
+			[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected." explaination:@"FTP Server, Username, or Web Address is missing. Please fill in the missing information in Preferences and try uploading the image again."];
+		}
+		else if(keychainItem.password.length == 0) {
+			[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected." explaination:@"FTP Password is missing. Please fill in the missing information in Preferences and try uploading the image again."];
 		}
 		else {
+			ftp = [[CurlFTP alloc] init];
+			id <CurlClient>client = (id <CurlClient>)ftp;
+			[ftp setVerbose:YES];
+			[ftp setShowProgress:YES];
+			//Set Delegate
+			[ftp setDelegate:self];	
 			// Upload File
 			UploadedFile = [openPanel filename];
+			//Start Upload
+			Upload *newUpload = [client uploadFilesAndDirectories:[NSArray arrayWithObjects:UploadedFile, NULL]
+														   toHost:[defaults objectForKey:@"FTPServer"] 
+														 username:[defaults objectForKey:@"FTPUsername"]
+														 password:keychainItem.password
+														directory:[defaults objectForKey:@"FTPUploadDirectory"]];
+			//Generate Site URL
 			SiteURL = [defaults objectForKey:@"FTPWebAddress"];
-			UploadedFile = [[UploadedFile lastPathComponent] stringByDeletingPathExtension];
-			S7FTPRequest *ftpRequest = [[S7FTPRequest alloc] initWithURL:
-										[NSURL URLWithString:[NSString stringWithFormat:@"ftp://%@:%@%@",[defaults objectForKey:@"FTPServer"], [defaults objectForKey:@"FTPPort"],[defaults objectForKey:@"FTPUploadDirectory"]]]
-															toUploadFile:[openPanel filename]];
-			
-			ftpRequest.username = [defaults objectForKey:@"FTPUsername"];
-			ftpRequest.password = @"";
-			
-			ftpRequest.delegate = self;
-			ftpRequest.didFinishSelector = @selector(uploadFinished:);
-			ftpRequest.didFailSelector = @selector(uploadFailed:);
-			ftpRequest.willStartSelector = @selector(uploadWillStart:);
-			ftpRequest.didChangeStatusSelector = @selector(requestStatusChanged:);
-			ftpRequest.bytesWrittenSelector = @selector(uploadBytesWritten:);
-			
-			[ftpRequest startRequest];
+			UploadedFile = [UploadedFile lastPathComponent];
+			//Upload
+			[self setUpload:newUpload];
 		}
 	}
 }
--(void)uploadFinished:(S7FTPRequest *)request {
-	//Insert Image Link to Message Textfield
+
+#pragma mark ConnectionDelegate methods
+
+
+- (void)curlIsConnecting:(RemoteObject *)record
+{
+	NSLog(@"curlIsConnecting");
+}
+
+- (void)curlDidConnect:(RemoteObject *)record
+{
+	NSLog(@"curlDidConnect");
+}
+
+
+#pragma mark UploadDelegate methods
+
+
+- (void)uploadDidBegin:(Upload *)record
+{
+	NSLog(@"uploadDidBegin");
+}
+
+
+- (void)uploadDidProgress:(Upload *)record toPercent:(NSNumber *)percent;
+{
+	[UploadProgress setMaxValue:100];
+	[UploadProgress setDoubleValue:[record progress]];
+}
+
+
+- (void)uploadDidFinish:(Upload *)record
+{
 	[message setString:[NSString stringWithFormat:@"#image %@ \n%@",[NSString stringWithFormat:@"%@/%@",SiteURL,UploadedFile],[message string]]];
 	UploadedFile = @"";
 	[uploadstatus setObjectValue:@"Image Upload Successful..."];
-	[request release];
 }
 
--(void)uploadFailed:(S7FTPRequest *)request {
-	[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected" explaination:[NSString stringWithFormat:@"Error: %@", [request.error localizedDescription]]];
+
+- (void)uploadWasCancelled:(Upload *)record
+{
+	NSLog(@"uploadWasCancelled");
+}
+
+
+- (void)uploadDidFail:(Upload *)record message:(NSString *)message;
+{
+	[self showsheetmessage:@"MelScrobbleX was unable to upload the image you selected" explaination:message];
 	[uploadstatus setObjectValue:@"Image Upload Unsuccessful..."];
-	[request release];
 }
 
--(void)uploadWillStart:(S7FTPRequest *)request {
+
+- (int)acceptUnknownHostFingerprint:(NSString *)fingerprint forUpload:(NSString *)record
+{
+	NSLog(@"acceptUnknownHostFingerprint: %@", fingerprint);
 	
-	NSLog(@"Will transfer %d bytes.", request.fileSize);
+	return 0;
 }
 
--(void)uploadBytesWritten:(S7FTPRequest *)request {
-	
-	NSLog(@"Transferred: %d", request.bytesWritten);
-}
 
-- (void)requestStatusChanged:(S7FTPRequest *)request {
+- (int)acceptMismatchedHostFingerprint:(NSString *)fingerprint forUpload:(NSString *)record
+{
+	NSLog(@"acceptMismatchedHostFingerprint: %@", fingerprint);
 	
-	switch (request.status) {
-		case S7FTPRequestStatusOpenNetworkConnection:
-			NSLog(@"Opened connection.");
-			break;
-		case S7FTPRequestStatusReadingFromStream:
-			NSLog(@"Reading from stream...");
-			break;
-		case S7FTPRequestStatusWritingToStream:
-			NSLog(@"Writing to stream...");
-			break;
-		case S7FTPRequestStatusClosedNetworkConnection:
-			NSLog(@"Closed connection.");
-			break;
-		case S7FTPRequestStatusError:
-			NSLog(@"Error occurred.");
-			break;
-	}
+	return 0;
 }
 -(void)showsheetmessage:(NSString *)alertmessage
 		   explaination:(NSString *)explaination

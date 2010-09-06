@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "Melative.h"
+#import "EMKeychainItem.h"
 
 
 @implementation PreferenceController
@@ -24,6 +25,14 @@
 {
 //Check Login Keychain
 	[self loadlogin];
+//Set FTP Password Delegate to PreferenceController
+	[FTPPassword setDelegate:self];
+//Load Password
+	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: @"ftp"];
+	if (keychainItem.password != nil) {
+	[FTPPassword setStringValue:keychainItem.password];
+	}
+
 }
 
 - (void)windowWillClose:(NSNotification *)aNotification
@@ -194,5 +203,29 @@
 					  modalDelegate:self
 					 didEndSelector:nil
 						contextInfo:NULL];
+}
+- (void)controlTextDidEndEditing:(NSNotification *)aNotification {
+	EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"MelScrobbleX" withUsername: @"ftp"];
+	if (keychainItem.password == nil) {
+		//Create Keychain
+		NSLog(@"Creating Keychain");
+		[EMGenericKeychainItem addGenericKeychainItemForService:@"MelScrobbleX" withUsername:@"ftp" password:[FTPPassword stringValue]];
+	}
+	else if ([[FTPPassword stringValue] isEqualToString: keychainItem.password]) {
+		// Do Nothing
+	}
+	else if ([[FTPPassword stringValue] length] > 0){
+		//Save Password
+		NSLog(@"Saving Password");
+		keychainItem.password = [FTPPassword stringValue];
+	}
+	else if ([[FTPPassword stringValue] length] == 0){
+		//Blank Password. Remove Keychain Item
+		NSLog(@"Deleting Password");
+		[keychainItem removeFromKeychain];
+	}
+
+
+	
 }
 @end

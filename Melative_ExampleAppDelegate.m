@@ -119,7 +119,6 @@
 	// Defaults
 	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowAtStartup"];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"SuccessDebug"];
-	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"UseFTP"];
 	[defaultValues setObject:@"" forKey:@"APIKey"];
 	[defaultValues setObject:[NSNumber numberWithInt:0] forKey:@"PlayerSel"];
 	[defaultValues setObject:[NSNumber numberWithInt:0] forKey:@"MediaType"];

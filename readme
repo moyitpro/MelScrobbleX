@@ -8,6 +8,7 @@ All the frameworks goes in /Users/Shared/<your username>/InstalledProducts
 - OgreKit (for Regex, used in mplayer detection) http://web.me.com/oasis/ogrekit/About.html
 - BWtoolkit - http://www.brandonwalkin.com/bwtoolkit/
 - Growl.framework - http://growl.info/
+- Objective-Curl.framework - http://github.com/nrj/objective-curl
 - XCode 3.1 or higher
 - Mac OS X 10.5 or 10.6 PPC or Intel
 

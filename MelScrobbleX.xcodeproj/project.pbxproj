@@ -39,10 +39,13 @@
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
 		5C0F28541233E75E00EE7759 /* applications-multimedia.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */; };
 		5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F28ED1233FD1200EE7759 /* FTPUpload.m */; };
-		5C0F28F31233FDF600EE7759 /* S7FTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F28F21233FDF600EE7759 /* S7FTPRequest.m */; };
 		5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
 		5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
 		5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
+		5C621E3E1234431B00666F86 /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C621E3D1234431B00666F86 /* objective-curl.framework */; };
+		5C621E411234432500666F86 /* objective-curl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C621E3D1234431B00666F86 /* objective-curl.framework */; };
+		5C621ECC123455EC00666F86 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C621ECB123455EC00666F86 /* EMKeychainItem.m */; };
+		5C621F5212345E7200666F86 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C621F5112345E7200666F86 /* Carbon.framework */; };
 		5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */; };
 		5CBA4F67123415B20059C314 /* CMCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBA4F66123415B20059C314 /* CMCrashReporter.framework */; };
 		5CBA4F6A123415B70059C314 /* CMCrashReporter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5CBA4F66123415B20059C314 /* CMCrashReporter.framework */; };
@@ -58,6 +61,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5C621E411234432500666F86 /* objective-curl.framework in CopyFiles */,
 				5CBA4F6A123415B70059C314 /* CMCrashReporter.framework in CopyFiles */,
 				3A82297C1203A2EC0091127F /* Growl.framework in CopyFiles */,
 				3A33FF2C11604EBA001D78D9 /* BWToolkitFramework.framework in CopyFiles */,
@@ -122,10 +126,12 @@
 		5C0F28531233E75E00EE7759 /* applications-multimedia.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "applications-multimedia.tiff"; sourceTree = "<group>"; };
 		5C0F28EC1233FD1200EE7759 /* FTPUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPUpload.h; sourceTree = "<group>"; };
 		5C0F28ED1233FD1200EE7759 /* FTPUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPUpload.m; sourceTree = "<group>"; };
-		5C0F28F11233FDF600EE7759 /* S7FTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7FTPRequest.h; sourceTree = "<group>"; };
-		5C0F28F21233FDF600EE7759 /* S7FTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S7FTPRequest.m; sourceTree = "<group>"; };
 		5C0F2920123400F400EE7759 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5C0F2A821234017400EE7759 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5C621E3D1234431B00666F86 /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/Shared/tohnominagi/InstalledProducts/objective-curl.framework"; sourceTree = "<absolute>"; };
+		5C621ECA123455EC00666F86 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
+		5C621ECB123455EC00666F86 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
+		5C621F5112345E7200666F86 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MelScrobbleX_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5CBA4F66123415B20059C314 /* CMCrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CMCrashReporter.framework; path = /Users/Shared/tohnominagi/InstalledProducts/CMCrashReporter.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Melative_Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Melative_Example-Info.plist"; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 				5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */,
 				3ACC11AA1177D46600C00782 /* Security.framework in Frameworks */,
 				5CBA4F67123415B20059C314 /* CMCrashReporter.framework in Frameworks */,
+				5C621E3E1234431B00666F86 /* objective-curl.framework in Frameworks */,
+				5C621F5212345E7200666F86 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +167,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5C621ECA123455EC00666F86 /* EMKeychainItem.h */,
+				5C621ECB123455EC00666F86 /* EMKeychainItem.m */,
 				3AA5F936115AC84400DA616B /* Melative_Example_Prefix.pch */,
 				3A313504114D89E10046D05E /* ASIFormDataRequest.h */,
 				3A313505114D89E10046D05E /* ASIFormDataRequest.m */,
@@ -180,8 +190,6 @@
 				5C0F28ED1233FD1200EE7759 /* FTPUpload.m */,
 				5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */,
 				3AEAC2C0115AD3D500286BE4 /* Melative.h */,
-				5C0F28F11233FDF600EE7759 /* S7FTPRequest.h */,
-				5C0F28F21233FDF600EE7759 /* S7FTPRequest.m */,
 				3AEAC2C1115AD3D500286BE4 /* Melative.m */,
 				3A6DAA51115B066300695124 /* Melative_ExampleAppDelegate.m */,
 				3A6DAA52115B066300695124 /* Melative_ExampleAppDelegate.h */,
@@ -208,6 +216,7 @@
 				3A98A2D9115EA70300FAA769 /* libicucore.dylib */,
 				3A98A4D2115EC0B700FAA769 /* OgreKit.framework */,
 				5CBA4F66123415B20059C314 /* CMCrashReporter.framework */,
+				5C621E3D1234431B00666F86 /* objective-curl.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -240,6 +249,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				5C621F5112345E7200666F86 /* Carbon.framework */,
 			);
 			name = MelScrobbleX;
 			sourceTree = "<group>";
@@ -355,7 +365,7 @@
 				3A9F25A5116D25CC00C61E05 /* PFMoveApplication.m in Sources */,
 				5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */,
 				5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */,
-				5C0F28F31233FDF600EE7759 /* S7FTPRequest.m in Sources */,
+				5C621ECC123455EC00666F86 /* EMKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,7 +470,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "James M.";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;

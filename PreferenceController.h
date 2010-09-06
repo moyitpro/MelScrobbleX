@@ -15,6 +15,7 @@
 	IBOutlet NSTextField * fieldpassword;
 	IBOutlet NSButton * savebut;
 	IBOutlet NSButton * clearbut;
+	IBOutlet NSTextField * FTPPassword;
 }
 -(IBAction)checkupdates:(id)sender;
 -(void)loadlogin;
