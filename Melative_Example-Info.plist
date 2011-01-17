@@ -5,7 +5,7 @@
 	<key>NSUIElement</key>
 	<string>1</string>
 	<key>SUFeedURL</key>
-	<string>http://chikorita157.notcliche.com/malclientosx/melscrobblerx.xml</string>
+	<string>http://chikorita157.com/malclientosx/melscrobblerx.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>CMSubmitURL</key>
@@ -29,15 +29,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3.6a</string>
+	<string>0.3.7a</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>CFBundleVersion</key>
-	<string>0.3.6a</string>
+	<string>0.3.7a</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2009-2010 James M. All rights reserved.</string>
+	<string>© 2009-2011 James M. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

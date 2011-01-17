@@ -46,4 +46,7 @@
 -(void)showsheetmessage:(NSString *)message
 		   explaination:(NSString *)explaination;
 -(NSString*) reportplayer;;
+-(void)scrobblebypass:(NSAlert *)alert
+				 code:(int)achoice
+			   conext:(void *)v;
 @end

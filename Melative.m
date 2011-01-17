@@ -188,6 +188,9 @@
 		string = [regex replaceAllMatchesInString:string
 									   withString:@""];
 		regex = [OGRegularExpression regularExpressionWithString: [mediatitle stringValue]];
+		string = [regex replaceAllMatchesInString:string
+									   withString:@""];
+		regex = [OGRegularExpression regularExpressionWithString:@"v[\\d]"];
 		[segment setObjectValue:[regex replaceAllMatchesInString:string
 													  withString:@""]];
 		// Trim Whitespace
@@ -207,9 +210,32 @@
 }
 -(IBAction)scrobble:(id)sender {
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
-		// No segment or title	
-		[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info." explaination:@"Enter a media title or segment and try the scrobble command again."];
-		[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+		switch ([mediatypemenu indexOfSelectedItem]) {
+			case 0:
+			case 2:
+				if ([[mediatitle stringValue] length] != 0) {
+					// Set Up Prompt Message Window
+					NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+					[alert addButtonWithTitle:@"Yes"];
+					[alert addButtonWithTitle:@"No"];
+					[alert setMessageText:@"Do you really want to perform a scrobble commend with the current information?"];
+					[alert setInformativeText:@"No segment has been entered. It will default to 1 if you continue."];
+					// Set Message type to Warning
+					[alert setAlertStyle:NSWarningAlertStyle];
+						Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];	
+					// Show as Sheet on historywindow
+					[alert beginSheetModalForWindow:[appDelegate window]
+									  modalDelegate:self
+									 didEndSelector:@selector(scrobblebypass:code:conext:)
+										contextInfo:NULL];
+					break;
+				}
+			default:
+				// No segment or title	
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info." explaination:@"Enter a media title or segment and try the scrobble command again."];
+				[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+				break;
+		}
 	}
 	else {
 		int httperror = [self scrobble];
@@ -235,7 +261,38 @@
 		}
 	}
 }
+-(void)scrobblebypass:(NSAlert *)alert
+				   code:(int)achoice
+				 conext:(void *)v {
+	if (achoice == 1000) {
+		[segment setObjectValue:@"1"];
+		int httperror = [self scrobble];
+		switch (httperror) {
+			case 200:
+				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				//Set up Delegate
+				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
+				[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
+				break;
+			case 401:
+				//Login Failed, show error message
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" explaination:@"Check your username and password and try the scrobble command again. If you recently changed your password, enter your new password and try again."];
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+			default:
+				//Login Failed, show error message
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+		}
+	}
+	else {
+				[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+	}
 
+}
 -(BOOL)reportoutput {
 // Load Settings
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

@@ -109,7 +109,7 @@
 				if (statusCode == 200 ) {
 					NSString *response = [request responseString];
 					//Login successful
-					[self showsheetmessage:@"Login Successful." explaination:response];
+					[self showsheetmessage:@"Login Successful." explaination:@"Authorization Token as been created."];
 					// Generate API Key
 					NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults] autorelease];
 					[self createcookie:[fieldusername stringValue] :[fieldpassword stringValue]];
