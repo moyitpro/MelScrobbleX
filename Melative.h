@@ -15,7 +15,7 @@
 	IBOutlet NSTextView * fieldmessage;
 	IBOutlet NSTextField * mediatitle;
 	IBOutlet NSTextField * segment;
-	IBOutlet NSButton * postbutton;
+	IBOutlet NSToolbarItem * postbutton;
 	IBOutlet NSButton * completecheckbox;
 	IBOutlet NSButton * sendtotwitter;
 	IBOutlet NSPopUpButton * mediatypemenu;

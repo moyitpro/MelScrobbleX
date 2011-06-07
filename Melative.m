@@ -19,7 +19,6 @@
 - (void) awakeFromNib {
 	// Set Default Font Values for fieldmessage
 	[fieldmessage setFont:[NSFont fontWithName:@"Lucida Grande" size:13]];
-	[fieldmessage setTextColor:[NSColor whiteColor]];
 }
 
 -(IBAction)postmessage:(id)sender {

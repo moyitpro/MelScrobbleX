@@ -38,6 +38,8 @@
 		3AEAC2C2115AD3D500286BE4 /* Melative.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAC2C1115AD3D500286BE4 /* Melative.m */; };
 		5C024F271235442900529CB8 /* ImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C024F261235442900529CB8 /* ImageServices.m */; };
 		5C0F28EE1233FD1200EE7759 /* FTPUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F28ED1233FD1200EE7759 /* FTPUpload.m */; };
+		5C1514AC139ED89300156C07 /* edit.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C1514AB139ED89300156C07 /* edit.tiff */; };
+		5C1514AE139ED8AB00156C07 /* send.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C1514AD139ED8AB00156C07 /* send.tiff */; };
 		5C240A6811605E6A00CCF537 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A33FEE511604626001D78D9 /* BWToolkitFramework.framework */; };
 		5C240A6911605E6A00CCF537 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98A4D2115EC0B700FAA769 /* OgreKit.framework */; };
 		5C240A6A11605E6A00CCF537 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A041C1E115B0C6A00B2D20F /* Sparkle.framework */; };
@@ -130,6 +132,8 @@
 		5C0F28ED1233FD1200EE7759 /* FTPUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPUpload.m; sourceTree = "<group>"; };
 		5C0F2920123400F400EE7759 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5C0F2A821234017400EE7759 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5C1514AB139ED89300156C07 /* edit.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = edit.tiff; sourceTree = "<group>"; };
+		5C1514AD139ED8AB00156C07 /* send.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = send.tiff; sourceTree = "<group>"; };
 		5C621E3D1234431B00666F86 /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/Shared/tohnominagi/InstalledProducts/objective-curl.framework"; sourceTree = "<absolute>"; };
 		5C621ECA123455EC00666F86 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		5C621ECB123455EC00666F86 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C1514AD139ED8AB00156C07 /* send.tiff */,
+				5C1514AB139ED89300156C07 /* edit.tiff */,
 				5C9E42AC123531A300703A35 /* movies.tiff */,
 				5C9E42AA1235318900703A35 /* picture.tiff */,
 				5C9E42A81235313C00703A35 /* GeneralPreferences.tiff */,
@@ -359,6 +365,8 @@
 				5C9E42A91235313C00703A35 /* GeneralPreferences.tiff in Resources */,
 				5C9E42AB1235318900703A35 /* picture.tiff in Resources */,
 				5C9E42AD123531A300703A35 /* movies.tiff in Resources */,
+				5C1514AC139ED89300156C07 /* edit.tiff in Resources */,
+				5C1514AE139ED8AB00156C07 /* send.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
