@@ -12,41 +12,47 @@
 @interface Melative : NSObject {
 	NSString * fieldusername;
 	NSString * apikey;
-	IBOutlet NSTextView * fieldmessage;
-	IBOutlet NSTextField * mediatitle;
-	IBOutlet NSTextField * segment;
-	IBOutlet NSToolbarItem * postbutton;
-	IBOutlet NSButton * completecheckbox;
-	IBOutlet NSButton * sendtotwitter;
-	IBOutlet NSPopUpButton * mediatypemenu;
+	NSString * detectedmediatitle;
+	NSString * detectedmediasegment;
+	NSString * detectedmediaartist;
+	NSString * scrobblerstatus;
 	int choice;
-	IBOutlet NSTextField * artist;
-	IBOutlet NSTextField * scrobblestatus;
-	IBOutlet NSMenuItem * togglescrobbler;
-	IBOutlet NSProgressIndicator * APIProgress;
     BOOL scrobblesuccess;
 	NSString * ScrobbledMediaTitle;
 	NSString * ScrobbledMediaSegment;
-	NSTimer * timer;
 }
 @property(copy, readwrite) NSString *apikey;
 @property(copy, readwrite) NSString *fieldusername;
 
--(IBAction)postmessage:(id)sender;
--(IBAction)getnowplaying:(id)sender;
--(IBAction)scrobble:(id)sender;
--(IBAction)resetfields:(id)sender;
+/* Accessors */
+-(NSString *)getdetectedmediatitle;
+-(NSString *)getdetectedmediasegment;
+-(NSString *)getdetectedmediaartist;
+-(NSString *)getscrobblerstatus;
+-(NSString *)getScrobbledMediaTitle;
+-(NSString *)getScrobbledMediaSegment;
+-(BOOL)getscrobblesuccess;
+/* Detection */
 -(void)musicdetect;
 -(void)animedetect;
--(int)scrobble;
--(int)postupdate;
+-(NSString*) reportplayer;
+/* Update Functions */
+-(int)scrobble:(int)mediatypeid
+         Title:(NSString *)title
+       Segment:(NSString *)segment;
+-(int)postupdate:(int)mediatypeid
+           Title:(NSString *)title
+         Segment:(NSString *)segment
+      theMessage:(NSString *)postmessage
+       completed:(int)state
+         Twitter:(int)TwitterBridge;
+-(void)setScrobbledMediaTitle:(NSString *)title;
+-(void)setScrobbledMediaSegment:(NSString *)segment;
+-(void)setScrobbleSuccess:(BOOL)success;
+/* Other */
 -(BOOL)reportoutput;
--(IBAction)toggletimer:(id)sender;
--(void)firetimer:(NSTimer *)aTimer;
 -(void)showsheetmessage:(NSString *)message
 		   explaination:(NSString *)explaination;
--(NSString*) reportplayer;;
--(void)scrobblebypass:(NSAlert *)alert
-				 code:(int)achoice
-			   conext:(void *)v;
+
+
 @end

@@ -186,6 +186,8 @@
 	NSSortDescriptor* sortDescriptor = [[[NSSortDescriptor alloc]
 										 initWithKey: @"Date" ascending: NO] autorelease];
 	[historytable setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    // Set Default Font Values for fieldmessage
+	[fieldmessage setFont:[NSFont fontWithName:@"Lucida Grande" size:13]];
 }
 - (void) dealloc {
     //Releases the 2 images we loaded into memory
@@ -207,6 +209,8 @@
 -(IBAction)togglescrobblewindow:(id)sender
 {
 	if ([window isVisible]) { 
+		//Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
+		[NSApp activateIgnoringOtherApps:YES];
 		[window orderOut:self]; 
 	} else { 
 		[window makeKeyAndOrderFront:self]; 
@@ -218,7 +222,9 @@
 	if (!preferenceController) {
 		preferenceController = [[PreferenceController alloc] init];
 	}
-		[preferenceController showWindow:self];
+	//Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
+	[NSApp activateIgnoringOtherApps:YES];
+	[preferenceController showWindow:self];
 }
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 	
@@ -334,7 +340,276 @@
 }
 -(IBAction)showhistory:(id)sender
 {
-	[historywindow makeKeyAndOrderFront:self];
+	//Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
+	[NSApp activateIgnoringOtherApps:YES];
+	[historywindow makeKeyAndOrderFront:self];	
+}
+-(void)scrobblebypass:(NSAlert *)alert
+				 code:(int)achoice
+			   conext:(void *)v {
+	if (achoice == 1000) {
+		[segment setObjectValue:@"1"];
+		int httperror = [melativeEngine scrobble:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue]  Segment:[segment stringValue]];
+		switch (httperror) {
+			case 200:
+				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				//Set up Delegate
+				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
+				[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
+				break;
+			case 401:
+				//Login Failed, show error message
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" explaination:@"Check your username and password and try the scrobble command again. If you recently changed your password, enter your new password and try again."];
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+			default:
+				//Login Failed, show error message
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+		}
+	}
+	else {
+		[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+	}
 	
+}
+- (IBAction)toggletimer:(id)sender {
+	if (timer == nil) {
+		//Create Timer
+		timer = [[NSTimer scheduledTimerWithTimeInterval:180
+												  target:self
+												selector:@selector(firetimer:)
+												userInfo:nil
+												 repeats:YES] retain];
+		[togglescrobbler setTitle:@"Stop Auto Scrobbling"];
+		[GrowlApplicationBridge notifyWithTitle:@"MelScrobbleX"
+									description:@"Auto Scrobble is now turned on."
+							   notificationName:@"Message"
+									   iconData:nil
+									   priority:0
+									   isSticky:NO
+								   clickContext:[NSDate date]];
+	}
+	else {
+		//Stop Timer
+		// Remove Timer
+		[timer invalidate];
+		[timer release];
+		timer = nil;
+		[togglescrobbler setTitle:@"Start Auto Scrobbling"];
+		[GrowlApplicationBridge notifyWithTitle:@"MelScrobbleX"
+									description:@"Auto Scrobble is now turned off."
+							   notificationName:@"Message"
+									   iconData:nil
+									   priority:0
+									   isSticky:NO
+								   clickContext:[NSDate date]];
+	}
+	
+}
+- (void)firetimer:(NSTimer *)aTimer {
+	switch ([mediatypemenu indexOfSelectedItem]) {
+		case 0:
+			// Init Anime Detection
+			[melativeEngine animedetect];
+			break;
+		case 1:
+			// Init Music Detection
+			[melativeEngine musicdetect];
+			break;
+	}
+	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
+		// Do Nothing
+	}
+	else if ([[mediatitle stringValue] isEqualToString:[melativeEngine getScrobbledMediaTitle]] && [[segment stringValue] isEqualToString: [melativeEngine getScrobbledMediaSegment]] && [melativeEngine  getscrobblesuccess] == 1) {
+		// Do Nothing
+		NSLog(@"Already Scrobbled");
+	}
+	else {
+		//Execute Scrobble Command and retrieve HTTPCode
+		int httperror = [melativeEngine scrobble:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue] Segment:[segment stringValue]];
+		switch (httperror) {
+			case 200:
+				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Successful"
+											description:[NSString stringWithFormat:@"%@ - %@", [mediatitle stringValue], [segment stringValue]] 
+									   notificationName:@"Message"
+											   iconData:nil
+											   priority:0
+											   isSticky:NO
+										   clickContext:[NSDate date]];
+				[melativeEngine setScrobbledMediaTitle:[mediatitle stringValue]];
+				[melativeEngine setScrobbledMediaSegment:[segment stringValue]];
+                [melativeEngine setScrobbleSuccess: YES];
+				//Set up Delegate
+				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
+				//Set last successful scrobble to statusItem Tooltip
+				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];						
+				//Add to History
+				[appDelegate addrecord:[melativeEngine getScrobbledMediaTitle] mediasegment:[melativeEngine getScrobbledMediaSegment] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
+				break;
+			case 401:
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
+											description:@"Check your login information and try scrobbling again." 
+									   notificationName:@"Message"
+											   iconData:nil
+											   priority:0
+											   isSticky:NO
+										   clickContext:[NSDate date]];
+				[melativeEngine setScrobbleSuccess: NO];
+				break;
+			default: // Any error codes thats not 200 or 401
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
+											description:[NSString stringWithFormat:@"Unknown Error. Error %i", httperror]
+									   notificationName:@"Message"
+											   iconData:nil
+											   priority:0
+											   isSticky:NO
+										   clickContext:[NSDate date]];
+                [melativeEngine setScrobbleSuccess: NO];
+				break;				
+		}
+		
+	}
+}
+-(IBAction)resetfields:(id)sender
+{
+	// Clear All Fields
+	[fieldmessage setobjString:@""];
+	[mediatitle setObjectValue:@""];
+	[segment setObjectValue:@""];
+	[artist setObjectValue:@""];
+	[scrobblestatus setObjectValue:@"All fields cleared..."];
+}
+-(IBAction)scrobble:(id)sender {
+	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
+		switch ([mediatypemenu indexOfSelectedItem]) {
+			case 0:
+			case 2:
+				if ([[mediatitle stringValue] length] != 0) {
+					// Set Up Prompt Message Window
+					NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+					[alert addButtonWithTitle:@"Yes"];
+					[alert addButtonWithTitle:@"No"];
+					[alert setMessageText:@"Do you really want to perform a scrobble commend with the current information?"];
+					[alert setInformativeText:@"No segment has been entered. It will default to 1 if you continue."];
+					// Set Message type to Warning
+					[alert setAlertStyle:NSWarningAlertStyle];
+					Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];	
+					// Show as Sheet on historywindow
+					[alert beginSheetModalForWindow:[appDelegate window]
+									  modalDelegate:self
+									 didEndSelector:@selector(scrobblebypass:code:conext:)
+										contextInfo:NULL];
+					break;
+				}
+			default:
+				// No segment or title	
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info." explaination:@"Enter a media title or segment and try the scrobble command again."];
+				[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+				break;
+		}
+	}
+	else {
+		int httperror = [self scrobble];
+		switch (httperror) {
+			case 200:
+				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				//Set up Delegate
+				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
+				[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
+				break;
+			case 401:
+				//Login Failed, show error message
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" explaination:@"Check your username and password and try the scrobble command again. If you recently changed your password, enter your new password and try again."];
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+			default:
+				//Login Failed, show error message
+				[self showsheetmessage:@"MelScrobbleX was unable to scrobble because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
+				// Set Status
+				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				break;
+		}
+	}
+}
+-(IBAction)getnowplaying:(id)sender {
+	switch ([mediatypemenu indexOfSelectedItem]) {
+		case 0:
+			// Init Anime Detection
+			[melativeEngine animedetect];
+			break;
+		case 1:
+			// Init Music Detection
+			[melativeEngine musicdetect];
+			break;
+		case 2:
+			// Init Adrama Detection
+			[melativeEngine animedetect];
+			break;
+	}
+	[mediatitle setObjectValue:[melativeEngine getdetectedmediatitle]];
+	[segment setObjectValue:[melativeEngine getdetectedmediasegment]];
+    [scrobblestatus setObjectValue:[melativeEngine getscrobblerstatus]];
+}
+
+-(IBAction)postmessage:(id)sender {
+	// Set Status
+	[scrobblestatus setObjectValue:@"Posting..."];
+	//Post the update		
+    if ( [[fieldmessage string] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
+        //No message, show error
+        [self showsheetmessage:@"MelScrobbleX was unable to post an update since you didn't enter a message." explaination:@"Enter a message and try posting again"];
+        [scrobblestatus setObjectValue:@"No Message Entered.."];
+    }
+    else {
+        int httperror = [melativeEngine postupdate:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue] Segment:[segment stringValue] theMessage:[fieldmessage string] completed:[completecheckbox state] Twitter:[sendtotwitter state]];
+        switch (httperror) {
+            case 200: // 200 - OK
+                [scrobblestatus setObjectValue:@"Post Successful..."];
+                //Clear Message
+                [fieldmessage setString:@""];
+                //Unset "Complete" and "Send to Twitter" checkboxes
+                [completecheckbox setState:0];
+                [sendtotwitter setState:0];
+                break;
+					
+            case 401: // 401 - Unauthorized
+                //Login Failed, show error message
+                [self showsheetmessage:@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password" explaination:@"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again."];
+                [scrobblestatus setObjectValue:@"Unable to Post..."];
+                break;
+					
+            default:
+                //Some other error...
+                [self showsheetmessage:@"MelScrobbleX was unable to post an update because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
+                [scrobblestatus setObjectValue:@"Unable to Post..."];
+                break;
+			}
+		}
+	}
+-(void)showsheetmessage:(NSString *)message
+		   explaination:(NSString *)explaination
+{
+	// Set Up Prompt Message Window
+	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+	[alert addButtonWithTitle:@"OK"];
+	[alert setMessageText:message];
+	[alert setInformativeText:explaination];
+	// Set Message type to Warning
+	[alert setAlertStyle:1];
+	// Show as Sheet on Preference Window
+	[alert beginSheetModalForWindow:window
+					  modalDelegate:self
+					 didEndSelector:nil
+						contextInfo:NULL];
 }
 @end
