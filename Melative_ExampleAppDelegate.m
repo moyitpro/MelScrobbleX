@@ -211,10 +211,10 @@
 -(IBAction)togglescrobblewindow:(id)sender
 {
 	if ([window isVisible]) { 
-		//Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
-		[NSApp activateIgnoringOtherApps:YES];
 		[window orderOut:self]; 
 	} else { 
+        //Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
+		[NSApp activateIgnoringOtherApps:YES];
 		[window makeKeyAndOrderFront:self]; 
 	} 
 }
@@ -422,6 +422,10 @@
 			// Init Music Detection
 			[melativeEngine musicdetect];
 			break;
+        case 2:
+			// Init Anime Detection
+			[melativeEngine animedetect];
+			break;
 	}
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
 		// Do Nothing
@@ -484,7 +488,7 @@
 -(IBAction)resetfields:(id)sender
 {
 	// Clear All Fields
-	[fieldmessage setobjString:@""];
+	[fieldmessage setString:@""];
 	[mediatitle setObjectValue:@""];
 	[segment setObjectValue:@""];
 	[artist setObjectValue:@""];
@@ -547,16 +551,13 @@
 	switch ([mediatypemenu indexOfSelectedItem]) {
 		case 0:
 			// Init Anime Detection
-            NSLog(@"Detecting Anime");
 			[melativeEngine animedetect];
 			break;
 		case 1:
-            NSLog(@"Detecting Music");
 			// Init Music Detection
 			[melativeEngine musicdetect];
 			break;
 		case 2:
-            NSLog(@"Detecting ADrama");
 			// Init Adrama Detection
 			[melativeEngine animedetect];
 			break;
