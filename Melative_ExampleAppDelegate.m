@@ -157,6 +157,8 @@
 	else {
 		NSLog(@"ERROR: Could not load Growl.framework");
 	}
+    // Init Melative Engine
+    melativeEngine = [[Melative alloc] init];
 	
 }
 
@@ -518,7 +520,7 @@
 		}
 	}
 	else {
-		int httperror = [self scrobble];
+		int httperror = [melativeEngine scrobble:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue] Segment:[segment stringValue]];
 		switch (httperror) {
 			case 200:
 				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
@@ -545,13 +547,16 @@
 	switch ([mediatypemenu indexOfSelectedItem]) {
 		case 0:
 			// Init Anime Detection
+            NSLog(@"Detecting Anime");
 			[melativeEngine animedetect];
 			break;
 		case 1:
+            NSLog(@"Detecting Music");
 			// Init Music Detection
 			[melativeEngine musicdetect];
 			break;
 		case 2:
+            NSLog(@"Detecting ADrama");
 			// Init Adrama Detection
 			[melativeEngine animedetect];
 			break;
