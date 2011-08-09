@@ -165,14 +165,15 @@
 		enumerator = nil;
 		// Set Status
 		scrobblerstatus = @"Detected currently playing video...";
-        [detectedmediatitle retain];
-        [detectedmediasegment retain];
-        [detectedmediaartist retain];
 	}
 	else {
 		// Show error
+        detectedmediatitle = @"";
+        detectedmediasegment = @"";
 		scrobblerstatus = @"Detect Failed: Nothing is playing...";
 	}
+    [detectedmediatitle retain];
+    [detectedmediasegment retain];
     [scrobblerstatus retain];
 	string = nil;
 
@@ -214,7 +215,7 @@
 		NSLog(@"Loading Login");
 		apikey = [defaults objectForKey:@"APIKey"];
 	}
-	if ( apikey.length < 0 ) {
+	if ( apikey.length == 0 ) {
 		return 401;
 	}
 	else {
@@ -268,7 +269,7 @@
 		NSLog(@"Loading Login");
 		apikey = [defaults objectForKey:@"APIKey"];
 	}
-	if ( apikey.length < 0 ) {
+	if ( apikey.length == 0 ) {
         return 401;
     }
     else {
