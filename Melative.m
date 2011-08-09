@@ -83,9 +83,6 @@
 		case 2:
 			player = @"VLC";
 			break;
-		case 3:
-			player = @"QuickTime Player";
-			break;
 		default:
 			break;
 	}
@@ -191,9 +188,6 @@
 			break;
 		case 2:
 			return @"vlc";
-			break;
-		case 3:
-			return @"Quicktime";
 			break;
 		default:
 			return @"MelScrobbleX";
