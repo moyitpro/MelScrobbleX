@@ -9,6 +9,7 @@
 #import "Melative_ExampleAppDelegate.h"
 #import "PreferenceController.h"
 #import "PFMoveApplication.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation Melative_ExampleAppDelegate
 
@@ -163,7 +164,10 @@
 }
 
 - (void) awakeFromNib{
-    
+    //Window Animation
+    CAAnimation *anim = [CABasicAnimation animation];
+    [anim setDelegate:self];
+    [self.window setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"alphaValue"]];
     //Create the NSStatusBar and set its length
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
     
@@ -211,10 +215,12 @@
 -(IBAction)togglescrobblewindow:(id)sender
 {
 	if ([window isVisible]) { 
-		[window orderOut:self]; 
+        [self.window.animator setAlphaValue:0.0];
 	} else { 
         //Since LSUIElement is set to 1 to hide the dock icon, it causes unattended behavior of having the program windows not show to the front.
 		[NSApp activateIgnoringOtherApps:YES];
+        self.window.alphaValue = 0.0;
+        [self.window.animator setAlphaValue:1.0];
 		[window makeKeyAndOrderFront:self]; 
 	} 
 }
@@ -618,4 +624,17 @@
 					 didEndSelector:nil
 						contextInfo:NULL];
 }
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag 
+{
+    if(self.window.alphaValue == 0.00) 		
+        [window orderOut:self];  //detect end of fade out and hide the window
+}
+- (BOOL)windowShouldClose:(id)window
+{
+    // Animate the window's alpha value so it fades out.
+     [self.window.animator setAlphaValue:0.0];
+    // Don't close the window immediately so we can see the animation.
+    return NO;
+}
+
 @end
