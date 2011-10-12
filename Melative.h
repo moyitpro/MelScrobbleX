@@ -3,7 +3,7 @@
 //  Melative Example
 //
 //  Created by Tohno Minagi on 3/14/10.
-//  Copyright 2010-2011 James M.. All rights reserved. Covered under the New BSD License.
+//  Copyright 2009-2010 James M.. All rights reserved. Licensed under the GPL v3
 //
 
 #import <Cocoa/Cocoa.h>
