@@ -494,10 +494,7 @@
 -(IBAction)resetfields:(id)sender
 {
 	// Clear All Fields
-	[fieldmessage setString:@""];
-	[mediatitle setObjectValue:@""];
-	[segment setObjectValue:@""];
-	[artist setObjectValue:@""];
+	[self clearEverything];
 	[scrobblestatus setObjectValue:@"All fields cleared..."];
 }
 -(IBAction)scrobble:(id)sender {
@@ -589,6 +586,8 @@
                 [scrobblestatus setObjectValue:@"Post Successful..."];
                 //Clear Message
                 [fieldmessage setString:@""];
+                if ([completecheckbox state])
+                    [self clearEverything];
                 //Unset "Complete" and "Send to Twitter" checkboxes
                 [completecheckbox setState:0];
                 [sendtotwitter setState:0];
@@ -623,6 +622,13 @@
 					  modalDelegate:self
 					 didEndSelector:nil
 						contextInfo:NULL];
+}
+-(void)clearEverything 
+{
+    [fieldmessage setString:@""];
+	[mediatitle setObjectValue:@""];
+	[segment setObjectValue:@""];
+	[artist setObjectValue:@""];
 }
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag 
 {

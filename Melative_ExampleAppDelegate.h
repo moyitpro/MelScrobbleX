@@ -56,6 +56,7 @@
 -(IBAction)resetfields:(id)sender;
 -(IBAction)toggletimer:(id)sender;
 -(void)firetimer:(NSTimer *)aTimer;
+-(void)clearEverything;
 -(void)scrobblebypass:(NSAlert *)alert
 				 code:(int)achoice
 			   conext:(void *)v;
