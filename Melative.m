@@ -321,13 +321,13 @@
             if ([segment length] >0) {
                 switch (mediatypeid) {
                     case 0:
-                        mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",title, segment, postmessage];
+                        mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode/%@: %@",title, segment, postmessage];
                         break;
                     case 1:
-                        mediamessage = [mediamessage stringByAppendingFormat:@"%@/%@: %@",title, segment, postmessage];
+                        mediamessage = [mediamessage stringByAppendingFormat:@"%@/track/%@: %@",title, segment, postmessage];
                         break;
                     case 2:
-                        mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode %@: %@",title, segment, postmessage];
+                        mediamessage = [mediamessage stringByAppendingFormat:@"%@/episode/%@: %@",title, segment, postmessage];
                         break;
 
                 }
