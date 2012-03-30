@@ -136,9 +136,9 @@
 		5C1514AB139ED89300156C07 /* edit.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = edit.tiff; sourceTree = "<group>"; };
 		5C1514AD139ED8AB00156C07 /* send.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = send.tiff; sourceTree = "<group>"; };
 		5C17DD4E152654F6003D7F9F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		5C17DD4F15265536003D7F9F /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ja-JP"; path = "ja-JP.lproj/Preferences.xib"; sourceTree = "<group>"; };
 		5C1A6E5C14111C8000049C40 /* MelScrobbleX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MelScrobbleX.entitlements; sourceTree = "<group>"; };
 		5C398579141D8986003A672F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5C5B305D1526692D004D75D9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/Preferences.xib; sourceTree = "<group>"; };
 		5C621E3D1234431B00666F86 /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/Shared/tohnominagi/InstalledProducts/objective-curl.framework"; sourceTree = "<absolute>"; };
 		5C621ECA123455EC00666F86 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		5C621ECB123455EC00666F86 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
@@ -428,7 +428,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3A33FEEC11604686001D78D9 /* English */,
-				5C17DD4F15265536003D7F9F /* ja-JP */,
+				5C5B305D1526692D004D75D9 /* ja */,
 			);
 			name = Preferences.xib;
 			sourceTree = "<group>";
