@@ -49,6 +49,7 @@
 		5C621ECC123455EC00666F86 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C621ECB123455EC00666F86 /* EMKeychainItem.m */; };
 		5C621F5212345E7200666F86 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C621F5112345E7200666F86 /* Carbon.framework */; };
 		5C66D9431222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */; };
+		5C9CA09415268BC300D5BE58 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C9CA09315268BC300D5BE58 /* Localizable.strings */; };
 		5C9E42A91235313C00703A35 /* GeneralPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E42A81235313C00703A35 /* GeneralPreferences.tiff */; };
 		5C9E42AB1235318900703A35 /* picture.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E42AA1235318900703A35 /* picture.tiff */; };
 		5C9E42AD123531A300703A35 /* movies.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E42AC123531A300703A35 /* movies.tiff */; };
@@ -144,6 +145,8 @@
 		5C621ECB123455EC00666F86 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		5C621F5112345E7200666F86 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		5C66D9421222FF0F00B415AA /* MelScrobbleX_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MelScrobbleX_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5C9CA08C15268B9800D5BE58 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5C9CA09515268BC800D5BE58 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5C9E42A81235313C00703A35 /* GeneralPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GeneralPreferences.tiff; sourceTree = "<group>"; };
 		5C9E42AA1235318900703A35 /* picture.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = picture.tiff; sourceTree = "<group>"; };
 		5C9E42AC123531A300703A35 /* movies.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = movies.tiff; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 				3A49BD401162A78E0048007B /* dsa_pub.pem */,
 				3A4D7E8B115C304B005266C2 /* login.tiff */,
 				8D1107310486CEB800E47090 /* Melative_Example-Info.plist */,
+				5C9CA09315268BC300D5BE58 /* Localizable.strings */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				3A4431DF120730B400078773 /* Preferences.xib */,
@@ -349,6 +353,7 @@
 				German,
 				ja,
 				"ja-JP",
+				jp,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MelScrobbleX */;
 			projectDirPath = "";
@@ -377,6 +382,7 @@
 				5C9E42AD123531A300703A35 /* movies.tiff in Resources */,
 				5C1514AC139ED89300156C07 /* edit.tiff in Resources */,
 				5C1514AE139ED8AB00156C07 /* send.tiff in Resources */,
+				5C9CA09415268BC300D5BE58 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +437,15 @@
 				5C5B305D1526692D004D75D9 /* ja */,
 			);
 			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
+		5C9CA09315268BC300D5BE58 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C9CA08C15268B9800D5BE58 /* English */,
+				5C9CA09515268BC800D5BE58 /* ja */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

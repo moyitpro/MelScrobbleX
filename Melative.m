@@ -50,14 +50,14 @@
 	iTunesApplication *iTunes = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"]autorelease];
 	if (iTunes.currentTrack == nil) {
 		//Show Error Message
-		scrobblerstatus = @"Detect Failed: Nothing is playing...";
+		scrobblerstatus =  NSLocalizedString(@"Detect Failed: Nothing is playing...", @"Nothing Detected");
 	}
 	else {
 		//Obtain the Album, Artist and Track Name and place them in the Media Title and Segment Fields
 		detectedmediatitle = iTunes.currentTrack.album;
 		detectedmediasegment = iTunes.currentTrack.name;
 		detectedmediaartist = iTunes.currentTrack.artist;
-		scrobblerstatus = @"Detected current iTunes track...";
+		scrobblerstatus = NSLocalizedString(@"Detected current iTunes track...", @"Detected Track");
         [detectedmediatitle retain];
         [detectedmediasegment retain];
         [detectedmediaartist retain];
@@ -161,13 +161,13 @@
 		regex = nil;
 		enumerator = nil;
 		// Set Status
-		scrobblerstatus = @"Detected currently playing video...";
+		scrobblerstatus = NSLocalizedString(@"Detected currently playing video...",@"Detected Video");
 	}
 	else {
 		// Show error
         detectedmediatitle = @"";
         detectedmediasegment = @"";
-		scrobblerstatus = @"Detect Failed: Nothing is playing...";
+		scrobblerstatus = NSLocalizedString(@"Detect Failed: Nothing is playing...", @"Nothing Detected");
 	}
     [detectedmediatitle retain];
     [detectedmediasegment retain];
@@ -243,7 +243,7 @@
 		if ([self reportoutput] == 1) {
 			//Post suggessful... or is it?
 		    NSString *response = [request responseString];
-			choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
+			choice = NSRunAlertPanel(NSLocalizedString(@"API Response",@"API Response Alert Title"), response, NSLocalizedString(@"OK",@"OK button"), nil, nil, 8);
 		}
 		return [request responseStatusCode];
 	}
@@ -349,7 +349,7 @@
         if ([self reportoutput] == 1) {
             NSString *response = [request responseString];
             //Post suggessful... or is it?
-            choice = NSRunAlertPanel(@"API Response", response, @"OK", nil, nil, 8);
+            choice = NSRunAlertPanel(NSLocalizedString(@"API Response",@"API Response Alert Title"), response, NSLocalizedString(@"OK",@"OK button"), nil, nil, 8);
             //release
             response = nil;
         }
@@ -380,7 +380,7 @@
 {
 	// Set Up Prompt Message Window
 	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
-	[alert addButtonWithTitle:@"OK"];
+	[alert addButtonWithTitle:NSLocalizedString(@"OK",@"OK button")];
 	[alert setMessageText:message];
 	[alert setInformativeText:explaination];
 	// Set Message type to Warning

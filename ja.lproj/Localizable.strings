@@ -1,0 +1,86 @@
+/* Localizable.strings
+   MelScrobbleX - English
+
+   Created by Nanoha Takamachi on 12/03/30. */
+
+/* Detection States */
+"Detected current iTunes track..." = "Detected current iTunes track...";
+
+"Detected currently playing video..." = "Detect Failed: Nothing is playing...";
+
+"Detect Failed: Nothing is playing..." = "Detect Failed: Nothing is playing...";
+
+/* Menu Items */
+"Start Auto Scrobbling" = "スクロベルを始める";
+
+"Stop Auto Scrobbling" = "スクロベルをやめる";
+
+/* Messages, Alerts */
+"API Response" = "API Response";
+
+"OK" = "OK";
+
+"Quit anyway" = "Quit anyway";
+
+"Cancel" = "キャンセル";
+
+"Yes" = "はい";
+
+"No" = "いいえ";
+
+"MelScrobbleX was unable to post an update since you didn't enter a message." = "MelScrobbleX was unable to post an update since you didn't enter a message.";
+
+"Enter a message and try posting again" = "メッセージ入力して、送ってみます。";
+
+"MelScrobbleX was unable to post an update since you don't have the correct username and/or password" = "MelScrobbleX was unable to post an update since you don't have the correct username and/or password";
+
+"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again." = "Check your username and password and try posting again. If you recently changed your password, enter you new password and try again.";
+
+"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" = "MelScrobbleX was unable to scrobble since you don't have the correct username and/or password";
+
+"MelScrobbleX was unable to scrobble because of an unknown error." = "MelScrobbleX was unable to scrobble because of an unknown error.";
+
+"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info." = "MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.";
+
+"Enter a media title or segment and try the scrobble command again." = "Enter a media title or segment and try the scrobble command again.";
+
+"Do you really want to perform a scrobble commend with the current information?" = "Do you really want to perform a scrobble commend with the current information?";
+
+"No segment has been entered. It will default to 1 if you continue." = "No segment has been entered. It will default to 1 if you continue.";
+
+"Are you sure you want to clear the Update History?" = "Are you sure you want to clear the Update History?";
+
+"Once done, this action cannot be undone." = "しった、外せませんでした。";
+
+"Could not save changes while quitting.  Quit anyway?" = "Could not save changes while quitting.  Quit anyway?";
+
+"Quitting now will lose any changes you have made since the last successful save" = "Quitting now will lose any changes you have made since the last successful save";
+
+/* Growl Notifications */
+"Scrobble Unsuccessful" = "スクロベルしませんでした。";
+
+"Check your login information and try scrobbling again." = "Check your login information and try scrobbling again.";
+
+"Auto Scrobble is now turned off." = "スクロベルをやめました。";
+
+"Auto Scrobble is now turned on." = "スクロベルを始めました。";
+
+/* Status Bar */
+"Posting..." = "送っています。";
+
+"Post Successful..." = "アップデートを送りました。";
+
+"No Message Entered..." = "メッセージがありません。";
+
+"Unable to Post..." = "アップデートを送りませんでした。";
+
+"Scrobble Successful..." = "スクロベルしました。";
+
+"Unable to Scrobble" = "スクロベルしませんでした。";
+
+"Title/Segment Missing..." = "メディアか分がありません。";
+
+"All fields cleared..." = "入力を消しました。";
+
+"MelScrobbleX - Last Scrobble:" = "MelScrobbleX - 先スクロベル：";
+

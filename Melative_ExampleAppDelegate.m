@@ -310,10 +310,10 @@
 {
 	// Set Up Prompt Message Window
 	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
-	[alert addButtonWithTitle:@"Yes"];
-	[alert addButtonWithTitle:@"No"];
-	[alert setMessageText:@"Are you sure you want to clear the Update History?"];
-	[alert setInformativeText:@"Once done, this action cannot be undone."];
+	[alert addButtonWithTitle:NSLocalizedString(@"Yes",@"Yes Button")];
+	[alert addButtonWithTitle:NSLocalizedString(@"No",@"No Button")];
+	[alert setMessageText:NSLocalizedString(@"Are you sure you want to clear the Update History?",@"Clear History?")];
+	[alert setInformativeText:NSLocalizedString(@"Once done, this action cannot be undone.", @"Action not undoable")];
 	// Set Message type to Warning
 	[alert setAlertStyle:NSWarningAlertStyle];
 	// Show as Sheet on historywindow
@@ -360,22 +360,22 @@
 		int httperror = [melativeEngine scrobble:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue]  Segment:[segment stringValue]];
 		switch (httperror) {
 			case 200:
-				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Scrobble Successful...", @"Scrobble Success")];
 				//Set up Delegate
 				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
 				[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
 				break;
 			case 401:
 				//Login Failed, show error message
-				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" explaination:@"Check your username and password and try the scrobble command again. If you recently changed your password, enter your new password and try again."];
+				[self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password",@"missing user info") explaination:NSLocalizedString(@"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again.",@"error explaination")];
 				// Set Status
-				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Scrobble...",@"Can't Scrobble")];
 				break;
 			default:
-				//Login Failed, show error message
-				[self showsheetmessage:@"MelScrobbleX was unable to scrobble because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
+				//Unknown Error
+				[self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to scrobble because of an unknown error.",@"Unknown error") explaination:[NSString stringWithFormat:@"%@ %i", NSLocalizedString(@"Error", @"Error no"), httperror]];
 				// Set Status
-				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Title/Segment Missing...",@"no segment/title")];
 				break;
 		}
 	}
@@ -392,9 +392,9 @@
 												selector:@selector(firetimer:)
 												userInfo:nil
 												 repeats:YES] retain];
-		[togglescrobbler setTitle:@"Stop Auto Scrobbling"];
+		[togglescrobbler setTitle:NSLocalizedString(@"Stop Auto Scrobbling",@"AutoScrobble_1")];
 		[GrowlApplicationBridge notifyWithTitle:@"MelScrobbleX"
-									description:@"Auto Scrobble is now turned on."
+									description:NSLocalizedString(@"Auto Scrobble is now turned on.",@"AutoScrobble_Growl1")
 							   notificationName:@"Message"
 									   iconData:nil
 									   priority:0
@@ -407,9 +407,9 @@
 		[timer invalidate];
 		[timer release];
 		timer = nil;
-		[togglescrobbler setTitle:@"Start Auto Scrobbling"];
+		[togglescrobbler setTitle:NSLocalizedString(@"Start Auto Scrobbling",@"AutoScrobble_0")];
 		[GrowlApplicationBridge notifyWithTitle:@"MelScrobbleX"
-									description:@"Auto Scrobble is now turned off."
+									description:NSLocalizedString(@"Auto Scrobble is now turned off.",@"AutoScrobble_Growl0")
 							   notificationName:@"Message"
 									   iconData:nil
 									   priority:0
@@ -445,8 +445,8 @@
 		int httperror = [melativeEngine scrobble:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue] Segment:[segment stringValue]];
 		switch (httperror) {
 			case 200:
-				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
-				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Successful"
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Scrobble Successful...", @"Scrobble Success")];
+				[GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"Scrobble Successful...", @"Scrobble Success")
 											description:[NSString stringWithFormat:@"%@ - %@", [mediatitle stringValue], [segment stringValue]] 
 									   notificationName:@"Message"
 											   iconData:nil
@@ -459,15 +459,15 @@
 				//Set up Delegate
 				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
 				//Set last successful scrobble to statusItem Tooltip
-				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"MelScrobbleX - Last Scrobble: %@ - %@", [mediatitle stringValue], [segment stringValue]]];						
+				[appDelegate setStatusToolTip:[NSString stringWithFormat:@"%@ %@ - %@",NSLocalizedString(@"MelScrobbleX - Last Scrobble:",@"Tooltip format") ,[mediatitle stringValue], [segment stringValue]]];						
 				//Add to History
 				[appDelegate addrecord:[melativeEngine getScrobbledMediaTitle] mediasegment:[melativeEngine getScrobbledMediaSegment] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
 				break;
 			case 401:
 				// Set Status
-				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
-				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
-											description:@"Check your login information and try scrobbling again." 
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Scrobble...",@"Can't Scrobble")];
+				[GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"Scrobble Unsuccessful...", @"Scrobble unsuccess")
+											description:NSLocalizedString(@"Check your login information and try scrobbling again.",@"check login") 
 									   notificationName:@"Message"
 											   iconData:nil
 											   priority:0
@@ -477,9 +477,9 @@
 				break;
 			default: // Any error codes thats not 200 or 401
 				// Set Status
-				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Scrobble...",@"Can't Scrobble")];
 				[GrowlApplicationBridge notifyWithTitle:@"Scrobble Unsuccessful"
-											description:[NSString stringWithFormat:@"Unknown Error. Error %i", httperror]
+											description:[NSString stringWithFormat:@"%@ %i", NSLocalizedString(@"Error", @"Error no"), httperror]
 									   notificationName:@"Message"
 											   iconData:nil
 											   priority:0
@@ -495,7 +495,7 @@
 {
 	// Clear All Fields
 	[self clearEverything];
-	[scrobblestatus setObjectValue:@"All fields cleared..."];
+	[scrobblestatus setObjectValue:NSLocalizedString(@"All fields cleared...",@"fields cleared")];
 }
 -(IBAction)scrobble:(id)sender {
 	if ([[segment stringValue] length] == 0 || [[mediatitle stringValue]length] == 0 ) {
@@ -505,10 +505,10 @@
 				if ([[mediatitle stringValue] length] != 0) {
 					// Set Up Prompt Message Window
 					NSAlert * alert = [[[NSAlert alloc] init] autorelease];
-					[alert addButtonWithTitle:@"Yes"];
-					[alert addButtonWithTitle:@"No"];
-					[alert setMessageText:@"Do you really want to perform a scrobble commend with the current information?"];
-					[alert setInformativeText:@"No segment has been entered. It will default to 1 if you continue."];
+					[alert addButtonWithTitle:NSLocalizedString(@"Yes",@"Yes Button")];
+					[alert addButtonWithTitle:NSLocalizedString(@"No",@"No Button")];
+					[alert setMessageText:NSLocalizedString(@"Do you really want to perform a scrobble commend with the current information?",@"Scrobble with current info")];
+					[alert setInformativeText:NSLocalizedString(@"No segment has been entered. It will default to 1 if you continue.",@"No segment informative text")];
 					// Set Message type to Warning
 					[alert setAlertStyle:NSWarningAlertStyle];
 					Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];	
@@ -521,8 +521,8 @@
 				}
 			default:
 				// No segment or title	
-				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info." explaination:@"Enter a media title or segment and try the scrobble command again."];
-				[scrobblestatus setObjectValue:@"Title/Segment Missing..."];
+				[self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to scrobble since you didn't enter a title or segment info.", @"No Media info") explaination:NSLocalizedString(@"Enter a media title or segment and try the scrobble command again.",@"Explaination")];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Title/Segment Missing...",@"no segment/title")];
 				break;
 		}
 	}
@@ -530,22 +530,22 @@
 		int httperror = [melativeEngine scrobble:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue] Segment:[segment stringValue]];
 		switch (httperror) {
 			case 200:
-				[scrobblestatus setObjectValue:@"Scrobble Successful..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Scrobble Successful...", @"Scrobble Success")];
 				//Set up Delegate
 				Melative_ExampleAppDelegate* appDelegate=[NSApp delegate];
 				[appDelegate addrecord:[mediatitle stringValue] mediasegment:[segment stringValue] Date:[NSDate date] type:[mediatypemenu indexOfSelectedItem]];
 				break;
 			case 401:
 				//Login Failed, show error message
-				[self showsheetmessage:@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password" explaination:@"Check your username and password and try the scrobble command again. If you recently changed your password, enter your new password and try again."];
+				[self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to scrobble since you don't have the correct username and/or password",@"missing user info") explaination:NSLocalizedString(@"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again.",@"error explaination")];
 				// Set Status
-				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Scrobble...",@"Can't Scrobble")];
 				break;
 			default:
 				//Login Failed, show error message
-				[self showsheetmessage:@"MelScrobbleX was unable to scrobble because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
+				[self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to scrobble because of an unknown error.",@"Unknown error") explaination:[NSString stringWithFormat:@"%@ %i", NSLocalizedString(@"Error", @"Error no"), httperror]];
 				// Set Status
-				[scrobblestatus setObjectValue:@"Unable to Scrobble..."];
+				[scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Scrobble...",@"Can't Scrobble")];
 				break;
 		}
 	}
@@ -572,18 +572,18 @@
 
 -(IBAction)postmessage:(id)sender {
 	// Set Status
-	[scrobblestatus setObjectValue:@"Posting..."];
+	[scrobblestatus setObjectValue:NSLocalizedString(@"Posting...",@"Posting Status")];
 	//Post the update		
     if ( [[fieldmessage string] length] == 0 && [[mediatitle stringValue]length] == 0 ) {
         //No message, show error
-        [self showsheetmessage:@"MelScrobbleX was unable to post an update since you didn't enter a message." explaination:@"Enter a message and try posting again"];
-        [scrobblestatus setObjectValue:@"No Message Entered.."];
+        [self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to post an update since you didn't enter a message.",@"No Message Error") explaination:NSLocalizedString(@"Enter a message and try posting again",@"Enter Message")];
+        [scrobblestatus setObjectValue:NSLocalizedString(@"No Message Entered...",@"No Message Status Error")];
     }
     else {
         int httperror = [melativeEngine postupdate:[mediatypemenu indexOfSelectedItem] Title:[mediatitle stringValue] Segment:[segment stringValue] theMessage:[fieldmessage string] completed:[completecheckbox state] Twitter:[sendtotwitter state]];
         switch (httperror) {
             case 200: // 200 - OK
-                [scrobblestatus setObjectValue:@"Post Successful..."];
+                [scrobblestatus setObjectValue:NSLocalizedString(@"Post Successful...",@"Post Success Status")];
                 //Clear Message
                 [fieldmessage setString:@""];
                 if ([completecheckbox state])
@@ -595,14 +595,14 @@
 					
             case 401: // 401 - Unauthorized
                 //Login Failed, show error message
-                [self showsheetmessage:@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password" explaination:@"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again."];
-                [scrobblestatus setObjectValue:@"Unable to Post..."];
+                [self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to post an update since you don't have the correct username and/or password", @"No User Data") explaination:NSLocalizedString(@"Check your username and password and try posting again. If you recently changed your password, enter you new password and try again.",@"error explaination")];
+                [scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Post...",@"Can't Post")];
                 break;
 					
             default:
                 //Some other error...
-                [self showsheetmessage:@"MelScrobbleX was unable to post an update because of an unknown error." explaination:[NSString stringWithFormat:@"Error %i", httperror]];
-                [scrobblestatus setObjectValue:@"Unable to Post..."];
+                [self showsheetmessage:NSLocalizedString(@"MelScrobbleX was unable to post an update because of an unknown error.", @"Unknown Error") explaination:[NSString stringWithFormat:@"%@ %i", NSLocalizedString(@"Error", @"Error no"), httperror]];
+                [scrobblestatus setObjectValue:NSLocalizedString(@"Unable to Post...",@"Can't Post")];
                 break;
 			}
 		}
@@ -612,7 +612,7 @@
 {
 	// Set Up Prompt Message Window
 	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
-	[alert addButtonWithTitle:@"OK"];
+	[alert addButtonWithTitle:NSLocalizedString(@"OK",@"OK button")];
 	[alert setMessageText:message];
 	[alert setInformativeText:explaination];
 	// Set Message type to Warning
